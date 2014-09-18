@@ -79,7 +79,11 @@ asset.server = function(ctx) {
                 title: 'Create Dish',
                 url: 'create_dish',
                 path: 'create_dish.jag'
-            }]
+            },{
+                 title: 'Dashboard',
+                 url: 'dashboard',
+                 path: 'dashboard.jag'
+             }]
         }
     };
 };

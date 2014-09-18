@@ -69,7 +69,7 @@ caramel.configs({
 //startup log for url
 var logPublisherUrl = function () {
 	var log = new Log();
-    log.info("Publisher URL : " + config.server.http + caramel.configs().context);
+    log.info("Recipe App URL : " + config.server.http + caramel.configs().context);
 };
 
 //Cause the super tenant to be load
