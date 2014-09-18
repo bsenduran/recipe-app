@@ -1,0 +1,64 @@
+<h3>Details</h3>
+
+<form class="form-horizontal" id='form-asset-update' method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type={{rxt.shortName}}' >
+
+
+    <fieldset class="form-horizontal well well-small span10">
+        <img src='{{assets.tables.0.fields.banner.value}}' />
+        <div class="span12"></div>
+        <label><strong>{{assets.tables.0.fields.name.value}}</strong></label>
+        <label><strong>{{assets.tables.0.fields.version.value}}</strong></label>
+        <label>{{assets.tables.0.fields.description.value}}</label>
+    </fieldset>
+
+
+    <div id="rec-div" class="container">
+
+        <div class="span6">
+            <h2>Ingredients</h2> <br/>
+            {{loopingRecipeImages assets.tables.1.fields "ingredients"}}
+        </div>
+
+        <div class="span6">
+            <h2>Results</h2> <br/>
+            {{loopingRecipeImages assets.tables.2.fields "results"}}
+        </div>
+
+
+        <!-- Bottom Nav-bar -->
+        <ul class="pager span8 well well-small">
+            <li class="next">
+                <a href="/recipe-app/asts/dish/set_ingredients/{{assets.id}}">Next &rarr;</a>
+            </li>
+        </ul>
+
+    </div>
+
+</form>
+
+
+<!-- Script to set user_ids' of connection -->
+<script>
+    function getQueryParams(qs) {
+        qs = qs.split("+").join(" ");
+
+        var params = {}, tokens,
+                re = /[?&]?([^=]+)=([^&]*)/g;
+
+        while (tokens = re.exec(qs)) {
+            params[decodeURIComponent(tokens[1])]
+                    = decodeURIComponent(tokens[2]);
+        }
+
+        return params;
+    }
+
+    var query = getQueryParams(document.location.search);
+
+    if(query.id != null && query.value != null){
+        // Set values
+        var userIdText = document.getElementById(query.id);
+        userIdText.setAttribute("value", query.value);
+    }
+
+</script>

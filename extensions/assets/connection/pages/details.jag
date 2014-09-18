@@ -1,0 +1,58 @@
+<%
+var caramel;
+require('/modules/recipe-app.js').exec(function(ctx) {
+    caramel = require('caramel');
+    var ui = require('rxt').ui;
+    var asset = require('rxt').asset;
+    var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
+    var options = uriMatcher.match('/{context}/asts/{type}/{pageName}/{+id}')||uriMatcher.match('/{context}/asts/{type}/{pageName}');
+    
+    if(!options){
+        response.sendError(400,'Could not locate an endpoint for your request.Make sure that you provide an id');
+    }
+    else if (!options.id) {
+        response.sendError(400, 'An id must be provided when viewing details of a particular asset');
+    } else {
+        var type = options.type;
+        var am = asset.createUserAssetManager(session, type);
+        var page = ui.buildPage(session, request);
+        var assets = am.get(options.id);
+        var name = assets.attributes.overview_name;
+
+        // Get existing connections
+        var path = "connections/" +name + "/" + "/accounts";
+        var dataStore = new MetadataStore("admin", "admin");
+        var res;
+        var accountContent;
+
+        // Retrieving from the registry
+        if("connection" == type)
+        {
+            res = dataStore.get(path);
+            accountContent = parse(res.content);
+        }
+
+        if (assets == null) {
+            response.sendError(404, 'The asset with id: ' + options.id + ' could not be located.');
+        } else {
+            //print(assets);
+            var output = am.render(assets, page).details();
+
+        // Adding existing connections
+        if("connection" == type)
+        {
+            // Set existing connections & keeping just ids
+            output.assets.existingConnections =[];
+            output.assets.returnRecipeUri = session.get("return_recipe_uri") + "?id=" + request.getParameter("id");
+
+            for (var key in accountContent) {
+                if (accountContent.hasOwnProperty(key)) {
+                    output.assets.existingConnections.push(key);
+                }
+            }
+        }
+
+            caramel.render(output);
+        }
+    }
+}, request, response, session); %>

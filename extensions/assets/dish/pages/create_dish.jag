@@ -1,0 +1,163 @@
+<%
+var caramel;
+require('/modules/recipe-app.js').exec(function(ctx) {
+    caramel = require('caramel');
+    var log=new Log();
+    var reqUtil=require('utils').request;
+    var xmlUtil=require('utils').xml;
+    var asset=require('rxt').asset;
+
+    var options=reqUtil.getQueryOptions(ctx.request.getQueryString());
+
+    var url  = options.resources;
+    var descriptorData = get(url+'descriptor.xml');
+
+    var metadata1=new XML(descriptorData.data);
+
+    log.info(metadata1);
+
+
+    var connectionVal = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].connection.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var operationVal = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].operation.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var connectionIdVal = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].connectionid.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var connectionAcc = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].account.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var connectionIcon = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +url+ xx[ii].icon.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var connectionPara = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].parameters.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+    var connectionParaVal = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].parametersvalue.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+        return JSON.parse(textJson + ']');
+
+    };
+
+
+
+
+
+    //var json=xmlUtil.convertE4XtoJSON(descriptor);
+
+    // log.info(metadata);
+    //log.info(json);
+
+
+
+    log.info(metadata1);
+
+
+
+
+
+
+   // log.info('Query strings: '+stringify(options));
+    var am=asset.createUserAssetManager(ctx.session,'dish');
+    var assetInstance = {
+        name: metadata1.overview.name,
+
+        attributes: {
+
+            overview_name: metadata1.overview.name,
+            overview_version: metadata1.overview.version,
+            overview_description: metadata1.overview.description,
+            overview_thumbnail: url+metadata1.overview.thumbnail,
+            overview_banner: url+metadata1.overview.banner,
+
+            ingredients_connection: connectionVal(metadata1.ingredients),
+            ingredients_operation: operationVal(metadata1.ingredients),
+            ingredients_connectionid: connectionIdVal(metadata1.ingredients),
+            ingredients_account: connectionAcc(metadata1.ingredients),
+            ingredients_icon: connectionIcon(metadata1.ingredients),
+            ingredients_parameters: connectionPara(metadata1.ingredients),
+            ingredients_parametersvalue: '',
+
+            result_connection: connectionVal(metadata1.result),
+            result_operation: operationVal(metadata1.result),
+            result_connectionid:  connectionIdVal(metadata1.result),
+            result_account: connectionAcc(metadata1.result),
+            result_icon:connectionIcon(metadata1.result) ,
+            result_parameters: connectionPara(metadata1.result),
+            result_parametersvalue: ''
+
+
+        }
+    };
+
+    am.create(assetInstance);
+
+   // log.info('id: '+assetInstance.id);
+
+
+    response.sendRedirect('details/'+assetInstance.id);
+
+}, request, response, session);
+%>

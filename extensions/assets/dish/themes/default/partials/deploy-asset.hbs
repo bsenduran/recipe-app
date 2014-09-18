@@ -1,0 +1,39 @@
+
+
+<div id="rec-div" class="container">
+    <h2>Let's Make This Happen!</h2> <br/>
+
+    <form class="form-horizontal well span8" action='{{url "/asts/dish/list"}}'>
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Dish Name</label>
+            <div class="controls">
+                <input type="text" id="inputEmail" >
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPassword">Triggering Period / Cron</label>
+            <div class="controls">
+                <input type="text" id="inputPassword" >
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <button class="btn btn-primary btn-large">Complete!</button>
+            </div>
+        </div>
+    </form>
+
+
+    <!-- Bottom Nav-bar -->
+    <ul class="pager span8 well well-small">
+        <li class="previous">
+            <a href="/recipe-app/asts/dish/set_process/{{assets.id}}">&larr; Previous</a>
+        </li>
+    </ul>
+
+
+</div>
+
+
+
+
