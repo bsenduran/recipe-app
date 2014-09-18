@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<artifactType type="application/vnd.esb.recipe+xml" shortName="recipe" singularLabel="Recipe" pluralLabel="Recipes"
+              hasNamespace="false" iconSet="5">
+
+    <storagePath>/recipes/@{name}</storagePath>
+    <nameAttribute>recipe_name</nameAttribute>
+
+    <ui>
+        <list>
+            <column name="Name">
+                <data type="path" value="recipe_name" href="@{storagePath}"/>
+            </column>
+            <column name="Version">
+                <data type="path" value="recipe_version" href="@{storagePath}"/>
+            </column>
+        </list>
+    </ui>
+
+    <content>
+        <table name="Recipe">
+            <field type="text" required="true">
+                <name>Name</name>
+            </field>
+            <field type="text">
+                <name>Version</name>
+            </field>
+            <field type="text-area">
+                <name>Description</name>
+            </field>
+            <field type="text" url="true" required="true">
+                <name>url</name>
+            </field>
+            <field type="text">
+                <name>Creator</name>
+            </field>
+        </table>
+
+
+        <table name="Images">
+            <field type="text" required="true">
+                <name>Thumbnail</name>
+            </field>
+            <field type="text" required="true">
+                <name>Banner</name>
+            </field>
+        </table>
+
+    </content>
+
+
+</artifactType>

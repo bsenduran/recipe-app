@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<artifactType type="application/vnd.wso2-dish+xml" shortName="dish" singularLabel="Dish" pluralLabel="Dishes" hasNamespace="false" iconSet="5">
+    <storagePath>/dishes/@{name}/@{overview_version}</storagePath>
+    <nameAttribute>overview_name</nameAttribute>
+
+    <ui>
+        <list>
+            <column name="Name">
+                <data type="path" value="overview_name" href="@{storagePath}"/>
+            </column>
+            <column name="Version">
+                <data type="path" value="overview_version" href="@{storagePath}"/>
+            </column>
+        </list>
+    </ui>
+
+    <content>
+
+        <table name="Overview">
+            <field type="text" required="true">
+                <name>Name</name>
+            </field>
+            <field type="text">
+                <name>Version</name>
+            </field>
+            <field type="text-area">
+                <name>Description</name>
+            </field>
+            <field type="text" required="true">
+                <name>Thumbnail</name>
+            </field>
+            <field type="text" required="true">
+                <name>Banner</name>
+            </field>
+        </table>
+
+
+        <table name="Ingredients" columns="7" maxoccurs="unbounded">
+            <subheading>
+                <heading>Connection</heading>
+                <heading>Operation</heading>
+                <heading>Connection Id</heading>
+                <heading>Account</heading>
+                <heading>Icon</heading>
+                <heading>Parameters in json</heading>
+                <heading>Parameters Value</heading>
+            </subheading>
+            <field type="text">
+                <name label="Connection">Connection</name>
+            </field>
+            <field type="text">
+                <name label="Operation">Operation</name>
+            </field>
+            <field type="text">
+                <name label="Connectionid">Connectionid</name>
+            </field>
+            <field type="text">
+                <name label="Account">Account</name>
+            </field>
+            <field type="text">
+                <name label="Icon">Icon</name>
+            </field>
+            <field type="text">
+                <name label="Parameters">Parameters</name>
+            </field>
+            <field type="text">
+                <name label="Parametersvalue">Parametersvalue</name>
+            </field>
+        </table>
+
+        <table name="Result" columns="7" maxoccurs="unbounded">
+            <subheading>
+                <heading>Connection</heading>
+                <heading>Operation</heading>
+                <heading>Connection Id</heading>
+                <heading>Account</heading>
+                <heading>Icon</heading>
+                <heading>Parameters in json</heading>
+                <heading>Parameters Value</heading>
+            </subheading>
+            <field type="text">
+                <name label="Connection">Connection</name>
+            </field>
+            <field type="text">
+                <name label="Operation">Operation</name>
+            </field>
+            <field type="text">
+                <name label="Connectionid">Connectionid</name>
+            </field>
+            <field type="text">
+                <name label="Account">Account</name>
+            </field>
+            <field type="text">
+                <name label="Icon">Icon</name>
+            </field>
+            <field type="text">
+                <name label="Parameters">Parameters</name>
+            </field>
+            <field type="text">
+                <name label="Parametersvalue">Parametersvalue</name>
+            </field>
+        </table>
+
+    </content>
+
+</artifactType>
+
