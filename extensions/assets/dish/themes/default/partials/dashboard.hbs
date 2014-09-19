@@ -1,51 +1,16 @@
 <div class="asset-being-added">
 </div>
 <div class="asset-thumb-container">
-	{{#if assets}}
+
         <div class="row-fluid">
-            <table class="table table-striped list-asset-table">
-                <thead>
-                <th colspan="2"><a href="?sortby=name&sort=asc">Name <i class="icon-caret-down"></i></a></th>
-                <th><a href="?sortby=version&sort=asc">Version <i class="icon-caret-down"></i></a></th>
-                <th><a href="?sortby=owner&sort=asc">Owner <i class="icon-caret-down"></i></a></th>
-                <th><a href="#">Status2</a></th>
-                <th><a href="?sortby=createdtime&sort=desc">Created <i class="icon-caret-down"></i></a></th>
-                <th></th>
-                </thead>
-                <tbody>
-                 {{#each assets}}
-                
-                    <tr>
-                        <td>
-                        <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{this.attributes.images_thumbnail}}' class="" />
-                        </td>
-                        <td class="asset-listing-name">
-                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}'>
-                                {{this.attributes.overview_name}}
-                            </a>
-                        </td>
-                        <td>
-                        {{this.attributes.overview_version}}
-                        </td>
-                        <td>
-                        {{this.attributes.overview_provider}}
-                        </td>
-                        <td>
-                        <span class="lifecycle-state"><small><i class="icon-circle lc-state-{{this.lifecycleState}}"></i> {{this.lifecycleState}}</small></span>
-                        </td>
-                        <td>
-                        <small>{{this.attributes.overview_createdtime}}</small>
-                        </td>
-                    </tr>
-                {{/each}}
-                </tbody>
-            </table>
 
-
-            <div class="span12"><h3>My Dishes</h3></div>
+            <div></div>
+            <!-- List dishes -->
+            <div class="span12"><blockquote><h3>My Dishes</h3></blockquote></div>
 
             <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
 
+                {{#if assets}}
 
                 <ul class="thumbnails">
 
@@ -53,17 +18,17 @@
 
                 {{#each assets}}
 
-                    <li class="span2">
+                <li class="span2">
 
-                        <div class="thumbnail" style=" height: 180px;">
-                            <div style="height: 12px;">
-                                <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i></small>
-                            </div>
-                            <div style="height: 128px;">
-                                <img src='http://localhost:9763/store/storage/recipe/fcfd2f4c-7b4d-49ff-af5d-b92ea981b138/2634c564-d116-4b37-b2c4-6132988582fd/thumb_4.png' alt="...">
-                            </div>
-                                <p>    <b>
-
+                    <div class="thumbnail" style=" height: 180px;">
+                        <div style="height: 12px;">
+                            <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i></small>
+                        </div>
+                        <div style="height: 128px;">
+                            <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{this.attributes.images_thumbnail}}' alt="...">
+                        </div>
+                        <p>    <b>
+                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}' id='titleText'>
                                 <script>
                                     var str = "{{this.attributes.overview_name}}";
                                     if(str.length>30)
@@ -76,23 +41,27 @@
                                     document.write(str);
                                 </script>
 
-                                </b>    </p>
-                        </div>
-                    </li>
+                            </a>
+                        </b>    </p>
+                    </div>
+
+                </li>
 
 
                 {{/each}}
 
                 </ul>
 
-
-
             </div>
 
-            <div class="span12"><h3>My Connections</h3></div>
+            {{/if}}
+
+            <!-- Listing connections -->
+            <div class="span12"><blockquote><h3>My Connections</h3></blockquote></div>
 
             <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
-        {{#if connectionAssets}}
+
+            {{#if connectionAssets}}
 
             <ul class="thumbnails">
 
@@ -100,35 +69,36 @@
 
                 {{#each connectionAssets}}
 
-                    <li class="span2">
+                <li class="span2">
 
-                        <div class="thumbnail" style=" height: 180px;">
-                            <div style="height: 12px;">
-                                <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i> </small>
-                            </div>
-                            <div style="height: 128px;">
-                                <img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="...">
-                            </div>
-                            <p>    <b>
+                    <div class="thumbnail" style=" height: 180px;">
+                        <div style="height: 12px;">
 
-                            <script>
-                                var str = "{{this.attributes.overview_name}}";
-                                if(str.length>30)
-                                 {
-                                    // Limit name only for 40 characters
-                                    str = str.substring(0, 40) + '...';
-                                 }
-                                 else{
-                                    str += '<br/>';
-                                 }
-                                document.write(str);
-                            </script>
-
-                            </b>    </p>
                         </div>
-                    </li>
+                        <div style="height: 128px;">
+                            <img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="...">
+                        </div>
+                        <p>    <b>
+                            <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText'>
+                                <script>
+                                    var str = "{{this.attributes.overview_name}}";
+                                    if(str.length>30)
+                                     {
+                                        // Limit name only for 40 characters
+                                        str = str.substring(0, 40) + '...';
+                                     }
+                                     else{
+                                        str += '<br/>';
+                                     }
+                                    document.write(str);
+                                </script>
 
-        {{/each}}
+                            </a>
+                        </b>    </p>
+                    </div>
+                </li>
+
+                {{/each}}
 
             </ul>
 
@@ -137,14 +107,9 @@
             </div>
 
         </div>
-	{{else}}
-			<div class="emptyAssets-MsgDiv">
-			    <i class="icon-frown largeMsgIcon"></i>
-			    
-			     <p class="emptyAssets">Sorry. I couldn't find anything for you</p>
-			    
-			</div>
-	{{/if}}
+
+
 
 
 </div>
+
