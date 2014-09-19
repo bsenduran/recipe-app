@@ -18,8 +18,11 @@ require('/modules/recipe-app.js').exec(function(ctx) {
     var sortBy = ctx.request.getParameter('sortby');
     var sort = ctx.request.getParameter('sort');
     var type = options.type;
+    var type2 = 'connection';
     var am = asset.createUserAssetManager(ctx.session, type);
+    var am2 = asset.createUserAssetManager(ctx.session, type2);
     var page = ui.buildPage(ctx.session, ctx.request);
+    var page2 = ui.buildPage(ctx.session, ctx.request);
     var assets;
     if (q) {
         assets = am.search(q);
@@ -29,7 +32,12 @@ require('/modules/recipe-app.js').exec(function(ctx) {
         assets = am.search(null, DEFAULT_PAGIN);
     } else {
         assets = am.list();
+        assets2 = am2.list();
     }
+
     var output = am.render(assets, page).list();
+    var output2 = am2.render(assets2, page2).list();
+    output.connectionAssets = output2.assets;
     caramel.render(output);
+
 }, request, response, session); %>

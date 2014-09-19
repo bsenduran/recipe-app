@@ -40,6 +40,102 @@
                 {{/each}}
                 </tbody>
             </table>
+
+
+            <div class="span12"><h3>My Dishes</h3></div>
+
+            <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
+
+
+                <ul class="thumbnails">
+
+                <div></div>
+
+                {{#each assets}}
+
+                    <li class="span2">
+
+                        <div class="thumbnail" style=" height: 180px;">
+                            <div style="height: 12px;">
+                                <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i></small>
+                            </div>
+                            <div style="height: 128px;">
+                                <img src='http://localhost:9763/store/storage/recipe/fcfd2f4c-7b4d-49ff-af5d-b92ea981b138/2634c564-d116-4b37-b2c4-6132988582fd/thumb_4.png' alt="...">
+                            </div>
+                                <p>    <b>
+
+                                <script>
+                                    var str = "{{this.attributes.overview_name}}";
+                                    if(str.length>30)
+                                     {
+                                        str = str.substring(0, 40) + '...';
+                                     }
+                                     else{
+                                        str += '<br/>';
+                                     }
+                                    document.write(str);
+                                </script>
+
+                                </b>    </p>
+                        </div>
+                    </li>
+
+
+                {{/each}}
+
+                </ul>
+
+
+
+            </div>
+
+            <div class="span12"><h3>My Connections</h3></div>
+
+            <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
+        {{#if connectionAssets}}
+
+            <ul class="thumbnails">
+
+                <div></div>
+
+                {{#each connectionAssets}}
+
+                    <li class="span2">
+
+                        <div class="thumbnail" style=" height: 180px;">
+                            <div style="height: 12px;">
+                                <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i> </small>
+                            </div>
+                            <div style="height: 128px;">
+                                <img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="...">
+                            </div>
+                            <p>    <b>
+
+                            <script>
+                                var str = "{{this.attributes.overview_name}}";
+                                if(str.length>30)
+                                 {
+                                    // Limit name only for 40 characters
+                                    str = str.substring(0, 40) + '...';
+                                 }
+                                 else{
+                                    str += '<br/>';
+                                 }
+                                document.write(str);
+                            </script>
+
+                            </b>    </p>
+                        </div>
+                    </li>
+
+        {{/each}}
+
+            </ul>
+
+        {{/if}}
+
+            </div>
+
         </div>
 	{{else}}
 			<div class="emptyAssets-MsgDiv">
@@ -49,4 +145,6 @@
 			    
 			</div>
 	{{/if}}
+
+
 </div>
