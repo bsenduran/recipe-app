@@ -22,10 +22,10 @@
 
                     <div class="thumbnail" style=" height: 180px;">
                         <div style="height: 12px;">
-                            <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}"></i></small>
+                            <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
                         </div>
                         <div style="height: 128px;">
-                            <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{this.attributes.images_thumbnail}}' alt="...">
+                            <img src='{{this.attributes.overview_thumbnail}}' alt="...">
                         </div>
                         <p>    <b>
                             <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}' id='titleText'>
@@ -55,6 +55,8 @@
             </div>
 
             {{/if}}
+
+            <div class="span12"></div>
 
             <!-- Listing connections -->
             <div class="span12"><blockquote><h3>My Connections</h3></blockquote></div>
@@ -111,7 +113,7 @@
                 <a href="{{url ""}}/../store" class="btn btn-large btn-primary span3">
                     <div class="pull-left">
                         <i class="icon-shopping-cart icon-white"></i>&nbsp;
-                        Go to recipe store ...
+                        Go to recipe store
                     </div>
                 </a>
             </div>

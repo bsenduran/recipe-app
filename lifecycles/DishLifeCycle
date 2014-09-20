@@ -1,0 +1,25 @@
+<aspect name="DishLifeCycle" class="org.wso2.jaggery.scxml.aspects.JaggeryTravellingPermissionLifeCycle">
+    <configuration type="literal">
+        <lifecycle>
+            <scxml xmlns="http://www.w3.org/2005/07/scxml"
+                   version="1.0"
+                   initialstate="Raw">
+                <state id='Raw'>                    
+                    <transition event="Mixing" target="Undercooked"/>
+                </state>
+                <state id="Undercooked">                    
+                    <transition event="Heating" target="Cooked"/>
+                </state>
+                <state id="Cooked">                    
+                    <transition event="Serving" target="Served"/>                    
+                </state>
+                <state id="Served">                    
+                    <transition event="Putin" target="Freezed"/>
+                </state>
+                <state id="Freezed">                    
+                    <transition event="Takeout" target="Served"/>
+                </state>                
+            </scxml>
+        </lifecycle>
+    </configuration>
+</aspect>
