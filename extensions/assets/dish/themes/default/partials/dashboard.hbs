@@ -28,7 +28,7 @@
                             <img src='{{this.attributes.overview_thumbnail}}' alt="...">
                         </div>
                         <p>    <b>
-                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}' id='titleText'>
+                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
                                 <script>
                                     var str = "{{this.attributes.overview_name}}";
                                     if(str.length>30)
@@ -82,19 +82,7 @@
                         </div>
                         <p>    <b>
                             <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText'>
-                                <script>
-                                    var str = "{{this.attributes.overview_name}}";
-                                    if(str.length>30)
-                                     {
-                                        // Limit name only for 40 characters
-                                        str = str.substring(0, 40) + '...';
-                                     }
-                                     else{
-                                        str += '<br/>';
-                                     }
-                                    document.write(str);
-                                </script>
-
+                                {{this.attributes.overview_name}}
                             </a>
                         </b>    </p>
                     </div>

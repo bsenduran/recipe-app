@@ -1359,3 +1359,20 @@ circle:hover {
 .rxt-table-heading {
     padding-left: 10px;
 }
+
+/* New DishLifeCycle styles */
+.lc-state-Raw {
+    color: #F98707
+}
+.lc-state-Undercooked {
+    color: #FFFF93
+}
+.lc-state-Cooked {
+    color:#FFD300
+}
+.lc-state-Freezed {
+    color: #88DAFF
+}
+.lc-state-Served {
+    color:#4ECF00
+}
