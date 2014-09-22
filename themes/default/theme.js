@@ -373,6 +373,14 @@ var engine = caramel.engine('handlebars', (function() {
                 return new Handlebars.SafeString(defaultPtr(table));
             });
             // Looping items of any kind in a recipe
+            var checkNullStr = function (txtVal) {
+                if (txtVal != "" && txtVal != "null") {
+                    return txtVal;
+                }
+                else {
+                    return "";
+                }
+            };
             Handlebars.registerHelper('loopingRecipeItems', function(table) {
                 var str='' ;
                 var count = table.connection.value.length;
@@ -385,17 +393,18 @@ var engine = caramel.engine('handlebars', (function() {
                     //str += '<pre class="span12">' + table.parameters.value.shift() + '</pre>' + '<br/>';
 
                     var params = table.parameters.value.shift().split(',');
+                    var paramVal = table.parametersvalue.value.shift().split(',');
                     var paramsLength = params.length;
 
                     // Generate a sample form here
-                    str += '<form class="span12"><fieldset>';
+                    str += '<div class="span12"><fieldset>';
 
                     for(j=0; j<paramsLength; j++){
                         str += '<label><strong>' + params.shift() + '</strong></label>';
-                        str += '<input type="text" placeholder="Enter value here....">';
+                        str += '<input name="'+table.parametersvalue.name.tableQualifiedName+'" type="text" id="param'+i+'" placeholder="Enter value here...." value="'+checkNullStr(paramVal.shift())+'">';
                     }
 
-                    str += '</fieldset></form>';
+                    str += '</fieldset></div>';
                     str += '<hr class="span8">';
 
                 }
@@ -413,8 +422,8 @@ var engine = caramel.engine('handlebars', (function() {
                     //str += '<div>';
                     str += '<img src="' + table.icon.value.shift() + '" class="thumbnail span3" style="height: 130px; "></img>';
                     str += '<div class="span6"></div>';
-                    str += '<div class="span12"><input type="text" class="span3" value="" name="' + table.account.name.tableQualifiedName + '_' + iPlus + '" id="' + table.account.name.tableQualifiedName + '_' + iPlus + '" disabled></div>';
-                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
+                    str += '<div class="span12"><input type="text" class="span3" value="" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName +'" value="' + checkNullStr(table.account.value) + '" disabled></div>';
+                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName+'" class="btn btn-primary span3" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
                     str += '<div class="span12"></div>';
                     //str += '</div>';
                 }

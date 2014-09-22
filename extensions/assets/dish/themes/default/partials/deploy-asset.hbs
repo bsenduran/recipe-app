@@ -1,24 +1,23 @@
 
-
 <div id="rec-div" class="container">
     <h2>Let's Make This Happen!</h2> <br/>
 
-    <form class="form-horizontal well span8" action='{{url "/asts/dish/list"}}'>
+ <form class="form-horizontal well span8" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url "/asts/dish/list"}}'>
         <div class="control-group">
-            <label class="control-label" for="inputEmail">Dish Name</label>
+            <label class="control-label" for="dishName">Dish Name</label>
             <div class="controls">
-                <input type="text" id="inputEmail" >
+                <input type="text" id="dishName" name ="overview_name" value ="{{assets.name}}">
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="inputPassword">Triggering Period / Cron</label>
+            <label class="control-label" for="triggerInterval">Triggering Period / Cron</label>
             <div class="controls">
-                <input type="text" id="inputPassword" >
+                <input type="text" id="triggerInterval">
             </div>
         </div>
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary btn-large">Complete!</button>
+                <button class="btn btn-primary btn-large" id="add-form-btn">Complete!</button>
             </div>
         </div>
     </form>

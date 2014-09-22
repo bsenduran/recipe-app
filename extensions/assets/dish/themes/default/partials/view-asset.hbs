@@ -1,6 +1,6 @@
 <h3>Details</h3>
-
-<form class="form-horizontal" id='form-asset-update' method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type={{rxt.shortName}}' >
+{{dump .}}
+<form class="form-horizontal" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_ingredients/{{assets.id}}'>
 
 
     <fieldset class="form-horizontal well well-small span10">
@@ -24,11 +24,11 @@
             {{loopingRecipeImages assets.tables.2.fields "results"}}
         </div>
 
-
+        <input name="overview_name" type="text" value="{{assets.name}}" style="visibility: hidden" />
         <!-- Bottom Nav-bar -->
         <ul class="pager span8 well well-small">
             <li class="next">
-                <a href="/recipe-app/asts/dish/set_ingredients/{{assets.id}}">Next &rarr;</a>
+                <a id="add-form-btn">Next &rarr;</a>
             </li>
         </ul>
 
