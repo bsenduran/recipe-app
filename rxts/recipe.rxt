@@ -1,23 +1,23 @@
 <?xml version="1.0"?>
-<artifactType type="application/vnd.esb.recipe+xml" shortName="recipe" singularLabel="Recipe" pluralLabel="Recipes"
+<artifactType type="application/vnd.wso2-recipe+xml" shortName="recipe" singularLabel="Recipe" pluralLabel="Recipes"
               hasNamespace="false" iconSet="5">
 
     <storagePath>/recipes/@{name}</storagePath>
-    <nameAttribute>recipe_name</nameAttribute>
+    <nameAttribute>overview_name</nameAttribute>
 
     <ui>
         <list>
             <column name="Name">
-                <data type="path" value="recipe_name" href="@{storagePath}"/>
+                <data type="path" value="overview_name" href="@{storagePath}"/>
             </column>
             <column name="Version">
-                <data type="path" value="recipe_version" href="@{storagePath}"/>
+                <data type="path" value="overview_version" href="@{storagePath}"/>
             </column>
         </list>
     </ui>
 
     <content>
-        <table name="Recipe">
+        <table name="Overview">
             <field type="text" required="true">
                 <name>Name</name>
             </field>
@@ -28,15 +28,11 @@
                 <name>Description</name>
             </field>
             <field type="text" url="true" required="true">
-                <name>url</name>
+                <name>Url</name>
             </field>
             <field type="text">
                 <name>Creator</name>
             </field>
-        </table>
-
-
-        <table name="Images">
             <field type="text" required="true">
                 <name>Thumbnail</name>
             </field>
@@ -44,7 +40,6 @@
                 <name>Banner</name>
             </field>
         </table>
-
     </content>
 
 
