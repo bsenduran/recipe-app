@@ -3,22 +3,18 @@ $(function(){
         return $(formId).data();
     };
 
-    var txt="[";
-    for(var ii = 0; ii< $('#IngLen'); ii++) {
-        txt += $('#param'+ii).val() + ",";
-    }
-    txt = txt.substring(0, txt.length - 1);
-    txt+= "]";
-
-   // alert(txt);
-
-
-
-
-
+    var getTxt = function() {
+        var txt="[";
+        for(var ii = 0; ii< $('#IngLen').val(); ii++) {
+            txt += $('#param'+ii).val() + ",";
+        }
+        txt = txt.substring(0, txt.length - 1);
+        txt+= "]";
+        return txt;
+    };
 
     $('#add-form-btn').on('click',function(){
-        $([name='ingredients_parametersvalue']).val(txt);
+        $([name='ingredients_parametersvalue']).val(getTxt());
         $('#form-update').ajaxSubmit({
                     success:function(){
             var options=obtainFormMeta('#form-update');

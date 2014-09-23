@@ -374,7 +374,7 @@ var engine = caramel.engine('handlebars', (function() {
             });
             // Looping items of any kind in a recipe
             var checkNullStr = function (txtVal) {
-                if (txtVal != "" && txtVal != "null") {
+                if (txtVal != "" && txtVal != "null" && txtVal != undefined) {
                     return txtVal;
                 }
                 else {
@@ -385,15 +385,24 @@ var engine = caramel.engine('handlebars', (function() {
                 var str='' ;
                 var count = table.connection.value.length;
 
-                for(i=0; i<count; i++){
+                for(i=0; i<count; i++) {
                     str += '<div class="span12">';
                     str += '<img src="' + table.icon.value.shift() + '" class="img-thumbnail span4" style="width: 125px;"></img>' + '<br/>';
                     str += '<h2 class="span5">' + table.operation.value.shift() + '</h2>' + '<br/>' + '<br/>';
                     str += '</div>';
                     //str += '<pre class="span12">' + table.parameters.value.shift() + '</pre>' + '<br/>';
 
+                    var paramVal;
+
                     var params = table.parameters.value.shift().split(',');
-                    var paramVal = table.parametersvalue.value.shift().split(',');
+
+                    var shiftedPval  =  table.parametersvalue.value.shift();
+                    if (shiftedPval != null) {
+                        paramVal = shiftedPval.split(',');
+                    }else{
+                        paramVal = [];
+                    }
+
                     var paramsLength = params.length;
 
                     // Generate a sample form here
