@@ -1,6 +1,4 @@
 <%
-var lg = new Log();
-lg.info('Deployingsdsfsfds');
 var caramel;
 require('/modules/recipe-app.js').exec(function(ctx) {
     caramel = require('caramel');
