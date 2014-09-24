@@ -1,23 +1,28 @@
-
+<div id="rec-div" class="container">
 
 <div id="rec-div" class="container">
     <h2>Step2 - Prepare Ingredients</h2> <br/>
+    <form method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_results/{{assets.id}}'>
 
 {{loopingRecipeItems assets.tables.1.fields}}
 
     <script src="../../../themes/default/js/handlebars.form-helpers.js"></script>
 
 
+        <input name="overview_name" type="text" value="{{assets.name}}" style="visibility: hidden" />
 
-    <!-- Bottom Nav-bar -->
+        <input id="IngLen" type="text" value="{{assets.tables.1.fields.connection.value.length}}" style="visibility: hidden" />
+
+        <!-- Bottom Nav-bar -->
     <ul class="pager span8 well well-small">
         <li class="previous">
             <a href="/recipe-app/asts/dish/details/{{assets.id}}">&larr; Previous</a>
         </li>
         <li class="next">
-            <a href="/recipe-app/asts/dish/set_results/{{assets.id}}">Next &rarr;</a>
+            <a id="add-form-btn">Next &rarr;</a>
         </li>
     </ul>
+    </form>
 
     <script>
         var leftPaneItem = document.querySelectorAll("ul.nav-list li")[1];

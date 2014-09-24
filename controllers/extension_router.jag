@@ -4,13 +4,13 @@ var type;
     var path, elements, theme, mapper, suffix, pages, links, length, link, i, mod,
             log = new Log(),
             config = require('/config/recipe-app.js').config(),
-            recipe-app = require('/modules/recipe-app.js'),
+            recipe_app = require('/modules/recipe-app.js'),
             file = require('/modules/file.js'),
             matcher = new URIMatcher(request.getRequestURI()),
             prefix = config.urls.EXTENSIONS + '/',
             server = require('store').server,
             tenant = server.tenant(request, session),
-            configs = recipe-app.configs(tenant.tenantId);
+            configs = recipe_app.configs(tenant.tenantId);
     mapper = function (path) {
         return function () {
             return path;
@@ -34,10 +34,10 @@ var type;
         elements = matcher.elements();
         type = elements.type;
         suffix = elements.suffix;
-        pages = recipe-app.ASSETS_EXT_PATH + type + '/pages/';
+        pages = recipe_app.ASSETS_EXT_PATH + type + '/pages/';
         if (suffix) {
-            links = mod.recipe-app(request, session);
-            links = mod.recipe-app(request, session).assetLinks(type).links;
+            links = mod.recipe_app(request, session);
+            links = mod.recipe_app(request, session).assetLinks(type).links;
             if (!links) {
                 response.sendError(404, 'Request Resource cannot be found');
                 return;
@@ -68,9 +68,9 @@ var type;
         elements = matcher.elements();
         type = elements.type;
         suffix = elements.suffix;
-        apis = recipe-app.ASSETS_EXT_PATH + type + '/apis/';
+        apis = recipe_app.ASSETS_EXT_PATH + type + '/apis/';
         if (suffix) {
-            links = mod.recipe-app(request, session).apiLinks(type).links;
+            links = mod.recipe_app(request, session).apiLinks(type).links;
             if (!links) {
                 response.sendError(404, 'Request Resource cannot be found');
                 return;

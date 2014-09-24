@@ -221,6 +221,9 @@ asset.renderer = function(ctx) {
                     var connectionVal1 = dish_asset.tables[1].fields.connection.value;
                     var connectionVal2 = dish_asset.tables[2].fields.connection.value;
 
+            var accountVal1= dish_asset.tables[1].fields.account.value;
+            var accountVal2 = dish_asset.tables[2].fields.account.value;
+
                     var operationVal1 = dish_asset.tables[1].fields.operation.value;
                     var operationVal2 = dish_asset.tables[2].fields.operation.value;
 
@@ -233,6 +236,9 @@ asset.renderer = function(ctx) {
                     var paraVal1 = dish_asset.tables[1].fields.parameters.value;
                     var paraVal2 = dish_asset.tables[2].fields.parameters.value;
 
+            var paraEnteredVal1 = dish_asset.tables[1].fields.parametersvalue.value;
+            var paraEnteredVal2 = dish_asset.tables[2].fields.parametersvalue.value;
+
 
                     if (!(connectionVal1 instanceof Array)) {
                         var newConnectionVal1 = [connectionVal1];
@@ -242,6 +248,16 @@ asset.renderer = function(ctx) {
                         var newConnectionVal2 = [connectionVal2];
                         dish_asset.tables[2].fields.connection.value = newConnectionVal2;
                     }
+
+            if (!(accountVal1 instanceof Array)) {
+                var newAccountVal1 = [accountVal1];
+                dish_asset.tables[1].fields.account.value = newAccountVal1;
+            }
+            if (!(accountVal2 instanceof Array)) {
+                var newAccountVal1 = [accountVal2];
+                dish_asset.tables[2].fields.account.value = newAccountVal1;
+            }
+
                     if (!(operationVal1 instanceof Array)) {
                         var newOperationVal1 = [operationVal1];
                         dish_asset.tables[1].fields.operation.value = newOperationVal1;
@@ -276,7 +292,17 @@ asset.renderer = function(ctx) {
                        dish_asset.tables[2].fields.parameters.value = newParaVal2;
                     }
 
-                    page.assets  = dish_asset;
+            if (!(paraEnteredVal1 instanceof Array)) {
+                var newParaEnteredVal1 = [paraEnteredVal1];
+                dish_asset.tables[1].fields.parametersvalue.value = newParaEnteredVal1;
+            }
+            if (!(paraEnteredVal2 instanceof Array)) {
+                var newParaEnteredVal2 = [paraEnteredVal2];
+                dish_asset.tables[2].fields.parametersvalue.value = newParaEnteredVal2;
+            }
+
+
+            page.assets  = dish_asset;
 
 //                        page.assets.tables[1].fields.url.value =  [page.assets.tables[1].fields.url.value];
 
