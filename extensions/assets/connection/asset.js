@@ -30,7 +30,12 @@ asset.server = function(ctx) {
             apis: [{
                 url: 'assets',
                 path: 'assets.jag'
-            }],
+            },
+                {
+                    url: 'twitterOAuth',
+                    path: 'twitterOAuth.jag'
+                }
+            ],
             pages: [{
                 title: 'Asset: ' + type,
                 url: 'asset',
@@ -59,6 +64,11 @@ asset.server = function(ctx) {
                 title: 'Lifecycle',
                 url: 'lifecycle',
                 path: 'lifecycle.jag'
+            },
+               {
+                title: 'Success ' + type,
+                url: 'success',
+                path: 'success.jag'
             }]
         }
     };

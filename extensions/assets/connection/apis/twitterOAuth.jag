@@ -1,0 +1,37 @@
+<%
+if (request.getMethod() == "POST") {
+    var oauth = require("oauth");
+    var assetId = request.getParameter("id");
+    var provider = {
+        "oauth_version": "1",
+        "authorization_url": "https://twitter.com/oauth/authorize",
+        "access_token_url": "https://twitter.com/oauth/access_token",
+        "request_token_url": "https://twitter.com/oauth/request_token",
+        "api_key": "V7gCu0rSpzUOlZXNrsaPki4cp",
+        "api_secret": "dM2Rzr2LaFzfV4bdW6dQJ2WQernT9E7xHf8hwJ7BUwwRV4NgBV",
+        "callback_url" : 'https://localhost:9443/recipe-app/asts/connection/success?assetId=' + request.getParameter("id")
+    };
+
+    //if(!request.getParameter('oauth_verifier')){
+    var twitter = new oauth.OAuthProvider(provider);
+    session.put('oauth_service', twitter);
+
+    var authUrl = twitter.getAuthorizationUrl();
+
+    var log = new Log();
+    log.info(assetId);
+    
+    response.sendRedirect(authUrl);
+    // print(twitter.getAuthorizationUrl());
+    //}
+    //else{
+        //var twitter = session.get("oauth_service");
+        //var verifier = request.getParameter('oauth_verifier');
+        //session.put('oauth_verifier' ,verifier);
+        //var auth_token = twitter.getAccessToken(verifier);
+        //var twitterresponse = oauthService.sendOAuthRequest(auth_token, "GET", "https://api.twitter.com/1/account/verify_credentials.json");
+        // Access the resources here.
+        // print(twitterresponse);
+    //}
+
+} %>
