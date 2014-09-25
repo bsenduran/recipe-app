@@ -83,7 +83,11 @@ asset.server = function(ctx) {
                  title: 'Dashboard',
                  url: 'dashboard',
                  path: 'dashboard.jag'
-             }]
+             },{
+               title: 'Artifact Deploy',
+               url: 'artifact_deploy',
+               path: 'artifact_deploy.jag'
+           }]
         }
     };
 };

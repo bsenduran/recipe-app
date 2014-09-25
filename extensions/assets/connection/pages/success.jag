@@ -1,0 +1,22 @@
+<%
+    var msg = 'Authorized Successfully !';
+    print('<h2>' + msg + '</h2>');
+
+    var twitter = session.get("oauth_service");
+    var verifier = request.getParameter('oauth_verifier');
+    var auth_token = twitter.getAccessToken(verifier);
+    var assetId = request.getParameter('assetId');
+
+    var log = new Log();
+    log.info(auth_token.secret);
+    log.info(auth_token.token);
+    log.info(auth_token.rawResponse);
+    // save the token against the screen name inside the registry here...
+
+    // finally redirect back to the details page once you are done.
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+
+    // var twitterresponse = twitter.sendOAuthRequest(auth_token, "GET", "https://api.twitter.com/1.1/account/verify_credentials.json");
+    // print(twitterresponse.retweet_count);
+    // print(twitterresponse.toString());
+%>
