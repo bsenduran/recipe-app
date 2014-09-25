@@ -398,19 +398,23 @@ var engine = caramel.engine('handlebars', (function() {
 
                     var shiftedPval  =  table.parametersvalue.value.shift();
                     if (shiftedPval != null) {
-                        paramVal = shiftedPval.split(',');
+                        paramVal = shiftedPval.split('|');
                     }else{
                         paramVal = [];
                     }
 
                     var paramsLength = params.length;
 
+                    str+='<input type="text" id="paramLenCon_'+i+'" value="'+paramsLength+'" style="visibility: hidden">';
+                    str+='<input name="'+table.parametersvalue.name.tableQualifiedName+'" type="text" id="submitInput_'+i+'" style="visibility: hidden">';
+
+
                     // Generate a sample form here
                     str += '<div class="span12"><fieldset>';
 
                     for(j=0; j<paramsLength; j++){
                         str += '<label><strong>' + params.shift() + '</strong></label>';
-                        str += '<input name="'+table.parametersvalue.name.tableQualifiedName+'" type="text" id="param'+i+'" placeholder="Enter value here...." value="'+checkNullStr(paramVal.shift())+'">';
+                        str += '<input type="text" id="param'+i+'_'+j+'" placeholder="Enter value here...." value="'+checkNullStr(paramVal.shift())+'">';
                     }
 
                     str += '</fieldset></div>';
@@ -426,13 +430,25 @@ var engine = caramel.engine('handlebars', (function() {
                 var str='' ;
                 var count = table.connection.value.length;
 
+                var accVal;
+
+
                 for(i=0; i<count; i++){
+
+                    var shiftedAccVal = table.account.value.shift();
+
+                    if(shiftedAccVal != null) {
+                        accVal = shiftedAccVal.split(',');
+                    }else{
+                        accVal = [];
+                    }
+
                     var iPlus = i+1;
                     //str += '<div>';
                     str += '<img src="' + table.icon.value.shift() + '" class="thumbnail span3" style="height: 130px; "></img>';
                     str += '<div class="span6"></div>';
-                    str += '<div class="span12"><input type="text" class="span3" value="" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName +'" value="' + checkNullStr(table.account.value) + '" disabled></div>';
-                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName+'" class="btn btn-primary span3" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
+                    str += '<div class="span12"><input type="text" class="span3" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName + '_' + iPlus+'" value="' + checkNullStr(accVal) + '" readonly="readonly"></div>';
+                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
                     str += '<div class="span12"></div>';
                     //str += '</div>';
                 }
