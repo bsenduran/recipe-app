@@ -382,7 +382,7 @@ var engine = caramel.engine('handlebars', (function() {
                 }
             };
             Handlebars.registerHelper('loopingRecipeItems', function(table) {
-                var str='' ;
+                var str='<div></div>' ;
                 var count = table.connection.value.length;
 
                 for(i=0; i<count; i++) {
