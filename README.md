@@ -29,3 +29,9 @@ How to enable OAuth support
 -----------------------
 For this you first need to add OAuth bundle into the $ES_HOME/modules directory
 Then copy the org.jaggeryjs.modules.oauth_1.0.0.jar file into the $ES_HOME/repository/components/dropins directory
+
+How to enable Web Service support
+-----------------------
+For this you first need to add WS bundle into the $ES_HOME/modules directory
+Then copy the org.jaggeryjs.modules.ws_1.0.0.jar file into the $ES_HOME/repository/components/dropins directory
+
