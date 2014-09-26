@@ -1,7 +1,7 @@
 <div id="rec-div" class="container">
     <h2>Let's Make This Happen!</h2> <br/>
 
- <form class="form-horizontal well span8" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url "/asts/dish/dashboard"}}'>
+ <form class="form-horizontal well span8" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/apis/create_task/{{assets.id}}?type=dish'>
         <div class="control-group">
             <label class="control-label" for="dishName">Dish Name</label>
             <div class="controls">
@@ -16,7 +16,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary btn-large" onclick="deployArtifacts('{{assets.tables.0.fields.url.value}}', '{{assets.tables.0.fields.name.value}}')">Complete!</button>
+                <button class="btn btn-primary btn-large" id="add-form-btn">Complete!</button>
             </div>
         </div>
     </form>

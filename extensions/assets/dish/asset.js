@@ -30,7 +30,10 @@ asset.server = function(ctx) {
             apis: [{
                 url: 'assets',
                 path: 'assets.jag'
-            }],
+            }, {
+                url: 'create_task',
+                path: 'create_task.jag'}
+            ],
             pages: [{
                 title: 'Asset: ' + type,
                 url: 'asset',
