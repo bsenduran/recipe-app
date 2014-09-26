@@ -31,7 +31,7 @@ deployTemplate();
 deployTransformation();
 
 // 3. Deploy Task
-//deployTask();
+deployTask();
 
 
 
@@ -108,28 +108,21 @@ function deployTask(){
 
     options.action = "urn:addTaskDescription";
 
-    var result;
-    var file = new File(overview_url + '/task.xml');
+    // Fetch file from url
+    var taskData = get(overview_url + '/task.xml', '', 'xml');
+    taskData = new XML(taskData.data);
 
-    // Here open file just to read
-    file.open("r");
+    var log = new Log();
+    log.info(taskData);
 
-    // Read task xml file and convert to xml object
-    var taskFile = file.readAll();
-    var taskFileXml = new XML(taskFile);
 
-    // Change Task Name
-    taskFileXml.@name=overview_name;
-
-    // Change trigger-interval
-    taskFileXml..*::['trigger'].@interval=interval;
 
     try {
         // Open connection to Task Admin service - url currently hardcoded
         req.open(options, ADMIN_SERVICE_URL + "/TaskAdmin", false, USERNAME, PASSWORD); // URI with offset=2 in ESB//
 
         // Send task.xml
-        req.send('<ns1:addTaskDescription xmlns:ns1="http://org.apache.axis2/xsd">' + taskFileXml + '</ns1:addTaskDescription>');
+        req.send('<ns1:addTaskDescription xmlns:ns1="http://org.apache.axis2/xsd">' + taskData + '</ns1:addTaskDescription>');
 
         // Get the result
         result = req;
@@ -141,7 +134,7 @@ function deployTask(){
 
     }
 
-    file.close();
+
 }
 
 %>
