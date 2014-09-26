@@ -17,4 +17,15 @@ $(function(){
     });
 
 
+    $('#add-connection-btn').on('click',function(){
+        $('#form-update').ajaxSubmit({
+            success:function(){
+                var options=obtainFormMeta('#form-update');
+            },
+            error:function(){
+                alert('Unable to update the dish');
+            }
+        });
+    });
+
 });

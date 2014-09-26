@@ -448,7 +448,7 @@ var engine = caramel.engine('handlebars', (function() {
                     str += '<img src="' + table.icon.value.shift() + '" class="thumbnail span3" style="height: 130px; "></img>';
                     str += '<div class="span6"></div>';
                     str += '<div class="span12"><input type="text" class="span3" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName + '_' + iPlus+'" value="' + checkNullStr(accVal) + '" readonly="readonly"></div>';
-                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
+                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3" id="add-connection-btn" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
                     str += '<div class="span12"></div>';
                     //str += '</div>';
                 }
