@@ -29,12 +29,55 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
         }
 
+
+        //connection mapping details
+        var file = "dishes/connection_mapping";
+        var credentials = new MetadataStore("admin", "admin");
+
+        var connections;
+
+        var rawdata = credentials.get(file);
+        connections= parse(rawdata.content);
+
+
+        var ing_con_name = assets.attributes.ingredient_connectorname;
+        var ing_con_ids = [];
+        var res_con_name = assets.attributes.result_connectorname;
+        var res_con_ids = [];
+
+        if (ing_con_name instanceof Array) {
+            for (var c in ing_con_name) {
+                for (var key in connections) {
+                    if (ing_con_name[c] == key) {
+                        ing_con_ids.push(connections[key]);
+                    }
+                }
+            }
+        } else {
+            ing_con_ids.push(connections[ing_con_name]);
+        }
+
+        if (res_con_name instanceof Array) {
+            for (var c in res_con_name) {
+                for (var key in connections) {
+                    if (res_con_name[c] == key) {
+                        res_con_ids.push(connections[key]);
+                    }
+                }
+            }
+        } else {
+            res_con_ids.push(connections[res_con_name]);
+        }
+
         // Finally render
         if (assets == null) {
             response.sendError(404, 'The asset with id: ' + options.id + ' could not be located.');
         } else {
             //print(assets);
             var output = am.render(assets, page).details();
+
+            output.assets.tables[1].fields.connectionids = ing_con_ids;
+            output.assets.tables[2].fields.connectionids = res_con_ids;
 //print(output.rxt);
             caramel.render(output);
 

@@ -217,100 +217,95 @@ asset.renderer = function(ctx) {
                 }
             }
         },
-        details: function(page) {
-                    // To make value element always an Array
-                    var dish_asset=page.assets;
+        details: function (page) {
+            // To make value element always an Array
+            var dish_asset = page.assets;
 
-                    var connectionVal1 = dish_asset.tables[1].fields.connection.value;
-                    var connectionVal2 = dish_asset.tables[2].fields.connection.value;
+            var conn_disp_name1 = dish_asset.tables[1].fields.connectordisplayname.value;
+            var conn_disp_name2 = dish_asset.tables[2].fields.connectordisplayname.value;
 
-            var accountVal1= dish_asset.tables[1].fields.account.value;
-            var accountVal2 = dish_asset.tables[2].fields.account.value;
+            var conn_name1 = dish_asset.tables[1].fields.connectorname.value;
+            var conn_name2 = dish_asset.tables[2].fields.connectorname.value;
 
-                    var operationVal1 = dish_asset.tables[1].fields.operation.value;
-                    var operationVal2 = dish_asset.tables[2].fields.operation.value;
+            var account1 = dish_asset.tables[1].fields.account.value;
+            var account2 = dish_asset.tables[2].fields.account.value;
 
-                    var connectionIdVal1 = dish_asset.tables[1].fields.connectionid.value;
-                    var connectionIdVal2 = dish_asset.tables[2].fields.connectionid.value;
+            var operation1 = dish_asset.tables[1].fields.operation.value;
+            var operation2 = dish_asset.tables[2].fields.operation.value;
 
-                    var urlVal1 = dish_asset.tables[1].fields.icon.value;
-                    var urlVal2 = dish_asset.tables[2].fields.icon.value;
+            var icon1 = dish_asset.tables[1].fields.icon.value;
+            var icon2 = dish_asset.tables[2].fields.icon.value;
 
-                    var paraVal1 = dish_asset.tables[1].fields.parameters.value;
-                    var paraVal2 = dish_asset.tables[2].fields.parameters.value;
+            var param_disp_name1 = dish_asset.tables[1].fields.parametersdisplayname.value;
+            var param_disp_name2 = dish_asset.tables[2].fields.parametersdisplayname.value;
 
-            var paraEnteredVal1 = dish_asset.tables[1].fields.parametersvalue.value;
-            var paraEnteredVal2 = dish_asset.tables[2].fields.parametersvalue.value;
+            var param_name1 = dish_asset.tables[1].fields.parametersname.value;
+            var param_name2 = dish_asset.tables[2].fields.parametersname.value;
+
+            var param_value1 = dish_asset.tables[1].fields.parametersvalue.value;
+            var param_value2 = dish_asset.tables[2].fields.parametersvalue.value;
 
 
-                    if (!(connectionVal1 instanceof Array)) {
-                        var newConnectionVal1 = [connectionVal1];
-                        dish_asset.tables[1].fields.connection.value = newConnectionVal1;
-                    }
-                    if (!(connectionVal2 instanceof Array)) {
-                        var newConnectionVal2 = [connectionVal2];
-                        dish_asset.tables[2].fields.connection.value = newConnectionVal2;
-                    }
-
-            if (!(accountVal1 instanceof Array)) {
-                var newAccountVal1 = [accountVal1];
-                dish_asset.tables[1].fields.account.value = newAccountVal1;
+            if (!(conn_disp_name1 instanceof Array)) {
+                dish_asset.tables[1].fields.connectordisplayname.value = [conn_disp_name1];
             }
-            if (!(accountVal2 instanceof Array)) {
-                var newAccountVal1 = [accountVal2];
-                dish_asset.tables[2].fields.account.value = newAccountVal1;
+            if (!(conn_disp_name2 instanceof Array)) {
+                dish_asset.tables[2].fields.connectordisplayname.value = [conn_disp_name2];
             }
 
-                    if (!(operationVal1 instanceof Array)) {
-                        var newOperationVal1 = [operationVal1];
-                        dish_asset.tables[1].fields.operation.value = newOperationVal1;
-                    }
-                    if (!(operationVal2 instanceof Array)) {
-                        var newOperationVal2 = [operationVal2];
-                        dish_asset.tables[2].fields.operation.value = newOperationVal2;
-                    }
-                    if (!(connectionIdVal1 instanceof Array)) {
-                        //var newConnectionVal1 = [connectionIdVal1];
-                        dish_asset.tables[1].fields.connectionid.value = [connectionIdVal1];
-                    }
-                    if (!(connectionIdVal2 instanceof Array)) {
-                        //var newConnectionVal2 = [connectionVal2];
-                        dish_asset.tables[2].fields.connectionid.value = [connectionIdVal2];
-                    }
-                    if (!(urlVal1 instanceof Array)) {
-                        var newUrlVal1 = [urlVal1];
-                        dish_asset.tables[1].fields.icon.value = newUrlVal1;
-                    }
-                    if (!(urlVal2 instanceof Array)) {
-                       var newUrlVal2 = [urlVal2];
-                       dish_asset.tables[2].fields.icon.value = newUrlVal2;
-                    }
-
-                    if (!(paraVal1 instanceof Array)) {
-                        var newParaVal1 = [paraVal1];
-                        dish_asset.tables[1].fields.parameters.value = newParaVal1;
-                    }
-                    if (!(paraVal2 instanceof Array)) {
-                       var newParaVal2 = [paraVal2];
-                       dish_asset.tables[2].fields.parameters.value = newParaVal2;
-                    }
-
-            if (!(paraEnteredVal1 instanceof Array)) {
-                var newParaEnteredVal1 = [paraEnteredVal1];
-                dish_asset.tables[1].fields.parametersvalue.value = newParaEnteredVal1;
+            if (!(conn_name1 instanceof Array)) {
+                dish_asset.tables[1].fields.connectorname.value = [conn_name1];
             }
-            if (!(paraEnteredVal2 instanceof Array)) {
-                var newParaEnteredVal2 = [paraEnteredVal2];
-                dish_asset.tables[2].fields.parametersvalue.value = newParaEnteredVal2;
+            if (!(conn_name2 instanceof Array)) {
+                dish_asset.tables[2].fields.connectorname.value = [conn_name2];
             }
 
+            if (!(account1 instanceof Array)) {
+                dish_asset.tables[1].fields.account.value = [account1];
+            }
+            if (!(account2 instanceof Array)) {
+                dish_asset.tables[2].fields.account.value = [account2];
+            }
 
-            page.assets  = dish_asset;
+            if (!(operation1 instanceof Array)) {
+                dish_asset.tables[1].fields.operation.value = [operation1];
+            }
+            if (!(operation2 instanceof Array)) {
+                dish_asset.tables[2].fields.operation.value = [operation2];
+            }
 
-//                        page.assets.tables[1].fields.url.value =  [page.assets.tables[1].fields.url.value];
+            if (!(icon1 instanceof Array)) {
+                dish_asset.tables[1].fields.icon.value = [icon1];
+            }
+            if (!(icon2 instanceof Array)) {
+                dish_asset.tables[2].fields.icon.value = [icon2];
+            }
+
+            if (!(param_disp_name1 instanceof Array)) {
+                dish_asset.tables[1].fields.parametersdisplayname.value = [param_disp_name1];
+            }
+            if (!(param_disp_name2 instanceof Array)) {
+                dish_asset.tables[2].fields.parametersdisplayname.value = [param_disp_name2];
+            }
+
+            if (!(param_name1 instanceof Array)) {
+                dish_asset.tables[1].fields.parametersname.value = [param_name1];
+            }
+            if (!(param_name2 instanceof Array)) {
+                dish_asset.tables[2].fields.parametersname.value = [param_name2];
+            }
+
+            if (!(param_value1 instanceof Array)) {
+                dish_asset.tables[1].fields.parametersvalue.value = [param_value1];
+            }
+            if (!(param_value2 instanceof Array)) {
+                dish_asset.tables[2].fields.parametersvalue.value = [param_value2];
+            }
+
+            page.assets = dish_asset;
 
 
-                    return page;
+            return page;
         },
         lifecycle: function(page) {},
         leftNav: function(page) {

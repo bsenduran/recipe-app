@@ -14,22 +14,35 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
     var metadata1=new XML(descriptorData.data);
 
-    log.info(metadata1);
+    //log.info(metadata1);
 
 
-    var connectionVal = function(xx) {
+    var conn_disp_name = function(xx) {
 
         var textJson ="[";
         for(var ii = 0; ii< xx.length(); ii++) {
 
-            textJson += "\"" +xx[ii].connection.text()+"\",";
+            textJson += "\"" +xx[ii].connectordisplayname.text()+"\",";
+        }
+        textJson = textJson.substring(0, textJson.length - 1);
+
+        return JSON.parse(textJson + "]");
+
+    };
+
+    var conn_name = function(xx) {
+
+        var textJson ="[";
+        for(var ii = 0; ii< xx.length(); ii++) {
+
+            textJson += "\"" +xx[ii].connectorname.text()+"\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
 
     };
 
-    var operationVal = function(xx) {
+    var operation_name = function(xx) {
 
         var textJson ="[";
         for(var ii = 0; ii< xx.length(); ii++) {
@@ -41,31 +54,7 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
     };
 
-    var connectionIdVal = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].connectionid.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-        return JSON.parse(textJson + ']');
-
-    };
-
-    var connectionAcc = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].account.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-        return JSON.parse(textJson + ']');
-
-    };
-
-    var connectionIcon = function(xx) {
+    var conn_icon = function(xx) {
 
         var textJson ="[";
         for(var ii = 0; ii< xx.length(); ii++) {
@@ -77,24 +66,24 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
     };
 
-    var connectionPara = function(xx) {
+    var param_disp_name = function(xx) {
 
         var textJson ="[";
         for(var ii = 0; ii< xx.length(); ii++) {
 
-            textJson += "\"" +xx[ii].parameters.text()+"\",";
+            textJson += "\"" +xx[ii].parametersdisplayname.text()+"\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
 
     };
 
-    var connectionParaVal = function(xx) {
+    var param_name = function(xx) {
 
         var textJson ="[";
         for(var ii = 0; ii< xx.length(); ii++) {
 
-            textJson += "\"" +xx[ii].parametersvalue.text()+"\",";
+            textJson += "\"" +xx[ii].parametersname.text()+"\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
@@ -128,26 +117,30 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
             overview_name: metadata1.overview.name,
             overview_version: metadata1.overview.version,
+            overview_url: url,
             overview_description: metadata1.overview.description,
-            overview_thumbnail: url+metadata1.overview.thumbnail,
-            overview_banner: url+metadata1.overview.banner,
+            overview_triggerinterval: "",
+            overview_thumbnail: url + metadata1.overview.thumbnail,
+            overview_banner: url + metadata1.overview.banner,
 
-            ingredients_connection: connectionVal(metadata1.ingredients),
-            ingredients_operation: operationVal(metadata1.ingredients),
-            ingredients_connectionid: connectionIdVal(metadata1.ingredients),
-            ingredients_account: connectionAcc(metadata1.ingredients),
-            ingredients_icon: connectionIcon(metadata1.ingredients),
-            ingredients_parameters: connectionPara(metadata1.ingredients),
-            ingredients_parametersvalue: [],
+            ingredient_connectordisplayname: conn_disp_name(metadata1.ingredient),
+            ingredient_connectorname: conn_name(metadata1.ingredient),
+            ingredient_account: [],
+            ingredient_operation: operation_name(metadata1.ingredient),
+            ingredient_icon: conn_icon(metadata1.ingredient),
+            ingredient_parametersdisplayname: param_disp_name(metadata1.ingredient),
+            ingredient_parametersname: param_name(metadata1.ingredient),
+            ingredient_parametersvalue: [],
 
-            result_connection: connectionVal(metadata1.result),
-            result_operation: operationVal(metadata1.result),
-            result_connectionid:  connectionIdVal(metadata1.result),
-            result_account: connectionAcc(metadata1.result),
-            result_icon:connectionIcon(metadata1.result) ,
-            result_parameters: connectionPara(metadata1.result),
+
+            result_connectordisplayname: conn_disp_name(metadata1.result),
+            result_connectorname: conn_name(metadata1.result),
+            result_account: [],
+            result_operation: operation_name(metadata1.result),
+            result_icon: conn_icon(metadata1.result),
+            result_parametersdisplayname: param_disp_name(metadata1.result),
+            result_parametersname: param_name(metadata1.result),
             result_parametersvalue: []
-
 
         }
     };

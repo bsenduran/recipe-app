@@ -383,7 +383,7 @@ var engine = caramel.engine('handlebars', (function() {
             };
             Handlebars.registerHelper('loopingRecipeItems', function(table) {
                 var str='' ;
-                var count = table.connection.value.length;
+                var count = table.connectorname.value.length;
 
                 for(i=0; i<count; i++) {
                     str += '<div class="span12">';
@@ -394,7 +394,7 @@ var engine = caramel.engine('handlebars', (function() {
 
                     var paramVal;
 
-                    var params = table.parameters.value.shift().split(',');
+                    var params = table.parametersdisplayname.value.shift().split(',');
 
                     var shiftedPval  =  table.parametersvalue.value.shift();
                     if (shiftedPval != null) {
@@ -428,7 +428,7 @@ var engine = caramel.engine('handlebars', (function() {
             // Looping images in recipe
             Handlebars.registerHelper('loopingRecipeImages', function(table, type) {
                 var str='' ;
-                var count = table.connection.value.length;
+                var count = table.connectorname.value.length;
 
                 var accVal;
 
@@ -448,7 +448,7 @@ var engine = caramel.engine('handlebars', (function() {
                     str += '<img src="' + table.icon.value.shift() + '" class="thumbnail span3" style="height: 130px; "></img>';
                     str += '<div class="span6"></div>';
                     str += '<div class="span12"><input type="text" class="span3" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName + '_' + iPlus+'" value="' + checkNullStr(accVal) + '" readonly="readonly"></div>';
-                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionid.value.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3" id="add-connection-btn" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
+                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionids.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3 add-connection-btn" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
                     str += '<div class="span12"></div>';
                     //str += '</div>';
                 }
