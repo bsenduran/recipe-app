@@ -382,7 +382,7 @@ var engine = caramel.engine('handlebars', (function() {
                 }
             };
             Handlebars.registerHelper('loopingRecipeItems', function(table) {
-                var str='' ;
+                var str='<div></div>' ;
                 var count = table.connectorname.value.length;
 
                 for(i=0; i<count; i++) {
@@ -405,8 +405,8 @@ var engine = caramel.engine('handlebars', (function() {
 
                     var paramsLength = params.length;
 
-                    str+='<input type="text" id="paramLenCon_'+i+'" value="'+paramsLength+'" style="visibility: hidden">';
-                    str+='<input name="'+table.parametersvalue.name.tableQualifiedName+'" type="text" id="submitInput_'+i+'" style="visibility: hidden">';
+                    str+='<input type="hidden" id="paramLenCon_'+i+'" value="'+paramsLength+'" >';
+                    str+='<input name="'+table.parametersvalue.name.tableQualifiedName+'" type="hidden" id="submitInput_'+i+'" >';
 
 
                     // Generate a sample form here
