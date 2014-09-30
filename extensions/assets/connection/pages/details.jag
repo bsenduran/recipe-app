@@ -19,6 +19,9 @@ require('/modules/recipe-app.js').exec(function(ctx) {
         var assets = am.get(options.id);
         var name = assets.attributes.overview_name;
 
+        // Store the current connection type in a session.
+        session.put('ConnectionType' ,name);
+
         // Get existing connections
         var path = "connections/" +name + "/" + "/accounts";
         var dataStore = new MetadataStore("admin", "admin");

@@ -20,6 +20,7 @@ if (request.getMethod() == "POST") {
 
     var log = new Log();
     log.info(assetId);
+    log.info(user);
     
     response.sendRedirect(authUrl);
     // print(twitter.getAuthorizationUrl());
