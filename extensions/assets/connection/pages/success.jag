@@ -3,6 +3,9 @@
     print('<h2>' + msg + '</h2>');
 
     var twitter = session.get("oauth_service");
+    var consumerKey = session.get('consumerKey');
+    var consumerSecret = session.get('consumerSecret');
+
     var verifier = request.getParameter('oauth_verifier');
     var auth_token = twitter.getAccessToken(verifier);
     var assetId = request.getParameter('assetId');
@@ -10,10 +13,10 @@
     var user = auth_token.rawResponse.split("=").pop();
     
     var log = new Log();
-    log.info(auth_token.secret);
-    log.info(auth_token.token);
-    log.info(auth_token.rawResponse);
-    log.info("User Name: " + user);
+    // log.info(auth_token.secret);
+    // log.info(auth_token.token);
+    // log.info(auth_token.rawResponse);
+    // log.info("User Name: " + user);
 
     // save the token against the screen name inside the registry here...
     var carbon = require('carbon');
@@ -24,11 +27,13 @@
 
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
-    log.info(path);
+    // log.info(path);
 
     var dataStore = new MetadataStore("admin", "admin");
     var res;
     var accountContent;
+
+    // We assume that at least an empty Account file exists in the registry at this point.
 
     res = dataStore.get(path);
     accountContent = parse(res.content);
@@ -38,7 +43,7 @@
         log.info("Appending the new token to the json file and writing back to the registry !");
 
         // Setting the JSON contents here.
-        accountContent[user] = {"accessToken" : auth_token.token, "accessTokenSecret" : auth_token.secret};
+        accountContent[user] = {"consumerKey" : consumerKey, "consumerSecret" : consumerSecret , "accessToken" : auth_token.token, "accessTokenSecret" : auth_token.secret};
         // Setting the registry resource here.
         res.content = stringify(accountContent);
         // updating the registry with the new resource here.
@@ -47,9 +52,9 @@
 
     // now we read the resource again from the registry.
     var retrivedresource = dataStore.get(path);
-    print('Retrived Resource : ');
-    print(parse(retrivedresource.content));
-    log.info(parse(retrivedresource.content));
+    // print('Retrived Resource : ');
+    // print(parse(retrivedresource.content));
+    // log.info(parse(retrivedresource.content));
 
     // finally redirect back to the details page once you are done.
     response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);

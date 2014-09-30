@@ -15,6 +15,8 @@ if (request.getMethod() == "POST") {
     //if(!request.getParameter('oauth_verifier')){
     var twitter = new oauth.OAuthProvider(provider);
     session.put('oauth_service', twitter);
+    session.put('consumerKey', provider.api_key);
+    session.put('consumerSecret' ,provider.api_secret);
 
     var authUrl = twitter.getAuthorizationUrl();
 
@@ -23,16 +25,5 @@ if (request.getMethod() == "POST") {
     log.info(user);
     
     response.sendRedirect(authUrl);
-    // print(twitter.getAuthorizationUrl());
-    //}
-    //else{
-        //var twitter = session.get("oauth_service");
-        //var verifier = request.getParameter('oauth_verifier');
-        //session.put('oauth_verifier' ,verifier);
-        //var auth_token = twitter.getAccessToken(verifier);
-        //var twitterresponse = oauthService.sendOAuthRequest(auth_token, "GET", "https://api.twitter.com/1/account/verify_credentials.json");
-        // Access the resources here.
-        // print(twitterresponse);
-    //}
 
 } %>

@@ -1,0 +1,25 @@
+<%
+    var msg = 'Authorized Successfully !';
+    print('<h2>' + msg + '</h2>');
+
+    // First get the OAuth Google End point.
+    var googleOAuthEp = session.get("oauth_service");
+    // Then get the verifier which was sent by the Google OAuth provider.
+    var verifier = request.getParameter('oauth_verifier');
+    // Then get the access token given that verifier.
+    var auth_token = googleOAuthEp.getAccessToken(verifier);
+
+
+    var assetId = request.getParameter('assetId');
+
+    print("OAuth token: " + auth_token.token);
+    print("OAuth secret: " + auth_token.secret);
+
+    var log = new Log();
+    log.info(auth_token.secret);
+    log.info(auth_token.token);
+    log.info(auth_token.rawResponse);
+
+    response.sendRedirect('https://www.google.lk');
+
+%>
