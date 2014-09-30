@@ -58,8 +58,6 @@ require('/modules/recipe-app.js').exec(function(ctx) {
                     log.info(key);
                 }
             }
-
-            // log.info(existingConnections.toString());
         }
 
             caramel.render(output);
