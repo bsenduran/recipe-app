@@ -62,11 +62,30 @@
 	var server=require('store').server;
 	var user=server.current(session);
 
-	if(!user){
+
+
+//log.info(">>>>>>>>>>>>>>>server>>>>>>>>>>>>>>>>" + stringify(server));
+
+//for(var k in server ){
+ //   log.info(">>>>>.in>>server>>>>.. "+ k +" >>>>>>>>>>>>....."+ server[k]);
+//}
+log.info(">>>>>>>>>>>>>>>session>>>>>>>>>>>>>>>>" + stringify(session));
+
+for(var jjj in session) {
+
+    log.info(">>>>>>>>in...>>>session..>> " + stringify(session[jjj]));
+}
+
+
+log.info(">>>>>>>>>>>>>>>user>>>>>>>>>>>>>>>>" + stringify(user));
+
+if(!user){
         log.info('query string '+request.getQueryString());
 		response.sendRedirect('/recipe-app/login?redirect='+request.getRequestURI()+'?'+request.getQueryString());//TODO:Remove this
 	}
  	else{
+
+        log.info("success !!!!!!!!!!!!!!!!");
  		//Check if options have been provided
 		if(matcher.match(apiEndpoint)){
 			handleApiEndpoint(request,session,matcher.elements());		

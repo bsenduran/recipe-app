@@ -454,6 +454,15 @@ var engine = caramel.engine('handlebars', (function() {
                 }
                 return new Handlebars.SafeString(str);
             });
+
+            Handlebars.registerHelper('notnullT', function(text){
+               if(text == null || text == undefined || text == 'null' ) {
+                   return "";
+               }else {
+                   return text;
+               }
+
+            });
         },
         render: function(data, meta) {
             if (request.getParameter('debug') == '1') {

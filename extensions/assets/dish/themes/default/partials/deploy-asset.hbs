@@ -11,7 +11,7 @@
         <div class="control-group">
             <label class="control-label" for="triggerInterval">Triggering Period / Cron</label>
             <div class="controls">
-                <input type="text" name ="overview_triggerinterval" value="{{assets.overview_triggerinterval}}" id="triggerInterval">
+                <input type="text" name ="overview_triggerinterval" value="{{notnullT assets.tables.0.fields.triggerinterval.value}}" id="triggerInterval">
             </div>
         </div>
         <div class="control-group">
@@ -34,18 +34,6 @@
         leftPaneItem.style.backgroundColor="gainsboro";
     </script>
 
-    <script>
-        function deployArtifacts(url, name){
-            var interval = jQuery('#triggerInterval').val();
-            jQuery.post('/recipe-app/asts/dish/artifact_deploy', {"overview_url":url, "overview_name": name, "interval": interval})
-            .done(function( data ) {
-
-                alert( "Dish Diployed " );
-
-                window.location.href = "{{url "/asts/dish/dashboard"}}";
-            });
-        }
-    </script>
 </div>
 
 

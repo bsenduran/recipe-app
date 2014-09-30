@@ -1,23 +1,21 @@
 <%
 var caramel;
-require('/modules/recipe-app.js').exec(function(ctx) {
+require('/modules/recipe-app.js').exec(function (ctx) {
     caramel = require('caramel');
+    var deploy_artifact = require('deploy_artifact.js').deploy;
     var ui = require('rxt').ui;
     var asset = require('rxt').asset;
     var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
     var options = uriMatcher.match('/{context}/apis/{pageName}/{id}');
     var log = new Log();
-    log.info(options);
 
-
-    if(!options){
-        response.sendError(400,'Could not locate an endpoint for your request.Make sure that you provide an id');
+    if (!options) {
+        response.sendError(400, 'Could not locate an endpoint for your request.Make sure that you provide an id');
     }
     else if (!options.id) {
         response.sendError(400, 'An id must be provided when viewing details of a particular asset');
     } else {
         var type = request.getParameter("type");
-        log.info("type "+ type);
 
         var am = asset.createUserAssetManager(session, type);
         var assets = am.get(options.id);
@@ -26,14 +24,131 @@ require('/modules/recipe-app.js').exec(function(ctx) {
             response.sendError(404, 'The asset with id: ' + options.id + ' could not be located.');
         } else {
 
-            var task_resp = get(assets.attributes.overview_url +'task.xml');
+            var task_resp = get(assets.attributes.overview_url + 'task.xml');
 
             var task_template = task_resp.data;
 
 
-            log.info(task_template);
+            var ingredients = assets.attributes.ingredient_connectorname;
+            var results = assets.attributes.result_connectorname;
 
-           // response.sendRedirect('/recipe-app/asts/dish/list');
+            var ingredient_parametersname = assets.attributes.ingredient_parametersname;
+            var ingredient_parameter_value = assets.attributes.ingredient_parametersvalue;
+
+            var result_parametersname = assets.attributes.result_parametersname;
+            var result_parameter_value = assets.attributes.result_parametersvalue;
+
+            var ingredient_account = assets.attributes.ingredient_account;
+            var result_account = assets.attributes.result_account;
+
+
+            var getXMLContent = function (connectors, connectors_param, connector_param_val) {
+                var content = "";
+                if (connectors instanceof Array) {
+                    for (var i in connectors) {
+
+                        var param_names = connectors_param[i].split(',');
+                        var param_values = connector_param_val[i].split('\\|');
+
+                        for (var j in param_names) {
+                            var connDotPar = connectors[i].trim() + "." + param_names[j].trim();
+                            content += "<" + connDotPar + ">" + param_values[j] + "<\/" + connDotPar + ">";
+                        }
+                    }
+                }
+                else {
+                    var param_names = connectors_param.split(',');
+                    var param_values = connector_param_val.split('|');
+
+
+                    for (var j in param_names) {
+                        var connDotPar = connectors.trim() + "." + param_names[j].trim();
+                        content += "<" + connDotPar + ">" + param_values[j] + "<\/" + connDotPar + ">";
+                    }
+
+                }
+                return content;
+
+            };
+
+            var dataStore = new MetadataStore("admin", "admin");
+            var accountContent;
+
+
+            var getAuthDetail = function (connectors, account) {
+                var authContent = "";
+                if (connectors instanceof Array) {
+                    for (var i in connectors) {
+                        var path = "connections/" + connectors[i].trim() + "/" + "/accounts";
+                        var res;
+                        res = dataStore.get(path);
+                        accountContent = parse(res.content);
+
+                        for (var j in accountContent) {
+                            if (j == account[i]) {
+
+                                var authDetail = accountContent[j];
+                                for (var auth in authDetail) {
+                                    var nodeName = connectors[i] + "." + auth;
+                                    var authElem = "<" + nodeName + ">" + authDetail[auth] + "<\/" + nodeName + ">";
+                                    authContent += authElem;
+                                }
+
+                            }
+                        }
+                    }
+                } else {
+                    var path = "connections/" + connectors.trim() + "/" + "/accounts";
+                    var res;
+                    res = dataStore.get(path);
+                    accountContent = parse(res.content);
+                    for (var j in accountContent) {
+                        if (j == account) {
+
+                            var authDetail = accountContent[j];
+                            for (var auth in authDetail) {
+                                var nodeName = connectors + "." + auth;
+                                var authElem = "<" + nodeName + ">" + authDetail[auth] + "<\/" + nodeName + ">";
+                                authContent += authElem;
+                            }
+
+                        }
+                    }
+                }
+
+                return authContent;
+            };
+
+
+            var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="'+assets.attributes.overview_name+'">'+
+                    '<trigger count="1" interval="100"/>'+
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">'+
+                    '<dish.property.root xmlns="">';
+
+            var task_root_closing ='</dish.property.root>'+
+                    '</property>'+
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipes/sf_gss_template"/>'+
+                   '</task>';
+
+            var task_content = task_root_node+
+                    getAuthDetail(ingredients, ingredient_account)+
+                    getXMLContent(ingredients, ingredient_parametersname, ingredient_parameter_value)+
+                    getAuthDetail(results, result_account)+
+                    getXMLContent(results, result_parametersname, result_parameter_value)+
+                    task_root_closing;
+
+
+
+          log.info("about to deploy");
+
+
+            deploy_artifact.deployTemplate(assets.attributes.overview_name, assets.attributes.overview_url);
+            deploy_artifact.deployTransform(assets.attributes.overview_name, assets.attributes.overview_url);
+            deploy_artifact.deployTask(task_content);
+
         }
+
+
+        response.sendRedirect('/recipe-app/asts/dish/dashboard');
     }
 }, request, response, session); %>
