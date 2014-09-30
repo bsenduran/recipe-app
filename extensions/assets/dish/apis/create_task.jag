@@ -24,6 +24,8 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             response.sendError(404, 'The asset with id: ' + options.id + ' could not be located.');
         } else {
 
+            var dish_name = assets.attributes.overview_name;
+
             var task_resp = get(assets.attributes.overview_url + 'task.xml');
 
             var task_template = task_resp.data;
@@ -79,7 +81,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
                 var authContent = "";
                 if (connectors instanceof Array) {
                     for (var i in connectors) {
-                        var path = "connections/" + connectors[i].trim() + "/" + "/accounts";
+                        var path = "connections/" + connectors[i].trim() + "/accounts";
                         var res;
                         res = dataStore.get(path);
                         accountContent = parse(res.content);
@@ -98,7 +100,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
                         }
                     }
                 } else {
-                    var path = "connections/" + connectors.trim() + "/" + "/accounts";
+                    var path = "connections/" + connectors.trim() + "/accounts";
                     var res;
                     res = dataStore.get(path);
                     accountContent = parse(res.content);
@@ -120,14 +122,14 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             };
 
 
-            var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="'+assets.attributes.overview_name+'">'+
-                    '<trigger count="1" interval="100"/>'+
+            var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="'+dish_name+'">'+
+                    '<trigger count="1" interval="5"/>'+
                     '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">'+
                     '<dish.property.root xmlns="">';
 
             var task_root_closing ='</dish.property.root>'+
                     '</property>'+
-                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipes/sf_gss_template"/>'+
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipeTemplates/'+dish_name+'_template"/>'+
                    '</task>';
 
             var task_content = task_root_node+
@@ -140,15 +142,16 @@ require('/modules/recipe-app.js').exec(function (ctx) {
 
 
           log.info("about to deploy");
+            log.info(task_content);
 
 
-            deploy_artifact.deployTemplate(assets.attributes.overview_name, assets.attributes.overview_url);
-            deploy_artifact.deployTransform(assets.attributes.overview_name, assets.attributes.overview_url);
+            deploy_artifact.deployTemplate(dish_name, assets.attributes.overview_url);
+            deploy_artifact.deployTransform(dish_name, assets.attributes.overview_url);
             deploy_artifact.deployTask(task_content);
 
         }
 
 
-        response.sendRedirect('/recipe-app/asts/dish/dashboard');
+       response.sendRedirect('/recipe-app/asts/dish/dashboard');
     }
 }, request, response, session); %>

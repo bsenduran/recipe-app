@@ -36,8 +36,6 @@ var deploy = {};
             // Send task.xml
             req.send(payload);
 
-            // Get the result
-            result = req;
 
 
         } catch (e) {
@@ -68,8 +66,6 @@ var deploy = {};
             // Send task.xml
             req.send(payload);
 
-            // Get the result
-            result = req;
 
 
         } catch (e) {
@@ -98,8 +94,6 @@ var deploy = {};
             // Send task.xml
             req.send('<ns1:addTaskDescription xmlns:ns1="http://org.apache.axis2/xsd">' + xmlTaskData + '</ns1:addTaskDescription>');
 
-            // Get the result
-            result = req;
 
 
         } catch (e) {
