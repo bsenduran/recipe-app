@@ -33,7 +33,7 @@
     res = dataStore.get(path);
     accountContent = parse(res.content);
 
-    if(accountContent.hasOwnProperty(user))
+    if(!accountContent.hasOwnProperty(user))
     {
         log.info("Appending the new token to the json file and writing back to the registry !");
 
