@@ -34,6 +34,10 @@ asset.server = function(ctx) {
                 {
                     url: 'twitterOAuth',
                     path: 'twitterOAuth.jag'
+                },
+                {
+                    url: 'googleOAuth',
+                    path: 'googleOAuth.jag'
                 }
             ],
             pages: [{
@@ -69,7 +73,11 @@ asset.server = function(ctx) {
                 title: 'Success ' + type,
                 url: 'success',
                 path: 'success.jag'
-            }]
+            }, {
+                    title: 'Google Success' + type,
+                    url: 'googleSuccess',
+                    path: 'googleSuccess.jag'
+                }]
         }
     };
 };

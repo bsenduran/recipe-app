@@ -8,7 +8,7 @@
 
     var verifier = request.getParameter('oauth_verifier');
     var auth_token = twitter.getAccessToken(verifier);
-    var assetId = request.getParameter('assetId');
+    var assetId = session.get('assetId');
 
     var user = auth_token.rawResponse.split("=").pop();
     

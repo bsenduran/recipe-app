@@ -4,22 +4,30 @@
 
     // First get the OAuth Google End point.
     var googleOAuthEp = session.get("oauth_service");
-    // Then get the verifier which was sent by the Google OAuth provider.
-    var verifier = request.getParameter('oauth_verifier');
+
     // Then get the access token given that verifier.
-    var auth_token = googleOAuthEp.getAccessToken(verifier);
+    var code = request.getParameter("code");
+    var url = "https://accounts.google.com/o/oauth2/token";
+
+    var dataString = "grant_type=authorization_code"
+                                               +"&code=" + code
+                                               +"&redirect_uri=" + encodeURIComponent('https://localhost:9443/recipe-app/asts/connection/googleSuccess?name=googlespreadsheet&type=oauth&version=2')
+                                               +"&client_id=" + '212972391932-3thmh0maoodoin7t116vb0adpjjvckv0.apps.googleusercontent.com'
+                                               +"&client_secret=" + 'PY9hUuKKwxj_D92LbawosUKl';
+
+    var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
 
-    var assetId = request.getParameter('assetId');
+    print('Access Token: ' + result.data.access_token);
 
-    print("OAuth token: " + auth_token.token);
-    print("OAuth secret: " + auth_token.secret);
+    var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
+    print('Email Address: ' + getResult.data.user.emailAddress);
 
-    var log = new Log();
-    log.info(auth_token.secret);
-    log.info(auth_token.token);
-    log.info(auth_token.rawResponse);
+    print('Refresh Token: ' + result.data.refresh_token);
 
-    response.sendRedirect('https://www.google.lk');
+
+    var assetId = session.get('assetId');
+
+    // response.sendRedirect('https://www.google.lk');
 
 %>
