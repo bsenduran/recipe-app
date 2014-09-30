@@ -14,6 +14,8 @@ if (request.getMethod() == "POST") {
 
     //if(!request.getParameter('oauth_verifier')){
     var twitter = new oauth.OAuthProvider(provider);
+
+
     session.put('oauth_service', twitter);
     session.put('consumerKey', provider.api_key);
     session.put('consumerSecret' ,provider.api_secret);
@@ -22,7 +24,7 @@ if (request.getMethod() == "POST") {
 
     var log = new Log();
     log.info(assetId);
-    log.info(user);
+    // log.info(user);
     
     response.sendRedirect(authUrl);
 
