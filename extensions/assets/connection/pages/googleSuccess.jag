@@ -1,4 +1,7 @@
 <%
+    var googleOAuthUtil = require('/extensions/assets/connection/modules/googleOAuthUtil.js').api;
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+
     var msg = 'Authorized Successfully !';
     print('<h2>' + msg + '</h2>');
 
@@ -7,13 +10,17 @@
 
     // Then get the access token given that verifier.
     var code = request.getParameter("code");
-    var url = "https://accounts.google.com/o/oauth2/token";
+    var url = googleOAuthUtil.getAccessTokenUrl();
+    var redirectUrl = googleOAuthUtil.getRedirectUrl();
+    var clientId = googleOAuthUtil.getClientId();
+    var clientSecret = googleOAuthUtil.getClientSecret();
+
 
     var dataString = "grant_type=authorization_code"
                                                +"&code=" + code
-                                               +"&redirect_uri=" + encodeURIComponent('https://localhost:9443/recipe-app/asts/connection/googleSuccess?name=googlespreadsheet&type=oauth&version=2')
-                                               +"&client_id=" + '212972391932-3thmh0maoodoin7t116vb0adpjjvckv0.apps.googleusercontent.com'
-                                               +"&client_secret=" + 'PY9hUuKKwxj_D92LbawosUKl';
+                                               +"&redirect_uri=" + encodeURIComponent(redirectUrl)
+                                               +"&client_id=" + clientId
+                                               +"&client_secret=" + clientSecret;
 
     var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
@@ -21,9 +28,17 @@
     print('Access Token: ' + result.data.access_token);
 
     var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
-    print('Email Address: ' + getResult.data.user.emailAddress);
+    var emailAddress = getResult.data.user.emailAddress;
+    print('Email Address: ' + emailAddress);
 
     print('Refresh Token: ' + result.data.refresh_token);
+
+    // saving the necessary information in the registry.
+    var path ='connections/' + session.get('ConnectionType') + '/accounts';
+
+
+    var authInfo = stringify({"consumerKey" : clientId, "consumerSecret" : clientSecret , "accessToken" : result.data.access_token, "accessTokenSecret" : result.data.refresh_token});
+    regUtilMod.insertNewAccount(path,emailAddress, authInfo);
 
 
     var assetId = session.get('assetId');

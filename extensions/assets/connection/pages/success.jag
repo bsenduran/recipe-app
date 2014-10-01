@@ -1,6 +1,9 @@
 <%
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
     var msg = 'Authorized Successfully !';
     print('<h2>' + msg + '</h2>');
+
+    var log = new Log();
 
     var twitter = session.get("oauth_service");
     var consumerKey = session.get('consumerKey');
@@ -11,50 +14,12 @@
     var assetId = session.get('assetId');
 
     var user = auth_token.rawResponse.split("=").pop();
-    
-    var log = new Log();
-    // log.info(auth_token.secret);
-    // log.info(auth_token.token);
-    // log.info(auth_token.rawResponse);
-    // log.info("User Name: " + user);
-
-    // save the token against the screen name inside the registry here...
-    var carbon = require('carbon');
-    var url = 'https://localhost:9443/admin/carbon/';
-    var server = new carbon.server.Server(url);
-    var options = {username: 'admin',  domain: 'carbon.super' , tenantId: -1234};  
-    var registry = new carbon.registry.Registry(server, options);
 
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
-    // log.info(path);
 
-    var dataStore = new MetadataStore("admin", "admin");
-    var res;
-    var accountContent;
-
-    // We assume that at least an empty Account file exists in the registry at this point.
-
-    res = dataStore.get(path);
-    accountContent = parse(res.content);
-
-    if(!accountContent.hasOwnProperty(user))
-    {
-        log.info("Appending the new token to the json file and writing back to the registry !");
-
-        // Setting the JSON contents here.
-        accountContent[user] = {"consumerKey" : consumerKey, "consumerSecret" : consumerSecret , "accessToken" : auth_token.token, "accessTokenSecret" : auth_token.secret};
-        // Setting the registry resource here.
-        res.content = stringify(accountContent);
-        // updating the registry with the new resource here.
-        dataStore.put(path, res);
-    }
-
-    // now we read the resource again from the registry.
-    var retrivedresource = dataStore.get(path);
-    // print('Retrived Resource : ');
-    // print(parse(retrivedresource.content));
-    // log.info(parse(retrivedresource.content));
+    var authInfo = stringify({"consumerKey" : consumerKey, "consumerSecret" : consumerSecret , "accessToken" : auth_token.token, "accessTokenSecret" : auth_token.secret});
+    regUtilMod.insertNewAccount(path,user, authInfo);
 
     // finally redirect back to the details page once you are done.
     response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
