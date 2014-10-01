@@ -2,7 +2,7 @@
 var caramel;
 require('/modules/recipe-app.js').exec(function (ctx) {
     caramel = require('caramel');
-    var deploy_artifact = require('/modules/deploy_artifact.js').deploy;
+    var deploy_artifact = require('/extensions/assets/dish/modules/deploy_artifact.js').deploy;
     var ui = require('rxt').ui;
     var asset = require('rxt').asset;
     var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
