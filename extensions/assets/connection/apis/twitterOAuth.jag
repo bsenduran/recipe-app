@@ -9,7 +9,7 @@ if (request.getMethod() == "POST") {
         "request_token_url": "https://twitter.com/oauth/request_token",
         "api_key": "V7gCu0rSpzUOlZXNrsaPki4cp",
         "api_secret": "dM2Rzr2LaFzfV4bdW6dQJ2WQernT9E7xHf8hwJ7BUwwRV4NgBV",
-        "callback_url" : 'https://localhost:9443/recipe-app/asts/connection/success?assetId=' + request.getParameter("id")
+        "callback_url" : 'https://localhost:9443/recipe-app/asts/connection/success'
     };
 
     //if(!request.getParameter('oauth_verifier')){
@@ -19,6 +19,7 @@ if (request.getMethod() == "POST") {
     session.put('oauth_service', twitter);
     session.put('consumerKey', provider.api_key);
     session.put('consumerSecret' ,provider.api_secret);
+    session.put('assetId', request.getParameter("id"));
 
     var authUrl = twitter.getAuthorizationUrl();
 
