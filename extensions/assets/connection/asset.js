@@ -38,6 +38,10 @@ asset.server = function(ctx) {
                 {
                     url: 'googlespreadsheetOAuth',
                     path: 'googlespreadsheetOAuth.jag'
+                },
+                {
+                    url: 'deleteAccount',
+                    path: 'deleteAccount.jag'
                 }
             ],
             pages: [{

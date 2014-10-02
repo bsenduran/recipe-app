@@ -44,7 +44,18 @@ var api = {};
     };
 
     api.deleteAccount = function (path, acct) {
-        // TODO fill this method.
-        var accountContent = getAccountsContent(path);
+        var accountContent = parse(getAccountsContent(path));
+
+        // delete the relevant entry from the JSON object.
+        delete accountContent[acct];
+
+        // Get the registry and update the content.
+        var res = dataStore.get(path);
+
+        // setting the registry resource content here.
+        res.content = stringify(accountContent);
+
+        // updating the registry with the new resource here.
+        dataStore.put(path, res);
     };
 }());

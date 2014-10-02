@@ -55,33 +55,37 @@
 		    </div>
 		    
 		<div class="span12">
-            <ul class="nav nav-list widget wlightblue">
-                <li class="">
-                    <div class="widget-head">
-                        Existing Connections
-                    </div>
-                </li>
+            <table class = "table">
+             <tr>
+             <th>
+                <div class="widget-head">Existing Connections</div>
+             </th>
+             </tr>
+
 
             {{#if existingConnections}}
                 {{#each existingConnections}}
-                    <li>
-
+                    <tr>
+                            <td>
                         <a href="{{../returnRecipeUri}}&value={{this}}" class="span12">
 
 
                         <div class="span10">
                             {{this}}
                         </div>
-
-                        <button type="button" class="btn btn-danger btn-xs pull-right span2">
+                        </a>
+                    </td>
+                    <td>
+                    <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}"  id="form-delete" method="post" role="form" class="form-horizontal">
+                        <button type="button" class="btn btn-danger btn-xs pull-right span2" id="del-btn">
                             Delete
                         </button>
-                      </a>
-                    </li>
+                    </form>
+                    </td>
+                    </tr>
                 {{/each}}
             {{/if}}
-
-            </ul>
+            </table>
         </div>
 
         <div class="clearfix span12" style="height:30px;"></div>

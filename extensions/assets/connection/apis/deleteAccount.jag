@@ -1,0 +1,21 @@
+<%
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+
+    if (request.getMethod() == "POST") {
+            var log = new Log();
+            log.info('Comming to the delete ************************************************************************');
+            // Get the account id to be deleted.
+            var accountId = request.getParameter('accountId');
+            log.info(">>"+ accountId);
+
+            var path ='connections/' + session.get('ConnectionType') + '/accounts';
+
+            log.info(path);
+
+            // Then delete it from the registry.
+            regUtilMod.deleteAccount(path, accountId);
+
+            print('Account was deleted successfully !');
+    }
+
+%>
