@@ -24,25 +24,19 @@
 
     var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
-
-    print('Access Token: ' + result.data.access_token);
-
     var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
     var emailAddress = getResult.data.user.emailAddress;
-    print('Email Address: ' + emailAddress);
-
-    print('Refresh Token: ' + result.data.refresh_token);
 
     // saving the necessary information in the registry.
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
 
-    var authInfo = stringify({"consumerKey" : clientId, "consumerSecret" : clientSecret , "accessToken" : result.data.access_token, "accessTokenSecret" : result.data.refresh_token});
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthAccessTokenSecret" : result.data.refresh_token});
     regUtilMod.insertNewAccount(path,emailAddress, authInfo);
 
 
     var assetId = session.get('assetId');
 
-    // response.sendRedirect('https://www.google.lk');
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
 
 %>

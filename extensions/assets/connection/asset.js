@@ -36,8 +36,8 @@ asset.server = function(ctx) {
                     path: 'twitterOAuth.jag'
                 },
                 {
-                    url: 'googleOAuth',
-                    path: 'googleOAuth.jag'
+                    url: 'googlespreadsheetOAuth',
+                    path: 'googlespreadsheetOAuth.jag'
                 }
             ],
             pages: [{
