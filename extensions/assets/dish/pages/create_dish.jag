@@ -1,145 +1,80 @@
 <%
 var caramel;
-require('/modules/recipe-app.js').exec(function(ctx) {
+require('/modules/recipe-app.js').exec(function (ctx) {
     caramel = require('caramel');
-    var log=new Log();
-    var reqUtil=require('utils').request;
-    var xmlUtil=require('utils').xml;
-    var asset=require('rxt').asset;
+    var log = new Log();
+    var reqUtil = require('utils').request;
+    var xmlUtil = require('utils').xml;
+    var asset = require('rxt').asset;
 
-    var options=reqUtil.getQueryOptions(ctx.request.getQueryString());
+    var options = reqUtil.getQueryOptions(ctx.request.getQueryString());
 
-    var url  = options.resources;
-    var descriptorData = get(url+'descriptor.xml');
+    var url = options.resources;
+    var endOfUrl = url.slice(-1);
 
-    var metadata1=new XML(descriptorData.data);
+    if (endOfUrl != "/") {
+        url += "/";
+    }
+    var descriptorData = get(url + 'descriptor.xml');
 
-    //log.info(metadata1);
+    var descriptorXML = new XML(descriptorData.data);
 
-
-    var conn_disp_name = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].connectordisplayname.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-
-        return JSON.parse(textJson + "]");
-
-    };
-
-    var conn_name = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].connectorname.text()+"\",";
+    var read_descriptor = function (connector, attribute) {
+        var textJson = "[";
+        for (var ii = 0; ii < connector.length(); ii++) {
+            textJson += "\"" + connector[ii][attribute].text() + "\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
-
     };
 
-    var operation_name = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].operation.text()+"\",";
+    var conn_icon = function (connector) {
+        var textJson = "[";
+        for (var ii = 0; ii < connector.length(); ii++) {
+            textJson += "\"" + url + connector[ii].icon.text() + "\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
-
     };
 
-    var conn_icon = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +url+ xx[ii].icon.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-        return JSON.parse(textJson + ']');
-
-    };
-
-    var param_disp_name = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].parametersdisplayname.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-        return JSON.parse(textJson + ']');
-
-    };
-
-    var param_name = function(xx) {
-
-        var textJson ="[";
-        for(var ii = 0; ii< xx.length(); ii++) {
-
-            textJson += "\"" +xx[ii].parametersname.text()+"\",";
-        }
-        textJson = textJson.substring(0, textJson.length - 1);
-        return JSON.parse(textJson + ']');
-
-    };
+    log.info(url.split('/')[3]);
+    var recipeName = url.split('/')[3]; //todo: read this from recipe (add recipe_code in recipe rxt)
 
 
-
-
-
-    //var json=xmlUtil.convertE4XtoJSON(descriptor);
-
-    // log.info(metadata);
-    //log.info(json);
-
-
-
-    log.info(metadata1);
-
-
-
-
-
-
-   // log.info('Query strings: '+stringify(options));
-    var am=asset.createUserAssetManager(ctx.session,'dish');
+    var am = asset.createUserAssetManager(ctx.session, 'dish');
     var assetInstance = {
-        name: metadata1.overview.name,
+        name: descriptorXML.overview.name.text(),
 
         attributes: {
 
-            overview_name: metadata1.overview.name,
-            overview_version: metadata1.overview.version,
+            overview_name: descriptorXML.overview.name.text(),
+            overview_version: descriptorXML.overview.version.text(),
             overview_url: url,
-            overview_description: metadata1.overview.description,
+            overview_recipename: recipeName,
+            overview_description: descriptorXML.overview.description.text(),
             overview_triggerinterval: "",
-            overview_thumbnail: url + metadata1.overview.thumbnail,
-            overview_banner: url + metadata1.overview.banner,
+            overview_thumbnail: url + descriptorXML.overview.thumbnail.text(),
+            overview_banner: url + descriptorXML.overview.banner.text(),
 
-            ingredient_connectordisplayname: conn_disp_name(metadata1.ingredient),
-            ingredient_connectorname: conn_name(metadata1.ingredient),
+            ingredient_connectordisplayname: read_descriptor(descriptorXML.ingredient, "connectordisplayname"),
+            ingredient_connectorname: read_descriptor(descriptorXML.ingredient, "connectorname"),
             ingredient_account: [],
-            ingredient_operation: operation_name(metadata1.ingredient),
-            ingredient_icon: conn_icon(metadata1.ingredient),
-            ingredient_parametersdisplayname: param_disp_name(metadata1.ingredient),
-            ingredient_parametersname: param_name(metadata1.ingredient),
+            ingredient_operation: read_descriptor(descriptorXML.ingredient, "operation"),
+            ingredient_icon: conn_icon(descriptorXML.ingredient),
+            ingredient_parametersdisplayname: read_descriptor(descriptorXML.ingredient, "parametersdisplayname"),
+            ingredient_parametersname: read_descriptor(descriptorXML.ingredient, "parametersname"),
+            ingredient_parameterseg: read_descriptor(descriptorXML.ingredient, "parameterseg"),
             ingredient_parametersvalue: [],
 
 
-            result_connectordisplayname: conn_disp_name(metadata1.result),
-            result_connectorname: conn_name(metadata1.result),
+            result_connectordisplayname: read_descriptor(descriptorXML.result, "connectordisplayname"),
+            result_connectorname: read_descriptor(descriptorXML.result, "connectorname"),
             result_account: [],
-            result_operation: operation_name(metadata1.result),
-            result_icon: conn_icon(metadata1.result),
-            result_parametersdisplayname: param_disp_name(metadata1.result),
-            result_parametersname: param_name(metadata1.result),
+            result_operation: read_descriptor(descriptorXML.result, "operation"),
+            result_icon: conn_icon(descriptorXML.result),
+            result_parametersdisplayname: read_descriptor(descriptorXML.result, "parametersdisplayname"),
+            result_parametersname: read_descriptor(descriptorXML.result, "parametersname"),
+            result_parameterseg: read_descriptor(descriptorXML.result, "parameterseg"),
             result_parametersvalue: []
 
         }
@@ -147,10 +82,10 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
     am.create(assetInstance);
 
-   // log.info('id: '+assetInstance.id);
+    // log.info('id: '+assetInstance.id);
 
 
-    response.sendRedirect('details/'+assetInstance.id);
+    response.sendRedirect('details/' + assetInstance.id);
 
 }, request, response, session);
 %>

@@ -34,6 +34,19 @@
                 <name>Banner</name>
             </field>
         </table>
+
+         <table name="account" columns="2" maxoccurs="unbounded">
+                    <subheading>
+                        <heading>user</heading>
+                        <heading>detail</heading>
+                    </subheading>
+                    <field type="text">
+                        <name label="user">user</name>
+                    </field>
+                    <field type="text-area">
+                        <name label="detail"></name>
+                    </field>
+                </table>
 		
     </content>
 </artifactType>

@@ -16,12 +16,12 @@ var deploy = {};
     options.useSOAP = 1.2;
 
 
-    deploy.deployTemplate = function (name, url) {
+    deploy.deployTemplate = function (recipe_name, url) {
         options.action = "urn:importResource";
 
         var payload = '<ser:importResource xmlns:ser="http://services.resource.registry.carbon.wso2.org">'
             + '<ser:parentPath>/_system/governance/recipeTemplates</ser:parentPath>'
-            + '<ser:resourceName>' + name + '_template</ser:resourceName>'
+            + '<ser:resourceName>' + recipe_name + '_template</ser:resourceName>'
             + '<ser:mediaType>text/plain</ser:mediaType>'
             + '<ser:description>template</ser:description>'
             + '<ser:fetchURL>' + url + 'template.xml</ser:fetchURL>'
@@ -45,13 +45,13 @@ var deploy = {};
         }
     };
 
-    deploy.deployTransform = function (name, url) {
+    deploy.deployTransform = function (recipe_name, url) {
         // Method for importing resource
         options.action = "urn:importResource";
 
         var payload = '<ser:importResource xmlns:ser="http://services.resource.registry.carbon.wso2.org">'
             + '<ser:parentPath>/_system/governance/recipeTransformations</ser:parentPath>'
-            + '<ser:resourceName>' + name + '_transformation</ser:resourceName>'
+            + '<ser:resourceName>' + recipe_name + '_transformation</ser:resourceName>'
             + '<ser:mediaType>text/xml</ser:mediaType>'
             + '<ser:description>transformation</ser:description>'
             + '<ser:fetchURL>' + url +'transformation.xml' + '</ser:fetchURL>'

@@ -26,6 +26,9 @@
             <field type="text" required="true">
                 <name>Url</name>
             </field>
+            <field type="text" required="true">
+                <name>recipename</name>
+            </field>
             <field type="text-area">
                 <name>Description</name>
             </field>
@@ -41,7 +44,7 @@
         </table>
 
 
-        <table name="Ingredient" columns="8" maxoccurs="unbounded">
+        <table name="Ingredient" columns="9" maxoccurs="unbounded">
             <subheading>
                 <heading>connectordisplayname</heading>
                 <heading>connectorname</heading>
@@ -50,6 +53,7 @@
                 <heading>icon</heading>
                 <heading>parametersdisplayname</heading>
                 <heading>parametersname</heading>
+                <heading>parameterseg</heading>
                 <heading>parametersvalue</heading>
             </subheading>
             <field type="text">
@@ -72,13 +76,16 @@
             </field>
             <field type="text">
                 <name label="parametersname">parametersname</name>
+            </field>
+            <field type="text">
+                <name label="parameterseg">parameterseg</name>
             </field>
             <field type="text">
                 <name label="parametersvalue">parametersvalue</name>
             </field>
         </table>
 
-        <table name="Result" columns="8" maxoccurs="unbounded">
+        <table name="Result" columns="9" maxoccurs="unbounded">
             <subheading>
                 <heading>connectordisplayname</heading>
                 <heading>connectorname</heading>
@@ -87,6 +94,7 @@
                 <heading>icon</heading>
                 <heading>parametersdisplayname</heading>
                 <heading>parametersname</heading>
+                <heading>parameterseg</heading>
                 <heading>parametersvalue</heading>
             </subheading>
             <field type="text">
@@ -109,6 +117,9 @@
             </field>
             <field type="text">
                 <name label="parametersname">parametersname</name>
+            </field>
+            <field type="text">
+                <name label="parameterseg">parameterseg</name>
             </field>
             <field type="text">
                 <name label="parametersvalue">parametersvalue</name>

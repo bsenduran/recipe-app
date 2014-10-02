@@ -395,6 +395,7 @@ var engine = caramel.engine('handlebars', (function() {
                     var paramVal;
 
                     var params = table.parametersdisplayname.value.shift().split(',');
+                    var paramsEg = table.parameterseg.value.shift().split(',');
 
                     var shiftedPval  =  table.parametersvalue.value.shift();
                     if (shiftedPval != null) {
@@ -414,7 +415,7 @@ var engine = caramel.engine('handlebars', (function() {
 
                     for(j=0; j<paramsLength; j++){
                         str += '<label><strong>' + params.shift() + '</strong></label>';
-                        str += '<input type="text" id="param'+i+'_'+j+'" placeholder="Enter value here...." value="'+checkNullStr(paramVal.shift())+'">';
+                        str += '<input type="text" id="param'+i+'_'+j+'" placeholder="eg: '+paramsEg.shift()+' " value="'+checkNullStr(paramVal.shift())+'">';
                     }
 
                     str += '</fieldset></div>';

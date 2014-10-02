@@ -1,104 +1,108 @@
 {{#with assets}}
-<div class='content-div'>
-	<div class="tab-content asset-tab-content">
-		<div id="view" class="asset-view-container">
-            <div class="row-fluid asset-detail-top-row">
-                <div class="span2">
-                            <div class="thumbnail-div">
-                                <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{thumbnail}}' class="" alt="Thumb"/>
+    <div class='content-div'>
+        <div class="tab-content asset-tab-content">
+            <div id="view" class="asset-view-container">
+                <div class="row-fluid asset-detail-top-row">
+                    <div class="span2">
+                        <div class="thumbnail-div">
+                            <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{thumbnail}}' class="" alt="Thumb"/>
 
-                            </div>
-                </div>
-                <div class="span10 asset-details-box">
-                        <h4>{{name}}</h4>
-                </div>
-            </div>
-		    <div class="row-fluid asset-details-row">
-		                <div class="span12 asset-content-box">
-		                    <div class="widget wlightblue">
-		                        <div class="widget-head">
-                                    <div class="pull-left">Asset Overview</div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <div class="widget-content">
-                                        <table class="table table-bordered asset-view-table widget-table">
-                                            <tbody>
-                                            {{#each tables}}
-                                                
-                                                <tr>
-                                                   {{renderTablePreview .}}
-                                                </tr>
-
-                                        
-                                            {{/each}}
-                                        
-                                            {{#if tags}}
-                                            
-                                                <tr>
-                                                    <td class="span3">Tags</td>
-                                                    <td>
-                                                    	{{#each tags}}
-                                                        <span class="view-tag">{{this}}</span>
-                                                        {{/each}}
-                                                    </td>
-                                                </tr>
-                                            {{/if}}
-                                            </tbody>
-                                        </table>
-                                </div>
-                            </div>
-		                </div>
-		                
-		                
-		                
-		    </div>
-		    
-		<div class="span12">
-            <table class = "table">
-             <tr>
-             <th>
-                <div class="widget-head">Existing Connections</div>
-             </th>
-             </tr>
-
-
-            {{#if existingConnections}}
-                {{#each existingConnections}}
-                    <tr>
-                            <td>
-                        <a href="{{../returnRecipeUri}}&value={{this}}" class="span12">
-
-
-                        <div class="span10">
-                            {{this}}
                         </div>
-                        </a>
-                    </td>
-                    <td>
-                    <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}"  id="form-delete" method="post" role="form" class="form-horizontal">
-                        <button type="button" class="btn btn-danger btn-xs pull-right span2" id="del-btn">
-                            Delete
-                        </button>
-                    </form>
-                    </td>
-                    </tr>
-                {{/each}}
-            {{/if}}
-            </table>
-        </div>
+                    </div>
+                    <div class="span10 asset-details-box">
+                        <h4>{{name}}</h4>
+                    </div>
+                </div>
+                <div class="row-fluid asset-details-row">
+                    <div class="span12 asset-content-box">
+                        <div class="widget wlightblue">
+                            <div class="widget-head">
+                                <div class="pull-left">Asset Overview</div>
+                                <div class="clearfix"></div>
+                            </div>
 
-        <div class="clearfix span12" style="height:30px;"></div>
+                            <div class="widget-content">
+                                <table class="table table-bordered asset-view-table widget-table">
+                                    <tbody>
+                                    {{#each tables}}
 
-        <form action="{{url ""}}/apis/{{name}}OAuth?type=connection&id={{id}}"   method="post" role="form" class="form-horizontal">
+                                        <tr>
+                                            {{renderTablePreview .}}
+                                        </tr>
 
-            <button type="submit" class="btn btn-primary btn-large">OAuth Connection</button>
-        </form>
+
+                                    {{/each}}
+
+                                    {{#if tags}}
+
+                                        <tr>
+                                            <td class="span3">Tags</td>
+                                            <td>
+                                                {{#each tags}}
+                                                    <span class="view-tag">{{this}}</span>
+                                                {{/each}}
+                                            </td>
+                                        </tr>
+                                    {{/if}}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
 
+
+                </div>
+
+                <div class="span12">
+                    <ul class="nav nav-list widget wlightblue">
+                        {{#if existingConnections}}
+
+                            <li class="">
+                            <div class="widget-head">
+                                Existing Connections
+                            </div>
+                        </li>
+
+                            {{#each existingConnections}}
+                            <li>
+                                <!--<a href="#">Hello</a>-->
+                                <div class="span12 conns">
+
+
+                                    <a href="{{../returnRecipeUri}}&value={{this}}" class="span10">
+
+                                        {{this}}
+
+                                    </a>
+                                    <div class="span2">
+
+                                        <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}"  id="form-delete" method="post" role="form">
+                                            <button type="button" class="btn btn-danger pull-right" id="del-btn">
+                                                Delete
+                                            </button>
+                                    </div>
+
+                                    </form>
+
+                                </div>
+                            {{/each}}
+                        {{/if}}
+
+                    </ul>
+                </div>
+
+                <div class="clearfix span12" style="height:30px;"></div>
+
+                <form action="{{url ""}}/apis/{{name}}OAuth?type=connection&id={{id}}"   method="post" role="form" class="form-horizontal">
+
+                    <button type="submit" class="btn btn-primary btn-large">OAuth Connection</button>
+                </form>
+
+
+            </div>
         </div>
     </div>
-</div>
 
 
 {{/with}}

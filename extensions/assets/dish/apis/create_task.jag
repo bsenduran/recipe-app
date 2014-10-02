@@ -25,6 +25,8 @@ require('/modules/recipe-app.js').exec(function (ctx) {
         } else {
 
             var dish_name = assets.attributes.overview_name;
+            var recipe_name = assets.attributes.overview_recipename;
+            var trigger_interval = assets.attributes.overview_triggerinterval;
 
             var task_resp = get(assets.attributes.overview_url + 'task.xml');
 
@@ -123,13 +125,13 @@ require('/modules/recipe-app.js').exec(function (ctx) {
 
 
             var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="'+dish_name+'">'+
-                    '<trigger count="1" interval="5"/>'+
+                    '<trigger count="1" interval="'+trigger_interval+'"/>'+
                     '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">'+
                     '<dish.property.root xmlns="">';
 
             var task_root_closing ='</dish.property.root>'+
                     '</property>'+
-                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipeTemplates/'+dish_name+'_template"/>'+
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipeTemplates/'+recipe_name+'_template"/>'+
                    '</task>';
 
             var task_content = task_root_node+
@@ -145,8 +147,8 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             log.info(task_content);
 
 
-            deploy_artifact.deployTemplate(dish_name, assets.attributes.overview_url);
-            deploy_artifact.deployTransform(dish_name, assets.attributes.overview_url);
+            deploy_artifact.deployTemplate(recipe_name, assets.attributes.overview_url);
+            deploy_artifact.deployTransform(recipe_name, assets.attributes.overview_url);
             deploy_artifact.deployTask(task_content);
 
         }
