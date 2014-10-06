@@ -381,7 +381,7 @@ var engine = caramel.engine('handlebars', (function() {
                     return "";
                 }
             };
-            Handlebars.registerHelper('loopingRecipeItems', function(table) {
+            Handlebars.registerHelper('loopingRecipeItems', function(table, type) {
                 var str='<div></div>' ;
                 var count = table.connectorname.value.length;
 
@@ -415,7 +415,39 @@ var engine = caramel.engine('handlebars', (function() {
 
                     for(j=0; j<paramsLength; j++){
                         str += '<label><strong>' + params.shift() + '</strong></label>';
+                        str += '<div class="input-append">';
                         str += '<input type="text" id="param'+i+'_'+j+'" placeholder="eg: '+paramsEg.shift()+' " value="'+checkNullStr(paramVal.shift())+'">';
+
+                        if(type == "results"){
+
+                            str += '<div class="btn-group"><button class="btn dropdown-toggle" data-toggle="dropdown"> Select  &nbsp<span class="caret"></span></button><ul class="dropdown-menu">';
+
+                            var typeAwareObj = table.typeAware;
+
+                            for (var ingredient in typeAwareObj) {
+                              if (typeAwareObj.hasOwnProperty(ingredient)) {
+
+                              // Print key
+                              str += '<li onClick=""><b>' + ingredient + '</b></li>';
+
+
+                                    for (var typeCount=0; typeCount<typeAwareObj[ingredient].length; typeCount++)
+                                    {
+                                        var aType = typeAwareObj[ingredient][typeCount];
+
+                                        str += '<li onClick="">{' + ingredient + '.' + aType + '}</li>';
+                                    }
+
+                              // Print section ending line
+                              str += '<li><hr></li>';
+
+                              }
+                            }
+
+                            str += '</ul></div>';
+                        }
+
+                        str += '</div>';
                     }
 
                     str += '</fieldset></div>';

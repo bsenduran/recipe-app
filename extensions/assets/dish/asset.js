@@ -244,6 +244,9 @@ asset.renderer = function(ctx) {
             var param_eg1 = dish_asset.tables[1].fields.parameterseg.value;
             var param_eg2 = dish_asset.tables[2].fields.parameterseg.value;
 
+            var avroschema1 = dish_asset.tables[1].fields.avroschema.value;
+            var avroschema2 = dish_asset.tables[2].fields.avroschema.value;
+
             if (!(conn_disp_name1 instanceof Array)) {
                 dish_asset.tables[1].fields.connectordisplayname.value = [conn_disp_name1];
             }
@@ -307,6 +310,12 @@ asset.renderer = function(ctx) {
                 dish_asset.tables[2].fields.parameterseg.value = [param_eg2];
             }
 
+            if (!(avroschema1 instanceof Array)) {
+                dish_asset.tables[1].fields.avroschema.value = [avroschema1];
+            }
+            if (!(avroschema2 instanceof Array)) {
+                dish_asset.tables[2].fields.avroschema.value = [avroschema2];
+            }
             page.assets = dish_asset;
 
 
