@@ -24,11 +24,12 @@
                         <div style="height: 12px;">
                             <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
                         </div>
+                        <a href='{{url ""}}/asts/{{../rxt/shortName}}/control_panel/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
                         <div style="height: 128px;">
                             <img src='{{this.attributes.overview_thumbnail}}' alt="...">
                         </div>
                         <p>    <b>
-                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/details/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
+
                                 <script>
                                     var str = "{{this.attributes.overview_name}}";
                                     if(str.length>30)
@@ -41,8 +42,8 @@
                                     document.write(str);
                                 </script>
 
-                            </a>
-                        </b>    </p>
+
+                        </b>    </p> </a>
                     </div>
 
                 </li>
@@ -77,14 +78,15 @@
                         <div style="height: 12px;">
 
                         </div>
+                        <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText'>
                         <div style='height: 128px;' align='center'>
                             <img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="..." style='max-height: 128px;'>
                         </div>
                         <p  align='center'>    <b>
-                            <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText'>
+
                                 {{this.attributes.overview_name}}
-                            </a>
-                        </b>    </p>
+
+                        </b>    </p> </a>
                     </div>
                 </li>
 

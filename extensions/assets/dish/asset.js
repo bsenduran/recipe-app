@@ -32,7 +32,11 @@ asset.server = function(ctx) {
                 path: 'assets.jag'
             }, {
                 url: 'create_task',
-                path: 'create_task.jag'}
+                path: 'create_task.jag'
+            }, {
+                url: 'manage_task',
+                path: 'manage_task.jag'
+            }
             ],
             pages: [{
                 title: 'Asset: ' + type,
@@ -86,7 +90,11 @@ asset.server = function(ctx) {
                  title: 'Dashboard',
                  url: 'dashboard',
                  path: 'dashboard.jag'
-             }]
+             },{
+                title: 'Control Panel',
+                url: 'control_panel',
+                path: 'control_panel.jag'
+            }]
         }
     };
 };

@@ -2,7 +2,7 @@
 var caramel;
 require('/modules/recipe-app.js').exec(function (ctx) {
     caramel = require('caramel');
-    var deploy_artifact = require('/extensions/assets/dish/modules/deploy_artifact.js').deploy;
+    var admin_tasks = require('/extensions/assets/dish/modules/admin_tasks.js').tasks;
     var ui = require('rxt').ui;
     var asset = require('rxt').asset;
     var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
@@ -124,36 +124,35 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             };
 
 
-            var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="'+dish_name+'">'+
-                    '<trigger count="1" interval="'+trigger_interval+'"/>'+
-                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">'+
+            var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="' + dish_name + '">' +
+                    '<trigger count="1" interval="' + trigger_interval + '"/>' +
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">' +
                     '<dish.property.root xmlns="">';
 
-            var task_root_closing ='</dish.property.root>'+
-                    '</property>'+
-                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipeTemplates/'+recipe_name+'_template"/>'+
-                   '</task>';
+            var task_root_closing = '</dish.property.root>' +
+                    '</property>' +
+                    '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeKey" value="gov:/recipeTemplates/' + recipe_name + '_template"/>' +
+                    '</task>';
 
-            var task_content = task_root_node+
-                    getAuthDetail(ingredients, ingredient_account)+
-                    getXMLContent(ingredients, ingredient_parametersname, ingredient_parameter_value)+
-                    getAuthDetail(results, result_account)+
-                    getXMLContent(results, result_parametersname, result_parameter_value)+
+            var task_content = task_root_node +
+                    getAuthDetail(ingredients, ingredient_account) +
+                    getXMLContent(ingredients, ingredient_parametersname, ingredient_parameter_value) +
+                    getAuthDetail(results, result_account) +
+                    getXMLContent(results, result_parametersname, result_parameter_value) +
                     task_root_closing;
 
 
-
-          log.info("about to deploy");
+            log.info("about to deploy");
             log.info(task_content);
 
 
-            deploy_artifact.deployTemplate(recipe_name, assets.attributes.overview_url);
-            deploy_artifact.deployTransform(recipe_name, assets.attributes.overview_url);
-            deploy_artifact.deployTask(task_content);
+            admin_tasks.deployTemplate(recipe_name, assets.attributes.overview_url);
+            admin_tasks.deployTransform(recipe_name, assets.attributes.overview_url);
+            admin_tasks.deployTask(task_content);
 
         }
 
 
-       response.sendRedirect('/recipe-app/asts/dish/dashboard');
+        response.sendRedirect('/recipe-app/asts/dish/dashboard');
     }
 }, request, response, session); %>

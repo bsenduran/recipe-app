@@ -1,0 +1,29 @@
+<div class="sidebar-nav">
+    <ul class="nav nav-list ">
+
+
+        <li class="ctrl-btn">
+            {{#if assets.isTaskRunning}}
+                <a href="{{url ""}}/apis/manage_task/deactivate?type=dish&dishName={{assets.name}}&id={{assets.id}}"
+                   class="btn btn-large span10" id="btn-deactivate" type="button">Deactivate dish</a>
+            {{else}}
+                <a href="{{url ""}}/apis/manage_task/activate?type=dish&dishName={{assets.name}}&id={{assets.id}}"
+                   class="btn btn-large span10" id="btn-activate" type="button">Activate dish</a>
+            {{/if}}
+        </li>
+
+        <li class="ctrl-btn">
+            <a href="/recipe-app/asts/dish/details/{{assets.id}}" class="btn btn-large span10"
+               type="button">Configure</a>
+
+        </li>
+
+
+        <li class="ctrl-btn">
+            <a href="{{url ""}}/apis/manage_task/delete?type=dish&dishName={{assets.name}}&id={{assets.id}}"
+               class="btn btn-large span10" id="btn-delete" type="button">Delete this dish</a>
+        </li>
+
+    </ul>
+
+</div>

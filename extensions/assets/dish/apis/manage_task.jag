@@ -1,0 +1,34 @@
+<%
+var caramel;
+require('/modules/recipe-app.js').exec(function (ctx) {
+    caramel = require('caramel');
+    var admin_task = require('/extensions/assets/dish/modules/admin_tasks.js').tasks;
+    var ref = require('utils').request;
+    var req = ctx.request;
+    var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
+    var ACTIVATE_URL = '/{context}/apis/manage_task/activate';
+    var DEACTIVATE_URL = '/{context}/apis/manage_task/deactivate';
+    var DELETE_URL = '/{context}/apis/{pageName}/delete';
+    var options = ref.getQueryOptions(req.getQueryString());
+
+
+    var log =new Log("manage_task");
+
+log.info("uri template"+ ctx.request.getRequestURI());
+log.info("uri options "+ stringify(options));
+
+    if (uriMatcher.match(ACTIVATE_URL)) {
+        admin_task.resumeTask(options.dishName);
+
+    }else if(uriMatcher.match(DEACTIVATE_URL)) {
+        admin_task.pauseTask(options.dishName)
+
+
+    }else if(uriMatcher.match(DELETE_URL)) {
+        admin_task.deleteTask(options.dishName)
+    }
+
+    response.sendRedirect('/recipe-app/asts/dish/control_panel/'+options.id);
+
+
+}, request, response, session); %>
