@@ -77,13 +77,12 @@
                                     </a>
                                     <div class="span2">
 
-                                        <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}"  id="form-delete" method="post" role="form">
-                                            <button type="button" class="btn btn-danger pull-right" id="del-btn">
+                                        <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}&id={{../id}}"  id="form-delete" method="post" role="form">
+                                            <button class="btn btn-danger pull-right" >
                                                 Delete
                                             </button>
+                                        </form>
                                     </div>
-
-                                    </form>
 
                                 </div>
                             {{/each}}
