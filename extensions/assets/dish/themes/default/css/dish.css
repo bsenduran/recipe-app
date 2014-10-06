@@ -1,3 +1,12 @@
 #add-form-btn {
     cursor: pointer;
 }
+
+.thumbnail > a:hover, .thumbnail > a:focus {
+    text-decoration: none;
+}
+
+.ctrl-btn {
+    padding-top: 75px;
+    padding-left: 45px;
+}

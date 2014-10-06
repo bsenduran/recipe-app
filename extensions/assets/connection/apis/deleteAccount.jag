@@ -3,19 +3,22 @@
 
     if (request.getMethod() == "POST") {
             var log = new Log();
-            log.info('Comming to the delete ************************************************************************');
+            log.info('Coming to the delete ************************************************************************');
             // Get the account id to be deleted.
             var accountId = request.getParameter('accountId');
+            var assetId = request.getParameter("id");
             log.info(">>"+ accountId);
 
             var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
             log.info(path);
 
-            // Then delete it from the registry.
+           // Then delete it from the registry.
             regUtilMod.deleteAccount(path, accountId);
 
             print('Account was deleted successfully !');
+
+            response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
     }
 
 %>
