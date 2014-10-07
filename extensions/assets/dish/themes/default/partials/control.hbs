@@ -27,7 +27,7 @@
 
 <script>
 var confirm_activate = function(name, id) {
-    bootbox.confirm("Are you sure Do you want to Activate the Dish" , function (result) {
+    bootbox.confirm("<p> Are you sure </p> <p>Do you want to Activate the Dish</p>" , function (result) {
 
         if(result) {
             window.location.href = "/recipe-app/apis/manage_task/activate?type=dish&dishName="+name+"&id="+id;
@@ -36,7 +36,7 @@ var confirm_activate = function(name, id) {
 };
 
 var confirm_deactivate = function(name, id) {
-    bootbox.confirm("Are you sure Do you want to Deactivate the Dish" , function (result) {
+    bootbox.confirm("<p>Are you sure </p><p>Do you want to Deactivate the Dish</p>" , function (result) {
 
         if(result) {
             window.location.href = "/recipe-app/apis/manage_task/deactivate?type=dish&dishName="+name+"&id="+id;
@@ -45,7 +45,7 @@ var confirm_deactivate = function(name, id) {
 };
 
 var confirm_delete = function(name, id) {
-    bootbox.confirm("Are you sure Do you want to Delete the Dish" , function (result) {
+    bootbox.confirm("<p>Are you sure </p><p>Do you want to Delete the Dish</p>" , function (result) {
 
         if(result) {
             window.location.href = "/recipe-app/apis/manage_task/delete?type=dish&dishName="+name+"&id="+id;
