@@ -4,11 +4,9 @@
 
         <li class="ctrl-btn">
             {{#if assets.isTaskRunning}}
-                <a href="{{url ""}}/apis/manage_task/deactivate?type=dish&dishName={{assets.name}}&id={{assets.id}}"
-                   class="btn btn-large span10" id="btn-deactivate" type="button">Deactivate dish</a>
+                <button class="btn btn-large span10" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate dish</button>
             {{else}}
-                <a href="{{url ""}}/apis/manage_task/activate?type=dish&dishName={{assets.name}}&id={{assets.id}}"
-                   class="btn btn-large span10" id="btn-activate" type="button">Activate dish</a>
+                <button class="btn btn-large span10" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate dish</button>
             {{/if}}
         </li>
 
@@ -20,10 +18,38 @@
 
 
         <li class="ctrl-btn">
-            <a href="{{url ""}}/apis/manage_task/delete?type=dish&dishName={{assets.name}}&id={{assets.id}}"
-               class="btn btn-large span10" id="btn-delete" type="button">Delete this dish</a>
+            <button class="btn btn-large span10" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete this dish</button>
         </li>
 
     </ul>
 
 </div>
+
+<script>
+var confirm_activate = function(name, id) {
+    bootbox.confirm("Are you sure Do you want to Activate the Dish" , function (result) {
+
+        if(result) {
+            window.location.href = "/recipe-app/apis/manage_task/activate?type=dish&dishName="+name+"&id="+id;
+        }
+    });
+};
+
+var confirm_deactivate = function(name, id) {
+    bootbox.confirm("Are you sure Do you want to Deactivate the Dish" , function (result) {
+
+        if(result) {
+            window.location.href = "/recipe-app/apis/manage_task/deactivate?type=dish&dishName="+name+"&id="+id;
+        }
+    });
+};
+
+var confirm_delete = function(name, id) {
+    bootbox.confirm("Are you sure Do you want to Delete the Dish" , function (result) {
+
+        if(result) {
+            window.location.href = "/recipe-app/apis/manage_task/delete?type=dish&dishName="+name+"&id="+id;
+        }
+    });
+};
+</script>
