@@ -36,19 +36,23 @@ require('/modules/recipe-app.js').exec(function(ctx) {
                 var ingredientName = output.assets.tables[1].fields.connectorname.value[i]
                 jsonSchemaObj[ingredientName] = [];
 
-                // Retrieve file from location
-                jsonObj = get(filePath, '', 'json');
+                try{
+                    // Retrieve file from location
+                    jsonObj = get(filePath, '', 'json');
 
-                // Assumed that fields[1] contains 'out' fields of the ingredient
-                var fields = jsonObj.data.fields[1].type.fields;
+                    // Assumed that fields[1] contains 'out' fields of the ingredient
+                    var fields = jsonObj.data.fields[1].type.fields;
 
-                for(var field in fields)
-                {
-                     var name = fields[field].name;
+                    for(var field in fields)
+                    {
+                         var name = fields[field].name;
 
-                     // Pushing to array
-                     jsonSchemaObj[ingredientName].push(name);
-                     //print(name);
+                         // Pushing to array
+                         jsonSchemaObj[ingredientName].push(name);
+                         //print(name);
+                    }
+                }catch(e){
+                    log.info('A schema file missing in location: ' + filePath);
                 }
 
             }
