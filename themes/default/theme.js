@@ -381,7 +381,7 @@ var engine = caramel.engine('handlebars', (function() {
                     return "";
                 }
             };
-            Handlebars.registerHelper('loopingRecipeItems', function(table) {
+            Handlebars.registerHelper('loopingRecipeItems', function(table, type) {
                 var str='<div></div>' ;
                 var count = table.connectorname.value.length;
 
@@ -394,9 +394,13 @@ var engine = caramel.engine('handlebars', (function() {
 
                     var paramVal;
 
+                    log.info('Processing parameter names ...');
                     var params = table.parametersdisplayname.value.shift().split(',');
+
+                    log.info('Processing parameter examples ...');
                     var paramsEg = table.parameterseg.value.shift().split(',');
 
+                    log.info('Processing parameter values ...');
                     var shiftedPval  =  table.parametersvalue.value.shift();
                     if (shiftedPval != null) {
                         paramVal = shiftedPval.split('|');
@@ -415,7 +419,43 @@ var engine = caramel.engine('handlebars', (function() {
 
                     for(j=0; j<paramsLength; j++){
                         str += '<label><strong>' + params.shift() + '</strong></label>';
+                        str += '<div class="input-append">';
+
+                        // Generate text-fields
                         str += '<input type="text" id="param'+i+'_'+j+'" placeholder="eg: '+paramsEg.shift()+' " value="'+checkNullStr(paramVal.shift())+'">';
+
+                        // Type-awareness is only for Results
+                        if(type == "results"){
+
+                            str += '<div class="btn-group"><button class="btn dropdown-toggle" data-toggle="dropdown"> Select  &nbsp<span class="caret"></span></button><ul class="dropdown-menu">';
+
+                            var typeAwareObj = table.typeAware;
+
+                            for (var ingredient in typeAwareObj) {
+                              if (typeAwareObj.hasOwnProperty(ingredient)) {
+
+                              // Print key
+                              str += '<li onClick=""><strong>' + ingredient + '</strong></li>';
+
+                                    // Print the list for a single ingredient
+                                    for (var typeCount=0; typeCount<typeAwareObj[ingredient].length; typeCount++)
+                                    {
+                                        var aType = typeAwareObj[ingredient][typeCount];
+
+                                        // For listener check: update-ingredients-results.js
+                                        str += '<li class="typeAwareItem" fortextbox="param'+i+'_'+j+'">{' + ingredient + '.' + aType + '}</li>';
+                                    }
+
+                              // Print section ending line
+                              str += '<li><hr></li>';
+
+                              }
+                            }
+
+                            str += '</ul></div>';
+                        }
+
+                        str += '</div>';
                     }
 
                     str += '</fieldset></div>';
@@ -424,7 +464,6 @@ var engine = caramel.engine('handlebars', (function() {
                 }
 
                 return new Handlebars.SafeString(str);
-                //return stringify(table);
             });
             // Looping images in recipe
             Handlebars.registerHelper('loopingRecipeImages', function(table, type) {

@@ -4,7 +4,7 @@
     <h2>Step2 - Prepare Ingredients</h2> <br/>
     <form method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_results/{{assets.id}}'>
 
-{{loopingRecipeItems assets.tables.1.fields}}
+{{loopingRecipeItems assets.tables.1.fields "ingredients"}}
 
     <script src="../../../themes/default/js/handlebars.form-helpers.js"></script>
 

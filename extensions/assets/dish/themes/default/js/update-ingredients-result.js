@@ -42,5 +42,10 @@ $(function(){
         });
     });
 
+    $('.typeAwareItem').on('click', function(){
+        var text = $(this).text();
+        var textBoxId = $(this).attr("fortextbox");
+        $('#'+textBoxId).val(text);
+    });
 
 });

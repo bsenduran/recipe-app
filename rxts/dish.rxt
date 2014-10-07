@@ -44,7 +44,7 @@
         </table>
 
 
-        <table name="Ingredient" columns="9" maxoccurs="unbounded">
+        <table name="Ingredient" columns="10" maxoccurs="unbounded">
             <subheading>
                 <heading>connectordisplayname</heading>
                 <heading>connectorname</heading>
@@ -55,6 +55,7 @@
                 <heading>parametersname</heading>
                 <heading>parameterseg</heading>
                 <heading>parametersvalue</heading>
+                <heading>avroschema</heading>
             </subheading>
             <field type="text">
                 <name label="connectordisplayname">connectordisplayname</name>
@@ -82,10 +83,13 @@
             </field>
             <field type="text">
                 <name label="parametersvalue">parametersvalue</name>
+            </field>
+            <field type="text">
+                <name label="avroschema">avroschema</name>
             </field>
         </table>
 
-        <table name="Result" columns="9" maxoccurs="unbounded">
+        <table name="Result" columns="10" maxoccurs="unbounded">
             <subheading>
                 <heading>connectordisplayname</heading>
                 <heading>connectorname</heading>
@@ -96,6 +100,7 @@
                 <heading>parametersname</heading>
                 <heading>parameterseg</heading>
                 <heading>parametersvalue</heading>
+                <heading>avroschema</heading>
             </subheading>
             <field type="text">
                 <name label="connectordisplayname">connectordisplayname</name>
@@ -123,6 +128,9 @@
             </field>
             <field type="text">
                 <name label="parametersvalue">parametersvalue</name>
+            </field>
+            <field type="text">
+                <name label="avroschema">avroschema</name>
             </field>
         </table>
 

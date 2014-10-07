@@ -28,10 +28,10 @@ require('/modules/recipe-app.js').exec(function (ctx) {
         return JSON.parse(textJson + ']');
     };
 
-    var conn_icon = function (connector) {
+    var fill_with_url = function (connector, attribute) {
         var textJson = "[";
         for (var ii = 0; ii < connector.length(); ii++) {
-            textJson += "\"" + url + connector[ii].icon.text() + "\",";
+            textJson += "\"" + url + connector[ii][attribute].text() + "\",";
         }
         textJson = textJson.substring(0, textJson.length - 1);
         return JSON.parse(textJson + ']');
@@ -60,22 +60,23 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             ingredient_connectorname: read_descriptor(descriptorXML.ingredient, "connectorname"),
             ingredient_account: [],
             ingredient_operation: read_descriptor(descriptorXML.ingredient, "operation"),
-            ingredient_icon: conn_icon(descriptorXML.ingredient),
+            ingredient_icon: fill_with_url(descriptorXML.ingredient, "icon"),
             ingredient_parametersdisplayname: read_descriptor(descriptorXML.ingredient, "parametersdisplayname"),
             ingredient_parametersname: read_descriptor(descriptorXML.ingredient, "parametersname"),
             ingredient_parameterseg: read_descriptor(descriptorXML.ingredient, "parameterseg"),
             ingredient_parametersvalue: [],
-
+            ingredient_avroschema: fill_with_url(descriptorXML.ingredient, "avroschema"),
 
             result_connectordisplayname: read_descriptor(descriptorXML.result, "connectordisplayname"),
             result_connectorname: read_descriptor(descriptorXML.result, "connectorname"),
             result_account: [],
             result_operation: read_descriptor(descriptorXML.result, "operation"),
-            result_icon: conn_icon(descriptorXML.result),
+            result_icon: fill_with_url(descriptorXML.result, "icon"),
             result_parametersdisplayname: read_descriptor(descriptorXML.result, "parametersdisplayname"),
             result_parametersname: read_descriptor(descriptorXML.result, "parametersname"),
             result_parameterseg: read_descriptor(descriptorXML.result, "parameterseg"),
-            result_parametersvalue: []
+            result_parametersvalue: [],
+            result_avroschema: fill_with_url(descriptorXML.result, "avroschema")
 
         }
     };
