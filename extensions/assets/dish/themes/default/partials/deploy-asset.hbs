@@ -9,11 +9,17 @@
             </div>
         </div>
         <div class="control-group">
-            <label class="control-label" for="triggerInterval">Triggering Period / Cron</label>
+            <label class="control-label" for="triggerInterval">Triggering Period (in sec)</label>
             <div class="controls">
                 <input type="text" name ="overview_triggerinterval" value="{{notnullT assets.tables.0.fields.triggerinterval.value}}" id="triggerInterval">
             </div>
         </div>
+     <div class="control-group">
+         <label class="control-label" for="triggerCount">Trigger Count</label>
+         <div class="controls">
+             <input type="text" name ="overview_triggercount" value="{{notnullT assets.tables.0.fields.triggercount.value}}" id="triggerCount">
+         </div>
+     </div>
         <div class="control-group">
             <div class="controls">
                 <button class="btn btn-primary btn-large" id="add-form-btn">Complete!</button>

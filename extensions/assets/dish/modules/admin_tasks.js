@@ -91,17 +91,14 @@ var tasks = {};
             // Send task.xml
             req.send('<ns1:addTaskDescription xmlns:ns1="http://org.apache.axis2/xsd">' + xmlTaskData + '</ns1:addTaskDescription>');
 
+            req.close();
+
 
         } catch (e) {
 
 // 		print(e.toString()); // Though deploying task is completed, still returns an error
 
         }
-    };
-
-    admin_task.deleteTask = function (task_name) {
-
-
     };
 
     admin_task.isTaskRunning = function (task_name) {
@@ -202,7 +199,7 @@ var tasks = {};
 
 
         var payload = '<adm:deleteESBTask xmlns:adm="http://admin.core.ntaskint.carbon.wso2.org">' +
-            '<adm:name>' + task_name + '</adm:name>' +
+            '<adm:name>' + task_name + '::synapse.simple.quartz</adm:name>' +
             '</adm:deleteESBTask>';
 
         try {
@@ -223,5 +220,26 @@ var tasks = {};
         return response;
 
     };
+
+    admin_task.deleteTaskDescription = function(task_name) {
+        var response;
+
+        options.action = "urn:deleteTaskDescription";
+
+        var payload = '<xsd:deleteTaskDescription xmlns:xsd="http://org.apache.axis2/xsd">' +
+                    '<xsd:s>' + task_name + '</xsd:s>' +
+                    '<xsd:group>synapse.simple.quartz</xsd:group>' +
+                    '</xsd:deleteTaskDescription>';
+
+        try {
+            req.open(options, ADMIN_SERVICE_URL + "/TaskAdmin", false, USERNAME, PASSWORD); // URI with offset=2 in ESB//
+            req.send(payload);
+
+        }
+        catch (e) {
+            log.error(e)
+        }
+
+    }
 
 }(tasks));

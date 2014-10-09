@@ -53,6 +53,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             overview_recipename: recipeName,
             overview_description: descriptorXML.overview.description.text(),
             overview_triggerinterval: "",
+            overview_triggercount : "",
             overview_thumbnail: url + descriptorXML.overview.thumbnail.text(),
             overview_banner: url + descriptorXML.overview.banner.text(),
 

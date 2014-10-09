@@ -27,10 +27,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
             var dish_name = assets.attributes.overview_name;
             var recipe_name = assets.attributes.overview_recipename;
             var trigger_interval = assets.attributes.overview_triggerinterval;
-
-            var task_resp = get(assets.attributes.overview_url + 'task.xml');
-
-            var task_template = task_resp.data;
+            var trigger_count = assets.attributes.overview_triggercount;
 
 
             var ingredients = assets.attributes.ingredient_connectorname;
@@ -125,7 +122,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
 
 
             var task_root_node = '<task xmlns="http://www.wso2.org/products/wso2commons/tasks" class="org.apache.synapse.startup.tasks.RecipeMessageExecutor" group="synapse.simple.quartz" name="' + dish_name + '">' +
-                    '<trigger count="1" interval="' + trigger_interval + '"/>' +
+                    '<trigger count="'+trigger_count+'" interval="' + trigger_interval + '"/>' +
                     '<property xmlns:task="http://www.wso2.org/products/wso2commons/tasks" name="recipeParams">' +
                     '<dish.property.root xmlns="">';
 

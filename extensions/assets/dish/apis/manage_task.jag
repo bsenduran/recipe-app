@@ -25,7 +25,10 @@ log.info("uri options "+ stringify(options));
 
 
     }else if(uriMatcher.match(DELETE_URL)) {
-        admin_task.deleteTask(options.dishName)
+        //todo call to delete the asset
+        //uncomment the following
+        //admin_task.deleteTaskDescription(options.dishName);
+        response.sendRedirect('/recipe-app/asts/dish/dashboard');
     }
 
     response.sendRedirect('/recipe-app/asts/dish/control_panel/'+options.id);
