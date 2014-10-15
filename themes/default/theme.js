@@ -386,9 +386,9 @@ var engine = caramel.engine('handlebars', (function() {
                 var count = table.connectorname.value.length;
 
                 for(i=0; i<count; i++) {
-                    str += '<div class="span12">';
-                    str += '<img src="' + table.icon.value.shift() + '" class="img-thumbnail span4" style="width: 125px;"></img>' + '<br/>';
-                    str += '<h2 class="span5">' + table.operation.value.shift() + '</h2>' + '<br/>' + '<br/>';
+                    str += '<div class="single-asset">';
+                    str += '<img src="' + table.icon.value.shift() + '" class="asset-thumbnail"></img>' + '<br/>';
+                    str += '<h4 class="h-asset-title">' + table.operation.value.shift() + '</h4>' + '<br/>';
                     str += '</div>';
                     //str += '<pre class="span12">' + table.parameters.value.shift() + '</pre>' + '<br/>';
 
@@ -415,10 +415,10 @@ var engine = caramel.engine('handlebars', (function() {
 
 
                     // Generate a sample form here
-                    str += '<div class="span12"><fieldset>';
+                    str += '<div><fieldset>';
 
                     for(j=0; j<paramsLength; j++){
-                        str += '<label><strong>' + params.shift() + '</strong></label>';
+                        str += '<label>' + params.shift() + '</label>';
                         str += '<div class="input-append">';
 
                         // Generate text-fields
@@ -447,7 +447,7 @@ var engine = caramel.engine('handlebars', (function() {
                                     }
 
                               // Print section ending line
-                              str += '<li><hr></li>';
+                              str += '<li><div class="hr-sep-3"></div></li>';
 
                               }
                             }
@@ -459,7 +459,7 @@ var engine = caramel.engine('handlebars', (function() {
                     }
 
                     str += '</fieldset></div>';
-                    str += '<hr class="span8">';
+                    str += '<div class="hr-sep-3">&nbsp;</div>';
 
                 }
 
@@ -484,13 +484,11 @@ var engine = caramel.engine('handlebars', (function() {
                     }
 
                     var iPlus = i+1;
-                    //str += '<div>';
-                    str += '<img src="' + table.icon.value.shift() + '" class="thumbnail span3" style="height: 130px; "></img>';
-                    str += '<div class="span6"></div>';
-                    str += '<div class="span12"><input type="text" class="span3" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName + '_' + iPlus+'" value="' + checkNullStr(accVal) + '" readonly="readonly"></div>';
-                    str += '<div class="span12"><a href="/recipe-app/asts/connection/details/' + table.connectionids.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="btn btn-primary span3 add-connection-btn" type="button">Set Connection</a></div>' + '<br/>' + '<br/>' + '<br/>';
-                    str += '<div class="span12"></div>';
-                    //str += '</div>';
+                    str += '<div class="asset-repeater"><div class="single-assetx">';
+                    str += '<div class="asset-image-container"><img src="' + table.icon.value.shift() + '" class="asset-thumbnail"></img></div>';
+                    str += '<div class="asset-settings"><div><a href="/recipe-app/asts/connection/details/' + table.connectionids.shift() + '?id=' + table.account.name.tableQualifiedName + '_' + iPlus +'" class="add-connection-btn-x" type="button">Set Connection</a></div>';
+                    str += '<div class="asset-button-grp"><input class="input-set-connection" type="text" name="' + table.account.name.tableQualifiedName +'" id="' + table.account.name.tableQualifiedName + '_' + iPlus+'" value="' + checkNullStr(accVal) + '" readonly="readonly"></div>';
+                    str += '</div><br class="c-both" /></div></div>';
                 }
                 return new Handlebars.SafeString(str);
             });

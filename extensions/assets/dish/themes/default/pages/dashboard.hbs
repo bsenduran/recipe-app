@@ -35,22 +35,21 @@
 </head>
 <body>
     {{ include header}}
-<div class="container-assets container">
-    <div class="content-area-cont">
-        <div class="row-fluid content-area">
-            <div class="span12 publisher-right">
-                {{include listassets}}
-            </div>
-        </div>
-       
-    </div>
+
+<div class="wr-main wr-main-extra">
+<div class="wr-single">
+
+{{include listassets}}
+
 </div>
-<div class="container-footer container">
-	<div class="content-area-cont">
-                {{>footer}}
- 
-     </div>
 </div>
+
+
+
+<div class="wr-footer">
+     {{>footer}}
+</div>
+
 
 <script src="{{url "/themes/default/js/jquery-1.10.2.min.js"}}"></script>
 <script src="{{url "/themes/default/js/bootstrap.min.js"}}"></script>

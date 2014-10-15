@@ -2,7 +2,7 @@ asset.manager = function(ctx) {
     return {
         create: function(options) {
             var ref = require('utils').time;
-            //Check if the options object has a createdtime attribute and populate it 
+            //Check if the options object has a createdtime attribute and populate it
             if ((options.attributes) && (options.attributes.hasOwnProperty('overview_createdtime'))) {
                 options.attributes.overview_createdtime = ref.getCurrentTime();
             }
@@ -161,24 +161,29 @@ asset.renderer = function(ctx) {
     var buildDefaultLeftNav = function(page, util) {
         var id = page.assets.id;
         return [{
-            name: 'Step1 - Overview',
-            iconClass: 'icon-list-alt',
+            step: 'Step 1',
+            name: 'Overview',
+            iconClass: 'icon-step-1',
             url: util.buildUrl('details') + '/' + id
         }, {
-            name: 'Step2 - Prepare Ingredients',
-            iconClass: 'icon-cog',
+            step: 'Step 2',
+            name: 'Prepare Ingredients',
+            iconClass: 'icon-step-2',
             url: util.buildUrl('set_ingredients') + '/' + id
         }, {
-            name: 'Step3 - Prepare Results',
-            iconClass: 'icon-cog',
+            step: 'Step 3',
+            name: 'Prepare Results',
+            iconClass: 'icon-step-3',
             url: util.buildUrl('set_results') + '/' + id
         }, {
-            name: 'Step4 - Set Method',
-            iconClass: 'icon-repeat',
+            step: 'Step 4',
+            name: 'Set Method',
+            iconClass: 'icon-step-4',
             url: util.buildUrl('set_process') + '/' + id
         }, {
-            name: 'Step5 - Deploy',
-            iconClass: 'icon-download-alt',
+            step: 'Step 5',
+            name: 'Deploy',
+            iconClass: 'icon-step-5',
             url: util.buildUrl('deploy') + '/' + id
         }/*, {
              name: 'Edit',

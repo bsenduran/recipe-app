@@ -2,118 +2,83 @@
 </div>
 <div class="asset-thumb-container">
 
-        <div class="row-fluid">
-
-            <div></div>
             <!-- List dishes -->
-            <div class="span12"><blockquote><h3>My Dishes</h3></blockquote></div>
+            <div class="ctrl-my-dishes">
+            <h3>My Dishes</h3>
 
-            <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
+
 
                 {{#if assets}}
-
                 <ul class="thumbnails">
+                    {{#each assets}}
+                    <li>
 
-                <div></div>
+                        <div class="ctrl-my-dish">
 
-                {{#each assets}}
+                            <div class="my-dish-status">
+                                  <small><i class="icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
+                            </div>
 
-                <li class="span2">
+                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/control_panel/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
+                                <img class="img-dish" src='{{this.attributes.overview_thumbnail}}' alt="...">
 
-                    <div class="thumbnail" style=" height: 180px;">
-                        <div style="height: 12px;">
-                            <small><i class="pull-right icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
+                                 <div class="my-dish-desc">
+                                    <script>
+                                        var str = "{{this.attributes.overview_name}}";
+                                        if(str.length>30)
+                                         {
+                                            str = str.substring(0, 40) + '...';
+                                         }
+                                         else{
+                                            str += '<br/>';
+                                         }
+                                        document.write(str);
+                                    </script>
+                                    <p class="my-dish-last">Last used: 10.20am, today</p>
+                                 </div>
+                            </a>
                         </div>
-                        <a href='{{url ""}}/asts/{{../rxt/shortName}}/control_panel/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
-                        <div style="height: 128px;">
-                            <img src='{{this.attributes.overview_thumbnail}}' alt="...">
-                        </div>
-                        <p>    <b>
-
-                                <script>
-                                    var str = "{{this.attributes.overview_name}}";
-                                    if(str.length>30)
-                                     {
-                                        str = str.substring(0, 40) + '...';
-                                     }
-                                     else{
-                                        str += '<br/>';
-                                     }
-                                    document.write(str);
-                                </script>
-
-
-                        </b>    </p> </a>
-                    </div>
-
-                </li>
-
-
-                {{/each}}
-
-                </ul>
-
+                    </li>
+                    {{/each}}
+                    </ul>
+                {{/if}}
             </div>
 
-            {{/if}}
 
-            <div class="span12"></div>
+            <div class="hr-sep-2"></div>
+
 
             <!-- Listing connections -->
-            <div class="span12"><blockquote><h3>My Connections</h3></blockquote></div>
+            <div class="ctrl-my-connections">
+            <h3>My Connections</h3>
 
-            <div class="row-fluid span11" style="height: 500px;  overflow-y: auto;">
+
 
             {{#if connectionAssets}}
-
             <ul class="thumbnails">
 
-                <div></div>
-
                 {{#each connectionAssets}}
-
-                <li class="span2">
-
-                    <div class="thumbnail" style=" height: 180px;">
-                        <div style="height: 12px;">
-
-                        </div>
-                        <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText'>
-                        <div style='height: 128px;' align='center'>
-                            <img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="..." style='max-height: 128px;'>
-                        </div>
-                        <p  align='center'>    <b>
-
-                                {{this.attributes.overview_name}}
-
-                        </b>    </p> </a>
+                <li>
+                    <div class="ctrl-my-connection">
+                        <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
+                            <div class="my-connection-icon"><img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="..."></div>
+                        {{this.attributes.overview_namex}}
+                        </a>
                     </div>
                 </li>
-
                 {{/each}}
 
             </ul>
-
             {{/if}}
-
             </div>
 
-            <div class="span12">
-                <div class="span12"></div>
-                <a href="{{url ""}}/../store" class="btn btn-large btn-primary span3">
-                    <div class="pull-left">
-                        <i class="icon-shopping-cart icon-white"></i>&nbsp;
-                        Go to recipe store
-                    </div>
-                </a>
-            </div>
-
-            <div class="span12"></div>
-
-        </div>
 
 
 
 
+
+
+
+<br class="c-both" />
 </div>
 

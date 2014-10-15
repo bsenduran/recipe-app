@@ -1,29 +1,19 @@
-<div class="sidebar-nav">
-    <ul class="nav nav-list ">
 
 
-        <li class="ctrl-btn">
+
+            <a href="/recipe-app/asts/dish/details/{{assets.id}}" class="btn-action" type="button">Configure</a>
+             <div class="hr-sep-2">&nbsp;</div>
+
+            <div class="btn-group-x">
             {{#if assets.isTaskRunning}}
-                <button class="btn btn-large span10" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate dish</button>
+                <button class="btn-action" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate this dish</button>
             {{else}}
-                <button class="btn btn-large span10" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate dish</button>
+                <button class="btn-action btn-fixed-160" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate this dish</button>
             {{/if}}
-        </li>
-
-        <li class="ctrl-btn">
-            <a href="/recipe-app/asts/dish/details/{{assets.id}}" class="btn btn-large span10"
-               type="button">Configure</a>
-
-        </li>
+            <button class="btn-action btn-fixed-160" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete this dish</button>
+            </div>
 
 
-        <li class="ctrl-btn">
-            <button class="btn btn-large span10" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete this dish</button>
-        </li>
-
-    </ul>
-
-</div>
 
 <script>
 var confirm_activate = function(name, id) {
