@@ -3,7 +3,7 @@
     <h3>Let's Make This Happen!</h3>
 </div>
 
-<div id="rec-div" class="container">
+<div id="rec-div" class="containerx">
 
 
  <form class="form-horizontal" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/apis/create_task/{{assets.id}}?type=dish'>
@@ -27,16 +27,16 @@
      </div>
         <div class="control-group">
             <div class="controls">
-                <button class="btn btn-primary btn-large" id="add-form-btn">Complete!</button>
+                <button class="btn-deploy" id="add-form-btn">Deploy this dish</button>
             </div>
         </div>
     </form>
 
 
     <!-- Bottom Nav-bar -->
-    <ul>
+    <ul class="ctrl-paging">
         <li class="previous">
-            <a href="/recipe-app/asts/dish/set_process/{{assets.id}}">&larr; Previous</a>
+            <a class="btn-pag" href="/recipe-app/asts/dish/set_process/{{assets.id}}">&larr; Previous</a>
         </li>
     </ul>
 

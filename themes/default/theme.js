@@ -447,7 +447,7 @@ var engine = caramel.engine('handlebars', (function() {
                                     }
 
                               // Print section ending line
-                              str += '<li><div class="hr-sep-3"></div></li>';
+                              str += '<li><div class="hr-sep-3x"></div></li>';
 
                               }
                             }
@@ -459,7 +459,7 @@ var engine = caramel.engine('handlebars', (function() {
                     }
 
                     str += '</fieldset></div>';
-                    str += '<div class="hr-sep-3">&nbsp;</div>';
+                    str += '<div class="hr-sep-3x">&nbsp;</div>';
 
                 }
 
