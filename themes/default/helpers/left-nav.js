@@ -5,9 +5,9 @@ var deploymentManager=deploymentManagement.cached();
 breadcrumbItems = deploymentManager.getAssetData()
 
 var generateLeftNavJson = function(data, listPartial) {
-	
+
 	var currentTypeObj = getTypeObj(data.shortName);
-	
+
     var leftNavItems = { leftNavLinks :
         [
            /*
@@ -16,7 +16,7 @@ var generateLeftNavJson = function(data, listPartial) {
                            additionalClasses : "prominent-link",
                            url : "/recipe-app/assets/" + data.shortName + "/"
                        },*/
-           
+
             {
                 name : "Add " + data.shortName + "",
                 iconClass : "icon-plus-sign-alt",
@@ -40,7 +40,7 @@ var generateLeftNavJson = function(data, listPartial) {
                                    additionalClasses : "prominent-link",
                                    url : "/recipe-app/assets/" + data.shortName + "/"
                                },*/
-               
+
                 {
                     name : "Overview",
                     iconClass : "icon-list-alt",

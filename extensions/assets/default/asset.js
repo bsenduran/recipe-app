@@ -2,7 +2,7 @@ asset.manager = function(ctx) {
     return {
         create: function(options) {
             var ref = require('utils').time;
-            //Check if the options object has a createdtime attribute and populate it 
+            //Check if the options object has a createdtime attribute and populate it
             if ((options.attributes) && (options.attributes.hasOwnProperty('overview_createdtime'))) {
                 options.attributes.overview_createdtime = ref.getCurrentTime();
             }

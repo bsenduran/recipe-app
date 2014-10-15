@@ -1,27 +1,32 @@
-<div id="rec-div" class="container">
+<div class="wr-step-indicator">
+    <h4>Step 2</h4>
+    <h3>Prepare Ingredients</h3>
+</div>
 
-<div id="rec-div" class="container">
-    <h2>Step2 - Prepare Ingredients</h2> <br/>
+
+
+<div id="rec-div">
     <form method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_results/{{assets.id}}'>
 
-{{loopingRecipeItems assets.tables.1.fields "ingredients"}}
+    {{loopingRecipeItems assets.tables.1.fields "ingredients"}}
 
     <script src="../../../themes/default/js/handlebars.form-helpers.js"></script>
 
 
         <input name="overview_name" type="text" value="{{assets.name}}" style="visibility: hidden" />
-
         <input id="connLen" type="text" value="{{assets.tables.1.fields.connectorname.value.length}}" style="visibility: hidden" />
 
+
+
         <!-- Bottom Nav-bar -->
-    <ul class="pager span8 well well-small">
-        <li class="previous">
-            <a href="/recipe-app/asts/dish/details/{{assets.id}}">&larr; Previous</a>
-        </li>
-        <li class="next">
-            <a id="add-form-btn">Next &rarr;</a>
-        </li>
-    </ul>
+        <ul>
+            <li class="previous">
+                <a href="/recipe-app/asts/dish/details/{{assets.id}}">&larr; Previous</a>
+            </li>
+            <li class="next">
+                <a id="add-form-btn">Next &rarr;</a>
+            </li>
+        </ul>
     </form>
 
     <script>

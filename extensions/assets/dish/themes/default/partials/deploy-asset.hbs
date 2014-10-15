@@ -1,7 +1,12 @@
-<div id="rec-div" class="container">
-    <h2>Let's Make This Happen!</h2> <br/>
+<div class="wr-step-indicator">
+    <h4>Step 5</h4>
+    <h3>Let's Make This Happen!</h3>
+</div>
 
- <form class="form-horizontal well span8" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/apis/create_task/{{assets.id}}?type=dish'>
+<div id="rec-div" class="container">
+
+
+ <form class="form-horizontal" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/apis/create_task/{{assets.id}}?type=dish'>
         <div class="control-group">
             <label class="control-label" for="dishName">Dish Name</label>
             <div class="controls">
@@ -29,7 +34,7 @@
 
 
     <!-- Bottom Nav-bar -->
-    <ul class="pager span8 well well-small">
+    <ul>
         <li class="previous">
             <a href="/recipe-app/asts/dish/set_process/{{assets.id}}">&larr; Previous</a>
         </li>

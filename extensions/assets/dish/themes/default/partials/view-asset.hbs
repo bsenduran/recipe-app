@@ -1,31 +1,34 @@
-<h3>Details</h3>
+<div class="wr-step-indicator">
+    <h4>Step 1</h4>
+    <h3>Details</h3>
+</div>
+
 <form class="form-horizontal" method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_ingredients/{{assets.id}}'>
 
 
-    <fieldset class="form-horizontal well well-small span10">
-        <img src='{{assets.tables.0.fields.banner.value}}' />
-        <div class="span12"></div>
-        <label><strong>{{assets.tables.0.fields.name.value}}</strong></label>
-        <label><strong>{{assets.tables.0.fields.version.value}}</strong></label>
-        <label>{{assets.tables.0.fields.description.value}}</label>
+    <fieldset class="">
+        <!--img src='{{assets.tables.0.fields.banner.value}}' /-->
+        <h2 class="asset-name">{{assets.tables.0.fields.name.value}}</h2>
+        <!--label><strong>{{assets.tables.0.fields.version.value}}</strong></label-->
+        <p>{{assets.tables.0.fields.description.value}}</p>
     </fieldset>
 
 
-    <div id="rec-div" class="container">
+    <div id="rec-div">
 
-        <div class="span6">
-            <h2>Ingredients</h2> <br/>
+        <div>
+            <h3 class="h-asset-sec">Ingredients</h3>
             {{loopingRecipeImages assets.tables.1.fields "ingredients"}}
         </div>
-
-        <div class="span6">
-            <h2>Results</h2> <br/>
+        <br class="c-both"/>
+        <div>
+            <h3 class="h-asset-sec">Results</h3>
             {{loopingRecipeImages assets.tables.2.fields "results"}}
         </div>
 
         <input name="overview_name" type="text" value="{{assets.name}}" style="visibility: hidden" />
         <!-- Bottom Nav-bar -->
-        <ul class="pager span8 well well-small">
+        <ul class="c-both">
             <li class="next">
                 <a id="add-form-btn">Next &rarr;</a>
             </li>

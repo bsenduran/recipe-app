@@ -16,10 +16,10 @@
     }
 }
 body {
-    font: 14px/1.531 'Lato', sans-serif;
-    color: #34495E;
+    font-family: "Open Sans", sans-serif;
+    color: #333;
     height: 100%;
-    background: url(../img/header-bg.gif) repeat-x left -10px #ecf0f1;
+    background:#f9f9f9;
 }
 a:focus, a:active {
     outline: none;
@@ -1375,4 +1375,552 @@ circle:hover {
 }
 .lc-state-Served {
     color:#4ECF00
+}
+
+
+/* new theme styles */
+/* Regular */
+@font-face {
+    font-family: 'Open Sans';
+
+    src: url('../font/OpenSans-Regular-webfont.eot');
+    src: url('../font/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-Regular-webfont.woff') format('woff'),
+    url('../font/OpenSans-Regular-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-Regular-webfont.svg#OpenSansRegular') format('svg');
+    font-weight: normal;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+/* Italic */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-Italic-webfont.eot');
+    src: url('../font/OpenSans-Italic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-Italic-webfont.woff') format('woff'),
+    url('../font/OpenSans-Italic-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-Italic-webfont.svg#OpenSansItalic') format('svg');
+    font-weight: normal;
+    font-weight: 400;
+    font-style: italic;
+
+}
+
+/* Light */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-Light-webfont.eot');
+    src: url('../font/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-Light-webfont.woff') format('woff'),
+    url('../font/OpenSans-Light-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-Light-webfont.svg#OpenSansLight') format('svg');
+    font-weight: 200;
+    font-style: normal;
+
+}
+
+/* Light Italic */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-LightItalic-webfont.eot');
+    src: url('../font/OpenSans-LightItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-LightItalic-webfont.woff') format('woff'),
+    url('../font/OpenSans-LightItalic-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-LightItalic-webfont.svg#OpenSansLightItalic') format('svg');
+    font-weight: 200;
+    font-style: italic;
+
+}
+
+/* Semibold */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-Semibold-webfont.eot');
+    src: url('../font/OpenSans-Semibold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-Semibold-webfont.woff') format('woff'),
+    url('../font/OpenSans-Semibold-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-Semibold-webfont.svg#OpenSansSemibold') format('svg');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+/* Semibold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-SemiboldItalic-webfont.eot');
+    src: url('../font/OpenSans-SemiboldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-SemiboldItalic-webfont.woff') format('woff'),
+    url('../font/OpenSans-SemiboldItalic-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-SemiboldItalic-webfont.svg#OpenSansSemiboldItalic') format('svg');
+    font-weight: 500;
+    font-style: italic;
+
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-Bold-webfont.eot');
+    src: url('../font/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-Bold-webfont.woff') format('woff'),
+    url('../font/OpenSans-Bold-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+    font-weight: bold;
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+/* Bold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-BoldItalic-webfont.eot');
+    src: url('../font/OpenSans-BoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-BoldItalic-webfont.woff') format('woff'),
+    url('../font/OpenSans-BoldItalic-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-BoldItalic-webfont.svg#OpenSansBoldItalic') format('svg');
+    font-weight: bold;
+    font-weight: 700;
+    font-style: italic;
+
+}
+
+/* Extra Bold */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-ExtraBold-webfont.eot');
+    src: url('../font/OpenSans-ExtraBold-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-ExtraBold-webfont.woff') format('woff'),
+    url('../font/OpenSans-ExtraBold-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-ExtraBold-webfont.svg#OpenSansExtrabold') format('svg');
+    font-weight: 900;
+    font-style: normal;
+
+}
+
+/* Extra Bold Italic */
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../font/OpenSans-ExtraBoldItalic-webfont.eot');
+    src: url('../font/OpenSans-ExtraBoldItalic-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/OpenSans-ExtraBoldItalic-webfont.woff') format('woff'),
+    url('../font/OpenSans-ExtraBoldItalic-webfont.ttf') format('truetype'),
+    url('../font/OpenSans-ExtraBoldItalic-webfont.svg#OpenSansExtraboldItalic') format('svg');
+    font-weight: 900;
+    font-style: italic;
+
+}
+
+.wr-header {
+    background: url("../img/bg-header.png") repeat-x;
+    height:80px;
+}
+
+.wr-header-inner {
+    height:80px;
+    width:990px;
+    margin:auto;
+}
+
+.wr-header-inner .left-brand {
+    float:left;
+    width:150px;
+}
+
+.wr-header-inner .right-links {
+    float:right;
+    width:400px;
+    text-align: right;
+    padding-top:25px;
+}
+
+.wr-header-inner .left-brand a.brand {
+    display:block;
+    height:60px;
+    width:100px;
+    background: url("../img/logo.png") repeat-x;
+    margin-top:15px;
+}
+
+h3, h4, h2 {
+    margin:0;
+    padding:0;
+    color:#333;
+    font-family: "Open Sans", sans-serif;
+}
+
+h2.asset-name {
+    font-size:30px;
+    font-weight: 900;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin-bottom:20px;
+}
+
+h3 {
+    font-size:30px;
+    font-weight: 400;
+}
+
+h4 {
+    font-size:13px;
+    font-weight: 400;
+}
+
+h4.h-asset-title {
+    font-size:18px;
+    font-weight: 700;
+}
+
+h3.h-asset-sec {
+    font-size:22px;
+    font-weight: 700;
+}
+
+p {
+    color:#626262;
+}
+
+.wr-main {
+    width:990px;
+    margin:auto;
+    margin-top:20px;
+}
+
+.wr-main-extra {
+    border-radius:7px;
+    background:#fff;
+}
+
+.wr-single {
+    padding:25px;
+}
+
+.wr-left {
+    float:left;
+    width:270px;
+}
+
+.wr-right {
+    float:right;
+    width:660px;
+    border:0px solid #ff0000;
+}
+
+
+.wr-left-nav {
+    border:1px solid #dedede;
+    border-radius:6px;
+    background:#fff;
+    width:230px;
+    padding:30px 17px;
+}
+
+.hr-sep {
+    height:2px;
+    border-top:1px solid #e6e6e6;
+    margin-top:35px;
+}
+
+.hr-sep-2 {
+    height:2px;
+    border-top:1px solid #e6e6e6;
+    margin-top:15px;
+    margin-bottom:20px;
+}
+
+.hr-sep-3 {
+    height:2px;
+    border-top:1px solid #e6e6e6;
+    margin-top:15px;
+    margin-bottom:20px;
+}
+
+.c-both {
+    clear:both;
+}
+
+.wr-step-indicator {
+    margin-bottom:36px;
+}
+
+.wr-left-nav ul li a {
+    font-family:"open sans", sans-serif;
+    font-size:14px;
+    color:#626262;
+    font-weight:700;
+    padding-left:60px;
+    display:block;
+    padding-top:1px;
+    padding-bottom:2px;
+    margin-left:20px;
+    margin-bottom:20px;
+}
+
+.wr-left-nav ul li a span {
+    color:#888888;
+    font-weight:400;
+}
+
+.icon-step-1 {
+     background: url("../img/ico-overview.png") no-repeat;
+ }
+
+.icon-step-2 {
+    background: url("../img/ico-prepare-ingredients.png") no-repeat;
+}
+
+.icon-step-3 {
+    background: url("../img/ico-prepare-results.png") no-repeat;
+}
+
+.icon-step-4 {
+    background: url("../img/ico-map-data.png") no-repeat;
+}
+
+.icon-step-5 {
+    background: url("../img/ico-deploy.png") no-repeat;
+}
+
+.left-nav-tip {
+    margin:auto;
+    width:80%;
+    line-height:16px;
+    padding-top:20px;
+    padding-bottom:30px;
+    color:#555;
+    font-size:13px;
+}
+
+.btn-action {
+    display: inline-block;
+    background: #5fb548;
+    border-radius: 50px;
+    color: #ffffff;
+    font-weight: 500;
+    font-style: bold;
+    font-size: 14px;
+    padding: 10px 15px 10px;
+    border:0px solid #fff;
+    left:0;
+    right:0;
+}
+
+.btn-action:hover {
+    background:#999;
+    color:#fff;
+    text-decoration: none;
+}
+
+.btn-fixed-160 {
+    width:160px;
+    text-align: center;
+}
+
+.btn-group-x .btn-action {
+    margin-bottom:10px;
+}
+.ctrl-my-connections {
+    margin-bottom:30px;
+}
+
+.ctrl-my-dishes {
+    margin-bottom:40px;
+}
+
+.ctrl-my-connections h3, .ctrl-my-dishes h3 {
+    margin-bottom:20px;
+}
+
+
+.ctrl-my-dish {
+    width: 200px;
+    height:180px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    border-radius: 8px;
+
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    background:#555;
+}
+
+.ctrl-my-dish a {
+    color:#fff;
+    font-weight:700;
+    font-size:14px;
+}
+
+.ctrl-my-dish a:hover {
+    color:#e4e4e4;
+    text-decoration: none;
+}
+
+.img-dish {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+
+.my-dish-desc {
+    padding:15px 15px;
+}
+
+.my-dish-status {
+    position:absolute;
+    margin-left:10px;
+}
+
+.my-dish-last {
+    color:#cecece;
+    font-size:12px;
+    font-weight: 400;
+}
+
+.ctrl-my-connection {
+    width:100px;
+    height:100px;
+    border:1px solid #cecece;
+    border-radius:8px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+}
+
+.my-connection-icon img {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border:0px solid #333;
+}
+
+.btn-recipe-store {
+    display: inline-block;
+    background: #f57b20;
+    border-radius: 50px;
+    color: #ffffff;
+    font-weight: 400;
+
+    font-size: 14px;
+    padding: 10px 15px 10px;
+    border:0px solid #fff;
+    margin-top:16px;
+}
+
+.btn-recipe-store:hover {
+    background: #ff9445;
+    color:#f0f0f0;
+    text-decoration: none;
+}
+
+.btn-my-cafe {
+    display: inline-block;
+    margin-right:20px;
+    border-radius: 50px;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 14px;
+    border:0px solid #fff;
+}
+
+.btn-my-cafe:hover {
+    color:#aaa;
+    text-decoration: none;
+}
+
+.asset-button-grp {
+
+}
+
+.asset-image-container {
+    float:left;
+}
+
+.asset-settings {
+    float:left;
+    padding-left:15px;
+}
+
+.add-connection-btn-x {
+    display: inline-block;
+    background: #5fb548;
+    border-radius: 50px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 10px 15px 10px;
+    border:0px solid #fff;
+    left:0;
+    right:0;
+}
+
+.add-connection-btn-x:hover {
+    background:#999;
+    color:#fff;
+    text-decoration: none;
+}
+
+.ctrl-tn  a {
+    color:#fff;
+}
+
+.tn-sep  {
+    color:#666;
+    font-size:19px;
+}
+
+a.tn-welcome {
+    color:#aaa;
+}
+
+.wr-footer {
+    width:990px;
+    margin: auto;
+    margin-top:40px;
+    color:#999;
+    font-size:13px;
+}
+
+.wr-footer-left {
+    width:400px;
+    float:left;
+}
+
+.wr-footer-right {
+    width:120px;
+    float:right;
+}
+
+.asset-image img {
+    border-radius:6px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    margin-bottom:20px;
+}
+
+.single-asset .asset-thumbnail {
+    margin-bottom: 10px;
+}
+
+.asset-thumbnail {
+    border-radius:6px;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+    box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
+}
+
+.asset-repeater {
+    background:#fff;
+    border-radius: 8px;
+    padding:10px;
+}
+
+input.input-set-connection {
+    border:0px solid #fff !important;
+    background:#fff !important;
+    box-shadow: inset 0px 0px 0px rgba(0,0,0,0.9);
 }
