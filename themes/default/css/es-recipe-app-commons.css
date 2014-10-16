@@ -1617,6 +1617,7 @@ p {
     background:#fff;
     width:230px;
     padding:30px 17px;
+    text-align: center;
 }
 
 .hr-sep {
@@ -1658,6 +1659,7 @@ p {
     padding-bottom:2px;
     margin-left:20px;
     margin-bottom:20px;
+    text-align: left;
 }
 
 .wr-left-nav ul li a span {
