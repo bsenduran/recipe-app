@@ -17,7 +17,7 @@ $(function(){
     });
 
 
-    $('.add-connection-btn').on('click',function(){
+    $('.add-connection-btn-x').on('click',function(){
         $('#form-update').ajaxSubmit({
             success:function(){
                 var options=obtainFormMeta('#form-update');
