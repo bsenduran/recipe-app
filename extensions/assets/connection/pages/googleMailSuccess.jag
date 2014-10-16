@@ -1,0 +1,54 @@
+<%
+    var googleOAuthUtil = require('/extensions/assets/connection/modules/googleMailOAuthUtil.js').api;
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+
+    var msg = 'Authorized Successfully !';
+    print('<h2>' + msg + '</h2>');
+
+    var log = new Log();
+
+    // First get the OAuth Google End point.
+    var googleOAuthEp = session.get("oauth_service");
+
+    // Then get the access token given that verifier.
+    var code = request.getParameter("code");
+    var url = googleOAuthUtil.getAccessTokenUrl();
+    var redirectUrl = googleOAuthUtil.getRedirectUrl();
+    var clientId = googleOAuthUtil.getClientId();
+    var clientSecret = googleOAuthUtil.getClientSecret();
+
+
+    var dataString = "grant_type=authorization_code"
+                                               +"&code=" + code
+                                               +"&redirect_uri=" + encodeURIComponent(redirectUrl)
+                                               +"&client_id=" + clientId
+                                               +"&client_secret=" + clientSecret;
+
+    var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
+
+    log.info(result);
+
+
+
+    var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
+
+    log.info(getResult);
+
+    // TODO: this value is hard coded for the moment.
+    var emailAddress = getResult.data.data.email;
+
+    log.info(emailAddress);
+
+    // saving the necessary information in the registry.
+    var path ='connections/' + session.get('ConnectionType') + '/accounts';
+
+
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthAccessTokenSecret" : result.data.refresh_token});
+    regUtilMod.insertNewAccount(path,emailAddress, authInfo);
+
+
+    var assetId = session.get('assetId');
+
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+
+%>

@@ -24,7 +24,7 @@
 
     var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
-    var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
+    var getResult = get("https://www.googleapis.com/auth/userinfo.profile", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
     var emailAddress = getResult.data.user.emailAddress;
 
     // saving the necessary information in the registry.
