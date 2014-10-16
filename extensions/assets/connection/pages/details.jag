@@ -30,6 +30,7 @@ require('/modules/recipe-app.js').exec(function(ctx) {
         var res;
         var accountContent;
 
+        log.info("helloooooooooooooooooooo");
         log.info(path);
 
         // Retrieving from the registry
