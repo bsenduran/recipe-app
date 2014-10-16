@@ -4,7 +4,7 @@
 </div>
 
 
-<div id="rec-div" class="container">
+<div id="rec-div">
 
     <form method='post' action='{{url ""}}/apis/assets/{{assets.id}}?type=dish' id="form-update" data-redirect-url='{{url ""}}/asts/dish/set_process/{{assets.id}}'>
 
@@ -15,12 +15,12 @@
         <input id="connLen" type="text" value="{{assets.tables.2.fields.connectorname.value.length}}" style="visibility: hidden" />
 
         <!-- Bottom Nav-bar -->
-    <ul>
+    <ul class="ctrl-paging">
         <li class="previous">
-            <a href="/recipe-app/asts/dish/set_ingredients/{{assets.id}}">&larr; Previous</a>
+            <a  class="btn-pag" href="/recipe-app/asts/dish/set_ingredients/{{assets.id}}">&larr; Previous</a>
         </li>
         <li class="next">
-            <a id="add-form-btn">Next &rarr;</a>
+            <a  class="btn-pag" id="add-form-btn">Next &rarr;</a>
         </li>
     </ul>
 
