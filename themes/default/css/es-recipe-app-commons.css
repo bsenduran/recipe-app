@@ -1578,6 +1578,7 @@ h4.h-asset-title {
 h3.h-asset-sec {
     font-size:22px;
     font-weight: 700;
+    margin-bottom:15px;
 }
 
 p {
@@ -1731,6 +1732,24 @@ p {
 
 .ctrl-my-dishes {
     margin-bottom:40px;
+}
+
+.ctrl-my-dishes .thumbnails {
+    margin-left:0px !important;
+}
+
+.ctrl-my-dishes .thumbnails > li {
+    margin-left:0px !important;
+    margin-right:15px !important;
+}
+
+.ctrl-my-connections .thumbnails > li {
+    margin-left:0px !important;
+    margin-right:15px !important;
+}
+
+.ctrl-my-connections .thumbnails {
+    margin-left:0px !important;
 }
 
 .ctrl-my-connections h3, .ctrl-my-dishes h3 {
@@ -1918,8 +1937,12 @@ a.tn-welcome {
 .asset-repeater {
     background:#fff;
     border-radius: 8px;
-    padding:10px;
+    padding:0px;
     margin-bottom:10px;
+}
+
+.asset-repeater .add-connection-btn-x {
+    margin-top:10px;
 }
 
 input.input-set-connection {
