@@ -1,0 +1,15 @@
+<%
+var salesforceOAuthUtil = require('/extensions/assets/connection/modules/salesforceOAuthUtil.js').api;
+if (request.getMethod() == "POST") {
+    var oauth = require("oauth");
+    var assetId = request.getParameter("id");
+
+    var oauthService = new oauth.OAuthProvider(salesforceOAuthUtil.getSalesforceProviderConfig());
+
+    session.put("oauth_service", oauthService);
+    session.put('assetId', assetId);
+
+    var authUrl = oauthService.getAuthorizationUrl();
+    response.sendRedirect(authUrl);
+
+} %>

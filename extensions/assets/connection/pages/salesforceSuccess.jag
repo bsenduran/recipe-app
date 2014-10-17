@@ -1,0 +1,57 @@
+<%
+    var salesforceOAuthUtil = require('/extensions/assets/connection/modules/salesforceOAuthUtil.js').api;
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+
+    var msg = 'Authorized Successfully !';
+    print('<h2>' + msg + '</h2>');
+
+    // First get the OAuth Google End point.
+    var salesforceOAuthEp = session.get("oauth_service");
+
+    // Then get the access token given that verifier.
+    var code = request.getParameter("code");
+    var url = salesforceOAuthUtil.getAccessTokenUrl();
+    var redirectUrl = salesforceOAuthUtil.getRedirectUrl();
+    var clientId = salesforceOAuthUtil.getClientId();
+    var clientSecret = salesforceOAuthUtil.getClientSecret();
+
+
+    var dataString = "grant_type=authorization_code"
+                                               +"&code=" + code
+                                               +"&redirect_uri=" + encodeURIComponent(redirectUrl)
+                                               +"&client_id=" + clientId
+                                               +"&client_secret=" + clientSecret;
+
+    var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
+
+    var log = new Log();
+
+    log.info(result);
+
+    log.info(result.data.id);
+
+
+    var getResult = get(result.data.id, '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
+    log.info(getResult);
+
+    var userName = getResult.data.username
+
+    log.info(userName);
+
+    var connectionType = session.get('ConnectionType');
+
+    log.info(connectionType);
+
+    // saving the necessary information in the registry.
+    var path ='connections/' + connectionType + '/accounts';
+
+
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+    regUtilMod.insertNewAccount(path,userName, authInfo);
+
+
+    var assetId = session.get('assetId');
+
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+
+%>
