@@ -34,7 +34,6 @@
 
     log.info(getResult);
 
-    // TODO: this value is hard coded for the moment.
     var emailAddress = getResult.data.data.email;
 
     log.info(emailAddress);

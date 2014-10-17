@@ -28,8 +28,22 @@
 
     log.info(result);
 
-    var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
-    var emailAddress = getResult.data.user.emailAddress;
+    var emailAddress;
+
+    var googleApiType = session.get('ConnectionType');
+
+    log.info(googleApiType);
+
+    if(googleApiType == 'gmail'){
+        var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
+        log.info(getResult);
+        emailAddress = getResult.data.data.email;
+
+    } else if(googleApiType == 'googlespreadsheet'){
+        var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
+        log.info(getResult);
+        emailAddress = getResult.data.user.emailAddress;
+    }
 
     log.info(emailAddress);
 
