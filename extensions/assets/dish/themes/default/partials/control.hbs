@@ -1,16 +1,18 @@
 
 
 
-            <a href="/recipe-app/asts/dish/details/{{assets.id}}" class="btn-action" type="button">Configure</a>
-             <div class="hr-sep-2">&nbsp;</div>
+            <h3 class="h-left-nav-title">Dish Control Panel</h3>
+            <!--p><strong>TIP:</strong> Activating/De-activating</p-->
 
+             <div class="hr-sep-2">&nbsp;</div>
+            <div ><a href="/recipe-app/asts/dish/details/{{assets.id}}" type="button" class="btn-configure">Configure</a></div>
             <div class="btn-group-x">
             {{#if assets.isTaskRunning}}
-                <button class="btn-action" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate this dish</button>
+                <button class="btn-action btn-alt-actions btn-activated" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate</button>
             {{else}}
-                <button class="btn-action btn-fixed-160" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate this dish</button>
+                <button class="btn-action btn-alt-actions btn-deactivated" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate</button>
             {{/if}}
-            <button class="btn-action btn-fixed-160" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete this dish</button>
+            <button class="btn-action btn-alt-actions btn-delete" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete</button>
             </div>
 
 

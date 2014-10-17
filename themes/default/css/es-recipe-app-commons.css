@@ -1969,12 +1969,12 @@ input.input-set-connection {
 
 .btn-pag {
     display: inline-block;
-    background: #888;
+    background: #aaa;
     border-radius: 50px;
     color: #ffffff;
     font-weight: 400;
     font-size: 13px;
-    padding: 10px 10px 10px;
+    padding: 5px 5px 5px 5px;
     border:0px solid #fff;
     left:0;
     right:0;
@@ -2056,4 +2056,45 @@ a.btn-select-connection:hover {
     border-radius: 5px;
 }
 
+.h-left-nav-title {
+    font-size:22px;
+}
+
+.btn-alt-actions {
+    width:93px;
+    margin-top:10px;
+}
+
+.btn-activated {
+
+}
+
+.btn-deactivated {
+     background:#999;
+}
+
+.btn-delete {
+     background:#aaa;
+}
+
+.btn-configure {
+    display: inline-block;
+    background: #5fb548;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 500;
+    font-style: bold;
+    font-size: 14px;
+    padding: 20px 15px 20px 15px;
+    border:0px solid #fff;
+    left:0;
+    right:0;
+    width:160px;
+}
+
+.btn-configure:hover {
+    background:#999;
+    color:#fff;
+    text-decoration: none;
+}
 
