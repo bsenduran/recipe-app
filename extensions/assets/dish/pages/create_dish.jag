@@ -15,6 +15,22 @@ require('/modules/recipe-app.js').exec(function (ctx) {
     if (endOfUrl != "/") {
         url += "/";
     }
+
+    var recipeAM = asset.createUserAssetManager(ctx.session, 'recipe');
+    var recipeAsset = recipeAM.get("7cbf8737-c4ea-4be6-8e9e-fbfc92595945");
+
+    //log.info(recipeAsset);
+
+    var host_port =  request.getRequestURL().split(request.getRequestURI())[0];
+    var recipe_resource_url =  host_port+"/store/storage/recipe/"+recipeAsset.id+"/";
+
+    var descriptor_url = recipe_resource_url+recipeAsset.attributes.overview_descriptor;
+    log.info(descriptor_url);
+
+    var des_data = get(descriptor_url);
+
+    log.info(des_data);
+
     var descriptorData = get(url + 'descriptor.xml');
 
     var descriptorXML = new XML(descriptorData.data);
