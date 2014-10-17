@@ -1701,7 +1701,7 @@ p {
 .btn-action {
     display: inline-block;
     background: #5fb548;
-    border-radius: 50px;
+    border-radius: 8px;
     color: #ffffff;
     font-weight: 500;
     font-style: bold;
@@ -2006,6 +2006,54 @@ input.input-set-connection {
 
 .asset-summary p.t-asset-ver {
    font-size:11px;
+}
+
+.ctrl-conns {
+    border-bottom:0px solid #ff0000;
+    margin-top:15px;
+}
+
+.conns-1 {
+    width:250px;
+    float:left;
+    padding-top:7px;
+}
+
+.conns-2 {
+    width:100px;
+    padding-top:7px;
+    float:right;
+}
+
+a.btn-select-connection {
+    display: inline-block;
+    background: #08c;
+    border-radius: 50px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 8px 10px;
+    border:0px solid #fff;
+    margin-right: 10px;
+
+}
+
+a.btn-select-connection:hover {
+    background:#52a3cc;
+    color:#fff;
+    text-decoration: none;
+}
+
+.hr-sep-4 {
+    border-top:1px solid #e4e4e4;
+    margin-bottom:10px;
+    height:2px;
+}
+
+.btn-pag {
+    width:80px;
+    text-align: center;
+    border-radius: 5px;
 }
 
 

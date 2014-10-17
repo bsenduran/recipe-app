@@ -24,53 +24,44 @@
 <!-- right column -->
 <div class="wr-right">
 
+<h3>Set Connection</h3>
+
 
     <div class='content-div'>
         <div class="tab-content asset-tab-content">
             <div id="view" class="asset-view-container">
+               <h4 class="h-asset-title">Existing connections</h4>
 
 
-                <div>
-                    <ul class="nav nav-list widget wlightblue">
+
                         {{#if existingConnections}}
 
-                            <li class="">
-                            <div class="widget-head">
-                                Existing Connections
-                            </div>
-                        </li>
-
                             {{#each existingConnections}}
-                            <li>
-                                <!--<a href="#">Hello</a>-->
-                                <div class="conns">
-
-
-                                    <a href="{{../returnRecipeUri}}&value={{this}}">
-
-                                        {{this}}
-
-                                    </a>
-                                    <div>
-
+                                <div class="ctrl-conns">
+                                    <div class="conns-1">
+                                        <a href="{{../returnRecipeUri}}&value={{this}}" class="btn-select-connection">Select</a>
+                                        <a href="{{../returnRecipeUri}}&value={{this}}">
+                                            {{this}}
+                                        </a>
+                                    </div>
+                                    <div class="conns-2">
                                         <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}&id={{../id}}"  id="form-delete" method="post" role="form">
-                                            <button class="btn btn-danger pull-right" >
-                                                Delete
-                                            </button>
+                                            <button class="btn" >Delete</button>
                                         </form>
                                     </div>
-
                                 </div>
+                                <div class="hr-sep-4"></div>
+                                <br class="c-both" />
                             {{/each}}
+
                         {{/if}}
 
-                    </ul>
-                </div>
+
+
 
                 <div class="clearfix" style="height:30px;"></div>
 
                 <form action="{{url ""}}/apis/{{name}}OAuth?type=connection&id={{id}}"   method="post" role="form" class="form-horizontal">
-
                     <button type="submit" class="btn btn-primary btn-large">OAuth Connection</button>
                 </form>
 
