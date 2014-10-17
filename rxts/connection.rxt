@@ -26,14 +26,7 @@
                 <name>Description</name>
             </field>
         </table>
-        <table name="Images">
-            <field type="text" required="true">
-                <name>Thumbnail</name>
-            </field>
-            <field type="text" required="true">
-                <name>Banner</name>
-            </field>
-        </table>
+
 
          <table name="account" columns="2" maxoccurs="unbounded">
                     <subheading>
@@ -47,6 +40,6 @@
                         <name label="detail"></name>
                     </field>
                 </table>
-		
+
     </content>
 </artifactType>

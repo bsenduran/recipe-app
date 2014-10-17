@@ -1999,4 +1999,13 @@ input.input-set-connection {
     color:#fff;
 }
 
+.asset-summary p {
+    font-size:13px;
+    font-weight:400;
+}
+
+.asset-summary p.t-asset-ver {
+   font-size:11px;
+}
+
 

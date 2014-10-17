@@ -1,60 +1,36 @@
 {{#with assets}}
+
+<!-- left column -->
+<div class="wr-left asset-summary">
+
+    <!-- left nav -->
+    <div class="wr-left-nav">
+        <h2 class="asset-overview">Asset Overview</h2>
+        <div class="ctrl-connector">
+              <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{thumbnail}}' class="" alt="Thumb"/>
+        </div><br class="c-both" />
+        <h4>{{name}}</h4>
+
+
+        <p class="t-asset-ver">{{tables.0.fields.version.value}}</p>
+        <p>{{tables.0.fields.description.value}}</p>
+
+    </div>
+    <!-- /left nav -->
+
+</div>
+<!-- /left column -->
+
+<!-- right column -->
+<div class="wr-right">
+
+
     <div class='content-div'>
         <div class="tab-content asset-tab-content">
             <div id="view" class="asset-view-container">
-                <div class="row-fluid asset-detail-top-row">
-                    <div class="span2">
-                        <div class="thumbnail-div">
-                            <img src='{{url ""}}/storage/{{../rxt.shortName}}/{{id}}/{{thumbnail}}' class="" alt="Thumb"/>
-
-                        </div>
-                    </div>
-                    <div class="span10 asset-details-box">
-                        <h4>{{name}}</h4>
-                    </div>
-                </div>
-                <div class="row-fluid asset-details-row">
-                    <div class="span12 asset-content-box">
-                        <div class="widget wlightblue">
-                            <div class="widget-head">
-                                <div class="pull-left">Asset Overview</div>
-                                <div class="clearfix"></div>
-                            </div>
-
-                            <div class="widget-content">
-                                <table class="table table-bordered asset-view-table widget-table">
-                                    <tbody>
-                                    {{#each tables}}
-
-                                        <tr>
-                                            {{renderTablePreview .}}
-                                        </tr>
 
 
-                                    {{/each}}
-
-                                    {{#if tags}}
-
-                                        <tr>
-                                            <td class="span3">Tags</td>
-                                            <td>
-                                                {{#each tags}}
-                                                    <span class="view-tag">{{this}}</span>
-                                                {{/each}}
-                                            </td>
-                                        </tr>
-                                    {{/if}}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-                </div>
-
-                <div class="span12">
+                <div>
                     <ul class="nav nav-list widget wlightblue">
                         {{#if existingConnections}}
 
@@ -67,15 +43,15 @@
                             {{#each existingConnections}}
                             <li>
                                 <!--<a href="#">Hello</a>-->
-                                <div class="span12 conns">
+                                <div class="conns">
 
 
-                                    <a href="{{../returnRecipeUri}}&value={{this}}" class="span10">
+                                    <a href="{{../returnRecipeUri}}&value={{this}}">
 
                                         {{this}}
 
                                     </a>
-                                    <div class="span2">
+                                    <div>
 
                                         <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}&id={{../id}}"  id="form-delete" method="post" role="form">
                                             <button class="btn btn-danger pull-right" >
@@ -91,7 +67,7 @@
                     </ul>
                 </div>
 
-                <div class="clearfix span12" style="height:30px;"></div>
+                <div class="clearfix" style="height:30px;"></div>
 
                 <form action="{{url ""}}/apis/{{name}}OAuth?type=connection&id={{id}}"   method="post" role="form" class="form-horizontal">
 
@@ -105,6 +81,14 @@
 
 
 {{/with}}
+
+
+
+</div>
+<!-- /right column -->
+
+
+
 
 
 
