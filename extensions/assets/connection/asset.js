@@ -40,6 +40,10 @@ asset.server = function(ctx) {
                     path: 'googlespreadsheetOAuth.jag'
                 },
                 {
+                    url: 'gmailOAuth',
+                    path: 'gmailOAuth.jag'
+                },
+                {
                     url: 'deleteAccount',
                     path: 'deleteAccount.jag'
                 }
@@ -81,6 +85,11 @@ asset.server = function(ctx) {
                     title: 'Google Success' + type,
                     url: 'googleSuccess',
                     path: 'googleSuccess.jag'
+                },
+                {
+                    title: 'gMail Success' + type,
+                    url: 'googleMailSuccess',
+                    path: 'googleMailSuccess.jag'
                 }]
         }
     };

@@ -1,9 +1,11 @@
 <%
-    var googleOAuthUtil = require('/extensions/assets/connection/modules/googleOAuthUtil.js').api;
+    var googleOAuthUtil = require('/extensions/assets/connection/modules/googleMailOAuthUtil.js').api;
     var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
 
     var msg = 'Authorized Successfully !';
     print('<h2>' + msg + '</h2>');
+
+    var log = new Log();
 
     // First get the OAuth Google End point.
     var googleOAuthEp = session.get("oauth_service");
@@ -24,12 +26,16 @@
 
     var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
-    var log = new Log();
-
     log.info(result);
 
-    var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
-    var emailAddress = getResult.data.user.emailAddress;
+
+
+    var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
+
+    log.info(getResult);
+
+    // TODO: this value is hard coded for the moment.
+    var emailAddress = getResult.data.data.email;
 
     log.info(emailAddress);
 
@@ -37,7 +43,7 @@
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
 
-    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthAccessTokenSecret" : result.data.refresh_token});
     regUtilMod.insertNewAccount(path,emailAddress, authInfo);
 
 
