@@ -1868,7 +1868,7 @@ p {
 .add-connection-btn-x {
     display: inline-block;
     background: #5fb548;
-    border-radius: 50px;
+    border-radius: 7px;
     color: #ffffff;
     font-weight: 400;
     font-size: 13px;
@@ -2028,7 +2028,7 @@ input.input-set-connection {
 a.btn-select-connection {
     display: inline-block;
     background: #08c;
-    border-radius: 50px;
+    border-radius: 7px;
     color: #ffffff;
     font-weight: 400;
     font-size: 13px;
@@ -2087,8 +2087,6 @@ a.btn-select-connection:hover {
     font-size: 14px;
     padding: 20px 15px 20px 15px;
     border:0px solid #fff;
-    left:0;
-    right:0;
     width:160px;
 }
 
@@ -2096,5 +2094,17 @@ a.btn-select-connection:hover {
     background:#999;
     color:#fff;
     text-decoration: none;
+}
+
+.btn-delete {
+    display: inline-block;
+    background: #aaa;
+    border-radius: 7px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 13px;
+    padding: 8px 10px;
+    border:0px solid #fff;
+    margin-right: 10px;
 }
 
