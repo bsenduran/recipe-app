@@ -24,31 +24,31 @@ require('/modules/recipe-app.js').exec(function(ctx) {
             //print(assets);
             var output = am.render(assets, page).details();
 
-            var ingredientCount = output.assets.tables[1].fields.connectorname.value.length;
+            var resultCount = output.assets.tables[2].fields.connectorname.value.length;
             var jsonSchemaObj={};
 
-            for(var i=0; i<ingredientCount; i++){
+            for(var i=0; i<resultCount; i++){
 
                 // Create a JSON object out of schema file given
 
                 // Extract Schema file full-path
-                var filePath = output.assets.tables[1].fields.avroschema.value[i];
-                var ingredientName = output.assets.tables[1].fields.connectorname.value[i]
-                jsonSchemaObj[ingredientName] = [];
+                var filePath = output.assets.tables[2].fields.avroschema.value[i];
+                var resultName = output.assets.tables[2].fields.connectorname.value[i]
+                jsonSchemaObj[resultName] = [];
 
                 try{
                     // Retrieve file from location
                     jsonObj = get(filePath, '', 'json');
 
-                    // Assumed that fields[1] contains 'out' fields of the ingredient
-                    var fields = jsonObj.data.fields[1].type.fields;
+                    // Assumed that fields[0] contains 'in' fields of the result
+                    var fields = jsonObj.data.fields[0].type.fields;
 
                     for(var field in fields)
                     {
                          var name = fields[field].name;
 
                          // Pushing to array
-                         jsonSchemaObj[ingredientName].push(name);
+                         jsonSchemaObj[resultName].push(name);
                          //print(name);
                     }
                 }catch(e){
