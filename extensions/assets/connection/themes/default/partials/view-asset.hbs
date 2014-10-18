@@ -30,28 +30,32 @@
     <div class='content-div'>
         <div class="tab-content asset-tab-content">
             <div id="view" class="asset-view-container">
-               <h4 class="h-asset-title">Existing connections</h4>
-
 
 
                         {{#if existingConnections}}
-
+                            <h4 class="h-asset-title">Existing connections</h4>
                             {{#each existingConnections}}
                                 <div class="ctrl-conns">
                                     <div class="conns-1">
-                                        <a href="{{../returnRecipeUri}}&value={{this}}" class="btn-select-connection">Select</a>
-                                        <a href="{{../returnRecipeUri}}&value={{this}}">
+                                        {{#recipeUriIdNullCheck ../returnRecipeUri}}
+                                            <a href="{{../returnRecipeUri}}&value={{this}}"
+                                               class="btn-select-connection">Select</a>
+                                            <a href="{{../returnRecipeUri}}&value={{this}}">
+                                                {{this}}
+                                            </a>
+                                        {{else}}
                                             {{this}}
-                                        </a>
+                                        {{/recipeUriIdNullCheck}}
                                     </div>
                                     <div class="conns-2">
-                                        <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}&id={{../id}}"  id="form-delete" method="post" role="form">
+                                        <form action="{{url ""}}/apis/deleteAccount?type=connection&accountId={{this}}&id={{../id}}"
+                                              id="form-delete" method="post" role="form">
                                             <button class="btn-delete">Delete</button>
                                         </form>
                                     </div>
                                 </div>
                                 <div class="hr-sep-4"></div>
-                                <br class="c-both" />
+                                <br class="c-both"/>
                             {{/each}}
 
                         {{/if}}

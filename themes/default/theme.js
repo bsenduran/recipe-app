@@ -501,6 +501,16 @@ var engine = caramel.engine('handlebars', (function() {
                }
 
             });
+
+            Handlebars.registerHelper('recipeUriIdNullCheck', function (uri, options) {
+                var idval = uri.split('=')[1];
+                var conditional = !(idval == null || idval == 'null');
+                if(conditional) {
+                    return options.fn(this);
+                } else {
+                    return options.inverse(this);
+                }
+            });
         },
         render: function(data, meta) {
             if (request.getParameter('debug') == '1') {
