@@ -56,7 +56,8 @@
 
 
     var assetId = session.get('assetId');
+    var connectionBoxId = session.get('connectionBoxId');
 
-    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId+"?id="+connectionBoxId);
 
 %>

@@ -21,8 +21,10 @@
     var authInfo = stringify({"consumerKey" : consumerKey, "consumerSecret" : consumerSecret , "accessToken" : auth_token.token, "accessTokenSecret" : auth_token.secret});
     regUtilMod.insertNewAccount(path,user, authInfo);
 
+    var connectionBoxId = session.get('connectionBoxId');
+
     // finally redirect back to the details page once you are done.
-    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId+"?id="+connectionBoxId);
 
     // var twitterresponse = twitter.sendOAuthRequest(auth_token, "GET", "https://api.twitter.com/1.1/account/verify_credentials.json");
     // print(twitterresponse.retweet_count);
