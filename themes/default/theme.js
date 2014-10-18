@@ -430,26 +430,17 @@ var engine = caramel.engine('handlebars', (function() {
                             str += '<div class="btn-group"><button class="btn dropdown-toggle" data-toggle="dropdown"> Select  &nbsp<span class="caret"></span></button><ul class="dropdown-menu">';
 
                             var typeAwareObj = table.typeAware;
+                            var resultName = table.connectorname.value[i];
 
-                            for (var ingredient in typeAwareObj) {
-                              if (typeAwareObj.hasOwnProperty(ingredient)) {
+                            var resultInputs = typeAwareObj[resultName];
 
-                              // Print key
-                              str += '<li onClick=""><strong>' + ingredient + '</strong></li>';
+                            // Print the list for a single ingredient
+                            for (var typeCount=0; typeCount<resultInputs.length; typeCount++)
+                            {
+                                var aType = resultInputs[typeCount];
 
-                                    // Print the list for a single ingredient
-                                    for (var typeCount=0; typeCount<typeAwareObj[ingredient].length; typeCount++)
-                                    {
-                                        var aType = typeAwareObj[ingredient][typeCount];
-
-                                        // For listener check: update-ingredients-results.js
-                                        str += '<li class="typeAwareItem" fortextbox="param'+i+'_'+j+'">{' + ingredient + '.' + aType + '}</li>';
-                                    }
-
-                              // Print section ending line
-                              str += '<li><div class="hr-sep-3x"></div></li>';
-
-                              }
+                                // For listener check: update-ingredients-results.js (i & j used to specify text field coordinates)
+                                str += '<li class="typeAwareItem" fortextbox="param'+i+'_'+j+'">{' + aType + '}</li>';
                             }
 
                             str += '</ul></div>';
