@@ -30,6 +30,8 @@
 
     var emailAddress;
 
+    var authInfo;
+
     var googleApiType = session.get('ConnectionType');
 
     log.info(googleApiType);
@@ -38,20 +40,23 @@
         var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
         log.info(getResult);
         emailAddress = getResult.data.data.email;
+        authInfo = stringify({"username" : emailAddress, "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
 
     } else if(googleApiType == 'googlespreadsheet'){
         var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
         log.info(getResult);
+        authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
         emailAddress = getResult.data.user.emailAddress;
     }
 
     log.info(emailAddress);
+    log.info(authInfo);
 
     // saving the necessary information in the registry.
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
 
-    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+    // var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
     regUtilMod.insertNewAccount(path,emailAddress, authInfo);
 
 
