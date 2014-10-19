@@ -7,7 +7,11 @@
             // Get the account id to be deleted.
             var accountId = request.getParameter('accountId');
             var assetId = request.getParameter("id");
-            log.info(">>"+ accountId);
+
+        var returnRecipeUri = request.getParameter("recipeUri");
+        var connectionBoxId = returnRecipeUri.split("=")[1];
+
+        log.info(">>"+ accountId);
 
             var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
@@ -18,7 +22,7 @@
 
             print('Account was deleted successfully !');
 
-            response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId);
+            response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId+"?id="+connectionBoxId);
     }
 
 %>

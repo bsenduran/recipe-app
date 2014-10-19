@@ -14,12 +14,16 @@ if (request.getMethod() == "POST") {
 
     //if(!request.getParameter('oauth_verifier')){
     var twitter = new oauth.OAuthProvider(provider);
-
+    var returnRecipeUri = request.getParameter("recipeUri");
+    var connectionBoxId = returnRecipeUri.split("=")[1];
 
     session.put('oauth_service', twitter);
     session.put('consumerKey', provider.api_key);
     session.put('consumerSecret' ,provider.api_secret);
     session.put('assetId', request.getParameter("id"));
+
+    session.put('connectionBoxId', connectionBoxId);
+
 
     var authUrl = twitter.getAuthorizationUrl();
 

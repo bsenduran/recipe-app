@@ -3,11 +3,14 @@ var googleOAuthUtil = require('/extensions/assets/connection/modules/googleMailO
 if (request.getMethod() == "POST") {
     var oauth = require("oauth");
     var assetId = request.getParameter("id");
+    var returnRecipeUri = request.getParameter("recipeUri");
+    var connectionBoxId = returnRecipeUri.split("=")[1];
 
     var oauthService = new oauth.OAuthProvider(googleOAuthUtil.getGoogleProviderConfig());
 
     session.put("oauth_service", oauthService);
     session.put('assetId', assetId);
+    session.put('connectionBoxId', connectionBoxId);
 
     var authUrl = oauthService.getAuthorizationUrl();
     response.sendRedirect(authUrl);

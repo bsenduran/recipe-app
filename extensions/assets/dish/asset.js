@@ -19,6 +19,17 @@ asset.manager = function(ctx) {
         get: function(id) {
             var asset = this._super.get.call(this, id);
             return asset;
+        },
+        remove:function(id){
+            var success=true;
+            try{
+                this.am.remove(id);
+            }catch(e){
+                log.error('Unable to delete the asset with '+id);
+                log.error(e);
+                success=false;
+            }
+            return success;
         }
     };
 };
