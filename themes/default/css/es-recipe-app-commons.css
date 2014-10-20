@@ -2137,3 +2137,42 @@ ul.nav-list li span {
     font-weight: 200;
 }
 
+.btn-ok, .btn-ok:focus {
+    display: inline-block;
+    background: #5fb548;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 10px 15px 10px;
+    border:0px solid #fff;
+}
+
+.btn-ok:hover {
+    background:#999;
+    color:#fff;
+    text-decoration: none;
+}
+
+.null, .null:focus {
+    display: inline-block;
+    background: #aaa;
+    border-radius: 8px;
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 10px 15px 10px;
+    border:0px solid #fff;
+}
+
+.null:hover {
+    background:#999;
+    color:#fff;
+    text-decoration: none;
+}
+
+p.modal-msg {
+    font-weight:200;
+    font-size:22px;
+    margin:10px 10px;
+}
