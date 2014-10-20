@@ -78,9 +78,13 @@
 
 .ctrl-connector {
     width:100px;
-    height:100px;
+    height:98px;
     border-radius: 8px;
     border:1px solid #e4e4e4;
+}
+
+.ctrl-connector img {
+    border-radius: 6px;
 }
 
 h2.asset-overview {

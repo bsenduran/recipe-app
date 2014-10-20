@@ -1787,6 +1787,12 @@ p {
 
 .my-dish-desc {
     padding:15px 15px;
+    font-weight: 700;
+    font-size:14px;
+    color:#eee;
+
+    letter-spacing: 0px;
+
 }
 
 .my-dish-status {
@@ -1798,11 +1804,12 @@ p {
     color:#cecece;
     font-size:12px;
     font-weight: 400;
+    display:none;
 }
 
 .ctrl-my-connection {
     width:100px;
-    height:100px;
+    height:97px;
     border:1px solid #cecece;
     border-radius:8px;
     -webkit-box-shadow: 0px 0px 3px 0px rgba(173,173,173,1);
@@ -1811,10 +1818,12 @@ p {
 }
 
 .my-connection-icon img {
-    border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
+    border-radius: 6px;
+
     border:0px solid #333;
 }
+
+
 
 .btn-recipe-store {
     display: inline-block;
