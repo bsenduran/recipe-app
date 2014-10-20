@@ -346,11 +346,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
 
-    background: none;
-    color: #167E00;
-    text-shadow: none;
+
 }
-.nav-list > li > a {
+.nav-listx > li > a {
     display: block;
     font-size: 16px;
     font-weight: 300;
@@ -467,7 +465,7 @@ label, input, button, select, textarea {
     line-height: 26px;
     color: #505151;
 }
-.nav-list > .prominent-link > a {
+.nav-listx > .prominent-link > a {
     background: none repeat scroll 0 0 #27AE60;
     color: #FFFFFF;
     padding: 15px 20px;
@@ -476,7 +474,7 @@ label, input, button, select, textarea {
     border-bottom: 0 none;
     text-shadow: none;
 }
-.nav-list > .prominent-link > a:hover {
+.nav-listx > .prominent-link > a:hover {
     background: none repeat scroll 0 0 #27AE60 !important;
     color: #FFFFFF;
     /* border-right: 4px solid #167E00;*/
@@ -486,7 +484,7 @@ label, input, button, select, textarea {
     color: #FFFFFF;
     line-height: 26px;
 }
-.nav-list > li > a:hover, .nav-list > li > a:focus {
+.nav-listx > li > a:hover, .nav-listx > li > a:focus {
     color: #828282;
     text-shadow: none;
     background: none repeat scroll 0 0 #e7e7e7;
@@ -498,7 +496,7 @@ label, input, button, select, textarea {
     color: #FFFFFF;
     text-shadow: none;
 }
-.recipe-app-left-nav .nav-list .leftnav-divider {
+.recipe-app-left-nav .nav-listx .leftnav-divider {
     border-bottom: 1px solid #99C5A4;
     background: none;
 }
@@ -888,11 +886,11 @@ span.title {
 .asset-detail-top-row {
     border-bottom: 1px solid #ECF0F1;
 }
-.nav-list > li > a, .nav-list .nav-header {
+.nav-listx > li > a, .nav-listx .nav-header {
     margin-left: 0;
     margin-right: 0;
 }
-.nav-list {
+.nav-listx {
     padding-left: 0;
     padding-right: 0;
 }
@@ -2066,7 +2064,6 @@ a.btn-select-connection:hover {
 }
 
 .btn-activated {
-
 }
 
 .btn-deactivated {
@@ -2106,5 +2103,35 @@ a.btn-select-connection:hover {
     padding: 8px 10px;
     border:0px solid #fff;
     margin-right: 10px;
+}
+
+.ln-active {
+    background:#ff0000 !important;
+}
+
+ul.nav-list {
+    padding-left:0 !important;
+    padding-right:0 !important;
+    margin-left:8px;
+    margin-left:8px;
+}
+
+ul.nav-list li {
+    padding-left:60px;
+    text-align: left;
+    width:160px;
+    display:block;
+    margin-bottom:15px;
+    height:42px;
+    font-family:"open sans", sans-serif ;
+    font-weight: 700;
+    padding-top:3px;
+    padding-bottom:4px;
+    background-position: 0.3em 0.3em;
+}
+
+ul.nav-list li span {
+    font-size:13px;
+    font-weight: 200;
 }
 
