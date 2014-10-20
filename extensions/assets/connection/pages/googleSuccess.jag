@@ -40,7 +40,9 @@
         var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
         log.info(getResult);
         emailAddress = getResult.data.data.email;
-        authInfo = stringify({"username" : emailAddress, "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+        //todo : we need refresh token because the token is valid  for only one hour (currently our gmail connector is not supporting refresh token)
+        //authInfo = stringify({"username" : emailAddress, "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+        authInfo = stringify({"username" : emailAddress, "oauthAccessToken" : result.data.access_token});
 
     } else if(googleApiType == 'googlespreadsheet'){
         var getResult = get("https://www.googleapis.com/drive/v2/about", '', {"Authorization" : "Bearer " + result.data.access_token}, "json");

@@ -1,15 +1,15 @@
 
 
-    <ul class="nav nav-listx ">
+    <ul class="nav nav-list ">
            <!-- <li class="active prominent-link"><a href="/recipe-app/">Browse All</a></li>
             <li class="active prominent-link"><a href="#">Add</a></li>
             <li><a href="/recipe-app/asset/{{shortName}}"><i class="icon-plus-sign-alt"></i>{{t "Add "}}{{shortName}}</a></li>
             <li><a href="#"><i class="icon-dashboard"></i>Statistics</a></li>
             <li><a href="#"><i class="icon-gift"></i>Wishlist</a></li>-->
         {{#each leftNav}}
-            <li class="{{this.additionalClasses}}"><a href='{{url ""}}{{this.url}}' class="{{#if this.iconClass}} {{this.iconClass}} {{/if}}">
+            <li class="{{#if this.iconClass}} {{this.iconClass}} {{/if}}">
                 <span>{{this.step}}</span> <br />
-                {{this.name}}</a></li>
+                {{this.name}}</li>
         {{/each}}
     </ul>
 
