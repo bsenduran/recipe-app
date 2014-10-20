@@ -46,7 +46,8 @@
     var path ='connections/' + connectionType + '/accounts';
 
 
-    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token, "instanceUrl" : result.data.instance_url});
+    log.info(authInfo);
     regUtilMod.insertNewAccount(path,userName, authInfo);
 
 
