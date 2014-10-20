@@ -53,7 +53,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
 
                         for (var j in param_names) {
                             var connDotPar = connectors[i].trim() + "." + param_names[j].trim();
-                            content += "<" + connDotPar + ">" + param_values[j] + "<\/" + connDotPar + ">";
+                            content += "<" + connDotPar + ">" + getString(param_values[j]) + "<\/" + connDotPar + ">";
                         }
                     }
                 }
@@ -64,7 +64,7 @@ require('/modules/recipe-app.js').exec(function (ctx) {
 
                     for (var j in param_names) {
                         var connDotPar = connectors.trim() + "." + param_names[j].trim();
-                        content += "<" + connDotPar + ">" + param_values[j] + "<\/" + connDotPar + ">";
+                        content += "<" + connDotPar + ">" + getString(param_values[j]) + "<\/" + connDotPar + ">";
                     }
 
                 }
@@ -138,6 +138,17 @@ require('/modules/recipe-app.js').exec(function (ctx) {
                     getXMLContent(results, result_parametersname, result_parameter_value) +
                     task_root_closing;
 
+            // Generic function to get relevant text value for xml tag
+            var getString = function(paramValue){
+                var length = paramValue.length;
+
+                // Modify only type-aware places, Note: Still support single type-aware cases
+                if(paramValue.charAt(0) == '{' && paramValue.charAt(length-1) == '}'){
+                    paramValue = '$body//' + paramValue.substring(1, length - 2) + '/text()';
+                }
+
+                return paramValue;
+            }
 
             log.info("about to deploy");
             log.info(task_content);

@@ -1,21 +1,19 @@
 <%
-    var googleOAuthUtil = require('/extensions/assets/connection/modules/googleMailOAuthUtil.js').api;
+    var salesforceOAuthUtil = require('/extensions/assets/connection/modules/salesforceOAuthUtil.js').api;
     var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
 
     var msg = 'Authorized Successfully !';
     print('<h2>' + msg + '</h2>');
 
-    var log = new Log();
-
     // First get the OAuth Google End point.
-    var googleOAuthEp = session.get("oauth_service");
+    var salesforceOAuthEp = session.get("oauth_service");
 
     // Then get the access token given that verifier.
     var code = request.getParameter("code");
-    var url = googleOAuthUtil.getAccessTokenUrl();
-    var redirectUrl = googleOAuthUtil.getRedirectUrl();
-    var clientId = googleOAuthUtil.getClientId();
-    var clientSecret = googleOAuthUtil.getClientSecret();
+    var url = salesforceOAuthUtil.getAccessTokenUrl();
+    var redirectUrl = salesforceOAuthUtil.getRedirectUrl();
+    var clientId = salesforceOAuthUtil.getClientId();
+    var clientSecret = salesforceOAuthUtil.getClientSecret();
 
 
     var dataString = "grant_type=authorization_code"
@@ -26,24 +24,30 @@
 
     var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
 
+    var log = new Log();
+
     log.info(result);
 
+    log.info(result.data.id);
 
 
-    var getResult = get("https://www.googleapis.com/userinfo/email?alt=json&access_token=" + result.data.access_token,'','json');
-
+    var getResult = get(result.data.id, '', {"Authorization" : "Bearer " + result.data.access_token}, "json");
     log.info(getResult);
 
-    var emailAddress = getResult.data.data.email;
+    var userName = getResult.data.username;
 
-    log.info(emailAddress);
+    log.info(userName);
+
+    var connectionType = session.get('ConnectionType');
+
+    log.info(connectionType);
 
     // saving the necessary information in the registry.
-    var path ='connections/' + session.get('ConnectionType') + '/accounts';
+    var path ='connections/' + connectionType + '/accounts';
 
 
-    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthAccessTokenSecret" : result.data.refresh_token});
-    regUtilMod.insertNewAccount(path,emailAddress, authInfo);
+    var authInfo = stringify({"oauthConsumerKey" : clientId, "oauthConsumerSecret" : clientSecret , "oauthAccessToken" : result.data.access_token, "oauthRefreshToken" : result.data.refresh_token});
+    regUtilMod.insertNewAccount(path,userName, authInfo);
 
 
     var assetId = session.get('assetId');

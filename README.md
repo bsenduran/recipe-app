@@ -6,6 +6,9 @@ Add the following lines to `ES_HOME`/repository/conf/security/sso-idp-config.xml
             <SignResponse>true</SignResponse>
             <CustomLoginPage>/recipe-app/controllers/login.jag</CustomLoginPage>
     </ServiceProvider>
+
+
+*If the ES version is 1.2.0-snapshot M3, then set "false" to "versionResourcesOnChange", in `ES_HOME`/repository/conf/registry.xml
    
 
 

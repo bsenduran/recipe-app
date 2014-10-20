@@ -9,7 +9,7 @@ var api = {};
         "callback_url": "https://localhost:9443/recipe-app/asts/connection/googleSuccess?name=googlespreadsheet&type=oauth&version=2",
         "authorize_params": {
             "state": "wso2recipetrial",
-            "scope": "https://www.googleapis.com/auth/gmail.modify https://www.googleapis.com/auth/userinfo.email",
+            "scope": "https://mail.google.com/ https://www.googleapis.com/auth/userinfo.email",
             "access_type": "offline",
             "approval_prompt": "force"
         }            };

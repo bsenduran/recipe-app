@@ -44,6 +44,10 @@ asset.server = function(ctx) {
                     path: 'gmailOAuth.jag'
                 },
                 {
+                    url: 'salesforceOAuth',
+                    path: 'salesforceOAuth.jag'
+                },
+                {
                     url: 'deleteAccount',
                     path: 'deleteAccount.jag'
                 }
@@ -90,6 +94,11 @@ asset.server = function(ctx) {
                     title: 'gMail Success' + type,
                     url: 'googleMailSuccess',
                     path: 'googleMailSuccess.jag'
+                },
+                {
+                    title: 'salesforce Success' + type,
+                    url: 'salesforceSuccess',
+                    path: 'salesforceSuccess.jag'
                 }]
         }
     };

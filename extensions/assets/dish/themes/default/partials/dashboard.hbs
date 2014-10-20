@@ -60,7 +60,7 @@
                 {{#each connectionAssets}}
                 <li>
                     <div class="ctrl-my-connection">
-                        <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
+                        <a href='{{url ""}}/asts/connection/details/{{this.id}}' id='titleText' title="{{this.attributes.overview_displayname}}">
                             <div class="my-connection-icon"><img src='{{url ""}}/storage/connection/{{id}}/{{this.attributes.images_thumbnail}}' alt="..."></div>
                         {{this.attributes.overview_namex}}
                         </a>

@@ -10,7 +10,8 @@ require('/modules/recipe-app.js').exec(function (ctx) {
     var DEACTIVATE_URL = '/{context}/apis/manage_task/deactivate';
     var DELETE_URL = '/{context}/apis/{pageName}/delete';
     var options = ref.getQueryOptions(req.getQueryString());
-
+    var asset = require('rxt').asset;
+    var assetManager= asset.createUserAssetManager(ctx.session, 'dish');
 
     var log =new Log("manage_task");
 
@@ -25,9 +26,8 @@ log.info("uri options "+ stringify(options));
 
 
     }else if(uriMatcher.match(DELETE_URL)) {
-        //todo call to delete the asset
-        //uncomment the following
-        //admin_task.deleteTaskDescription(options.dishName);
+        admin_task.deleteTaskDescription(options.dishName);
+        assetManager.remove(options.id);
         response.sendRedirect('/recipe-app/asts/dish/dashboard');
     }
 
