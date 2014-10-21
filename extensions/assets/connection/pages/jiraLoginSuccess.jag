@@ -34,7 +34,7 @@ if(request.getMethod() == "POST"){
     // saving the necessary information in the registry.
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
-    var authInfo = stringify({"userName" : userName, "password" : password });
+    var authInfo = stringify({"username" : userName, "password" : password });
 
     regUtilMod.insertNewAccount(path,userName, authInfo);
 
