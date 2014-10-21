@@ -37,8 +37,10 @@ require('/modules/recipe-app.js').exec(function (ctx) {
         return JSON.parse(textJson + ']');
     };
 
-    log.info(url.split('/')[3]);
-    var recipeName = url.split('/')[3]; //todo: read this from recipe (add recipe_code in recipe rxt)
+    var splittedURL = url.split('/');
+    var splittedLen = splittedURL.length;
+    log.info([splittedLen - 2]);//todo: fixing for localhost and git (any) url pattern
+    var recipeName = splittedURL[splittedLen - 2]; //todo: read this from recipe (add recipe_code in recipe rxt)
 
 
     var am = asset.createUserAssetManager(ctx.session, 'dish');
