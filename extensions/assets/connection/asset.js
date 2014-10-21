@@ -48,6 +48,10 @@ asset.server = function(ctx) {
                     path: 'salesforceOAuth.jag'
                 },
                 {
+                    url: 'jiraOAuth',
+                    path: 'jiraOAuth.jag'
+                },
+                {
                     url: 'deleteAccount',
                     path: 'deleteAccount.jag'
                 }
@@ -99,6 +103,15 @@ asset.server = function(ctx) {
                     title: 'salesforce Success' + type,
                     url: 'salesforceSuccess',
                     path: 'salesforceSuccess.jag'
+                },
+                {
+                    title: 'jira Success' + type,
+                    url: 'jiraSuccess',
+                    path: 'jiraSuccess.jag'
+                },{
+                    title:'jiraLoginSuccess',
+                    url:'jiraLoginSuccess',
+                    path:'jiraLoginSuccess.jag'
                 }]
         }
     };
