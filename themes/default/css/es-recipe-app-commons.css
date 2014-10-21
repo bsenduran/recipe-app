@@ -1539,8 +1539,18 @@ circle:hover {
     display:block;
     height:60px;
     width:100px;
-    background: url("../img/logo.png") repeat-x;
+    background: url("../img/logo.png") no-repeat;
     margin-top:15px;
+    padding-left:105px;
+}
+
+.brand span {
+    font-size:22px;
+    color:#f0f0f0;
+}
+
+.brand:hover {
+    text-decoration:none;
 }
 
 h3, h4, h2 {
@@ -1836,6 +1846,7 @@ p {
     padding: 10px 15px 10px;
     border:0px solid #fff;
     margin-top:16px;
+    margin-left:40px;
 }
 
 .btn-recipe-store:hover {
