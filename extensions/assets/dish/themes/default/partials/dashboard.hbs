@@ -3,26 +3,36 @@
 <div class="asset-thumb-container">
 
             <!-- List dishes -->
+            <!-- my dishes -->
             <div class="ctrl-my-dishes">
             <h3>My Dishes</h3>
 
 
-
                 {{#if assets}}
+
+
+
+
+
                 <ul class="thumbnails">
                     {{#each assets}}
-                    <li>
 
-                        <div class="ctrl-my-dish">
 
-                            <div class="my-dish-status">
-                                  <small><i class="icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
+                    <div class="ctrl-thumb-asset">
+
+                        <div class="my-dish-status">
+                             <small><i class="icon-circle lc-state-{{this.lifecycleState}}" title="{{this.lifecycleState}}"></i></small>
+                        </div>
+
+                        <a href='{{url ""}}/asts/{{../rxt/shortName}}/control_panel/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
+                            <div class="lbl-thumb-asset-img">
+                                <img src='{{this.attributes.overview_thumbnail}}' alt="...">
                             </div>
+                        </a>
 
-                            <a href='{{url ""}}/asts/{{../rxt/shortName}}/control_panel/{{this.id}}' id='titleText' title="{{this.attributes.overview_name}}">
-                                <img class="img-dish" src='{{this.attributes.overview_thumbnail}}' alt="...">
-
-                                 <div class="my-dish-desc">
+                        <div class="lbl-thumb-asset-title">
+                            <a href="#">
+                            <span>
                                     <script>
                                         var str = "{{this.attributes.overview_name}}";
                                         if(str.length>30)
@@ -34,15 +44,18 @@
                                          }
                                         document.write(str);
                                     </script>
-                                    <p class="my-dish-last">Last used: 10.20am, today</p>
-                                 </div>
+
+                            </span>
                             </a>
                         </div>
-                    </li>
+
+                    </div>
+
                     {{/each}}
-                    </ul>
+
                 {{/if}}
             </div>
+            <!-- my dishes -->
 
 
             <div class="hr-sep-2"></div>
