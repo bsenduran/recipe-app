@@ -1,7 +1,7 @@
 
     <h3 class="h-left-nav-title">Configuring Dish</h3>
     <div class="hr-sep-2">&nbsp;</div>
-    <ul class="nav nav-list ">
+    <ul class="nav nav-list ctrl-step-wiz">
            <!-- <li class="active prominent-link"><a href="/recipe-app/">Browse All</a></li>
             <li class="active prominent-link"><a href="#">Add</a></li>
             <li><a href="/recipe-app/asset/{{shortName}}"><i class="icon-plus-sign-alt"></i>{{t "Add "}}{{shortName}}</a></li>
@@ -9,7 +9,7 @@
             <li><a href="#"><i class="icon-gift"></i>Wishlist</a></li>-->
         {{#each leftNav}}
             <li class="{{#if this.iconClass}} {{this.iconClass}} {{/if}}">
-                <span>{{this.step}}</span> <br />
+                <span class="lbl-step">{{this.step}}</span> <br />
                 {{this.name}}</li>
         {{/each}}
     </ul>

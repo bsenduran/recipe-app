@@ -2258,3 +2258,15 @@ p.modal-msg {
     color:#aaa;
 }
 
+ul.ctrl-step-wiz li {
+    font-weight:400 !important;
+    font-size:14px;
+    color:#222;
+    text-transform: uppercase;
+}
+
+.lbl-step {
+    color:#444;
+    text-transform: capitalize;
+}
+
