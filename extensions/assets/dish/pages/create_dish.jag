@@ -41,15 +41,16 @@ require('/modules/recipe-app.js').exec(function (ctx) {
     var splittedLen = splittedURL.length;
     log.info([splittedLen - 2]);//todo: fixing for localhost and git (any) url pattern
     var recipeName = splittedURL[splittedLen - 2]; //todo: read this from recipe (add recipe_code in recipe rxt)
+    var randomNumber = ' _ ' + Math.floor((Math.random() * 1000) + 1);
 
 
     var am = asset.createUserAssetManager(ctx.session, 'dish');
     var assetInstance = {
-        name: descriptorXML.overview.name.text(),
+        name: descriptorXML.overview.name.text() + randomNumber,
 
         attributes: {
 
-            overview_name: descriptorXML.overview.name.text(),
+            overview_name: descriptorXML.overview.name.text() + randomNumber,
             overview_version: descriptorXML.overview.version.text(),
             overview_url: url,
             overview_recipename: recipeName,
