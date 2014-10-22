@@ -1,0 +1,34 @@
+<%
+    var jiraOAuthUtil = require('/extensions/assets/connection/modules/jiraOAuthUtil.js').api;
+    var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+
+    var msg = 'Authorized Successfully !';
+    print('<h2>' + msg + '</h2>');
+
+    // First get the OAuth Google End point.
+    var jiraOAuthEp = session.get("oauth_service");
+
+    // Then get the access token given that verifier.
+    var code = request.getParameter("code");
+    var url = jiraOAuthUtil.getAccessTokenUrl();
+    var redirectUrl = jiraOAuthUtil.getRedirectUrl();
+
+
+    var dataString = "grant_type=authorization_code"
+                                               +"&code=" + code
+                                               +"&redirect_uri=" + encodeURIComponent(redirectUrl);
+
+    var result = post(url, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
+
+    var log = new Log();
+
+    log.info(result);
+
+    var connectionType = session.get('ConnectionType');
+
+    log.info(connectionType);
+
+    // saving the necessary information in the registry.
+    var path ='connections/' + connectionType + '/accounts';
+
+%>

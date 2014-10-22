@@ -1,0 +1,49 @@
+<%
+var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js').api;
+%>
+<html>
+<head>
+</head>
+<body>
+<h2>Login</h2>
+<form method="post">
+	<table>
+		<tr>
+			<td align="right">User Name:</td>
+			<td align="left"><input type="text" name="username" /></td>
+		</tr>
+		<tr>
+			<td align="right">Password:</td>
+			<td align="left"><input type="password" name="password" /></td>
+		</tr>
+	</table>
+	<br> <input type="submit" value="Login">
+</form>
+</body>
+</html>
+
+<%
+// if it's post request to add a employee
+if(request.getMethod() == "POST"){
+    var log = new Log();
+    log.info('Login Button Clicked !');
+    var userName = request.getParameter("username");
+    var password = request.getParameter("password");
+
+    log.info('Saving user credentials...');
+    // saving the necessary information in the registry.
+    var path ='connections/' + session.get('ConnectionType') + '/accounts';
+
+    var authInfo = stringify({"username" : userName, "password" : password });
+
+    regUtilMod.insertNewAccount(path,userName, authInfo);
+
+
+    var assetId = session.get('assetId');
+    var connectionBoxId = session.get('connectionBoxId');
+
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/details/' + assetId+"?id="+connectionBoxId);
+
+}
+
+%>

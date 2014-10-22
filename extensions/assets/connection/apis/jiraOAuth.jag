@@ -1,0 +1,10 @@
+<%
+    var assetId = request.getParameter("id");
+    var returnRecipeUri = request.getParameter("recipeUri");
+    var connectionBoxId = returnRecipeUri.split("=")[1];
+
+
+    session.put('assetId', assetId);
+    session.put('connectionBoxId', connectionBoxId);
+    response.sendRedirect('https://localhost:9443/recipe-app/asts/connection/jiraLoginSuccess');
+%>
