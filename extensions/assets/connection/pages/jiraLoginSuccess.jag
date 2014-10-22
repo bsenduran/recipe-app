@@ -16,6 +16,10 @@ var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js'
 			<td align="right">Password:</td>
 			<td align="left"><input type="password" name="password" /></td>
 		</tr>
+		<tr>
+        	<td align="right">JIRA Url:</td>
+        	<td align="left"><input type="text" name="jiraurl" /></td>
+        </tr>
 	</table>
 	<br> <input type="submit" value="Login">
 </form>
@@ -29,14 +33,15 @@ if(request.getMethod() == "POST"){
     log.info('Login Button Clicked !');
     var userName = request.getParameter("username");
     var password = request.getParameter("password");
+    var jiraUrl = request.getParameter("jiraurl");
 
     log.info('Saving user credentials...');
     // saving the necessary information in the registry.
     var path ='connections/' + session.get('ConnectionType') + '/accounts';
 
-    var authInfo = stringify({"username" : userName, "password" : password });
+    var authInfo = stringify({"username" : userName, "password" : password, "uri" : jiraUrl });
 
-    regUtilMod.insertNewAccount(path,userName, authInfo);
+    regUtilMod.insertNewAccount(path,userName + '@' + jiraUrl, authInfo);
 
 
     var assetId = session.get('assetId');
