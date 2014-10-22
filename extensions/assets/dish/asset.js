@@ -86,7 +86,7 @@ asset.server = function(ctx) {
                 url: 'set_results',
                 path: 'set_results.jag'
             }, {
-                title: 'Set Method',
+                title: 'Map Data',
                 url: 'set_process',
                 path: 'set_process.jag'
             }, {
@@ -188,7 +188,7 @@ asset.renderer = function(ctx) {
             url: util.buildUrl('set_results') + '/' + id
         }, {
             step: 'Step 4',
-            name: 'Set Method',
+            name: 'Map Data',
             iconClass: 'icon-step-4',
             url: util.buildUrl('set_process') + '/' + id
         }, {
