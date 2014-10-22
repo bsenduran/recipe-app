@@ -1,0 +1,34 @@
+<%
+        <%
+                var jiraOAuthUtil = require('/extensions/assets/connection/modules/jiraOAuthUtil.js').api;
+                if (request.getMethod() == "POST") {
+                    var oauth = require("oauth");
+                    var assetId = request.getParameter("id");
+                    var returnRecipeUri = request.getParameter("recipeUri");
+                    var connectionBoxId = returnRecipeUri.split("=")[1];
+
+                    var consumerKey = jiraOAuthUtil.getConsumerKey();
+                    var redirectUrl = jiraOAuthUtil.getRedirectUrl();
+                    var privateKey = jiraOAuthUtil.getPrivateKey();
+
+
+                    var log = new Log();
+
+                    session.put('assetId', assetId);
+                    session.put('connectionBoxId', connectionBoxId);
+
+
+                    var authUrl = jiraOAuthUtil.getRequestTokenUrl();
+                    // response.sendRedirect(authUrl);
+
+                        var dataString = "redirect_uri=" + encodeURIComponent(redirectUrl) +"&client_id=" + consumerKey +"&client_secret=" + "dont_care" + "&signature_method=" + "RSA_SHA1";
+
+
+                        var result = post(authUrl, dataString, {"Data-Type" : "application/x-www-form-urlencoded"}, "json");
+
+                        var log = new Log();
+
+                        log.info(result);
+                    }
+        %>
+%>
