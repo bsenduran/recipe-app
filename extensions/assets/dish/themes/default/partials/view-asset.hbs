@@ -30,7 +30,8 @@
         <!-- Bottom Nav-bar -->
         <ul class="c-both ctrl-paging">
             <li class="next">
-                <a class="btn-pag" id="add-form-btn">Next &rarr;</a>
+                <!--input type="submit" id="add-form-btn" class="btn-pag" value="Next  &rarr;"  /-->
+                <a class="btn-pag" id="add-form-btn" disabled="disabled">Next &rarr;</a>
             </li>
         </ul>
 
@@ -38,6 +39,35 @@
 
 </form>
 
+<script>
+
+
+function doCheck(){
+    var allFilled = true;
+
+    var inputs = document.getElementsByTagName('input');
+    for(var i=0; i<inputs.length; i++){
+        if(inputs[i].type == "text" && inputs[i].value == ''){
+            allFilled = false;
+            break;
+        }
+    }
+
+    document.getElementById("add-form-btn").disabled = !allFilled;
+}
+
+window.onload = function(){
+    var inputs = document.getElementsByTagName('input');
+    for(var i=0; i<inputs.length; i++){
+        if(inputs[i].type == "text"){
+            inputs[i].onkeyup = doCheck;
+            inputs[i].onblur = doCheck;
+        }
+    }
+};
+
+
+</script>
 
 <!-- Script to set user_ids' of connection -->
 <script>
@@ -61,6 +91,7 @@
         // Set values
         var userIdText = document.getElementById(query.id);
         userIdText.setAttribute("value", query.value);
+
     }
 
     var leftPaneItem = document.querySelectorAll("ul.nav-list li")[0];

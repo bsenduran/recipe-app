@@ -2270,3 +2270,29 @@ ul.ctrl-step-wiz li {
     text-transform: capitalize;
 }
 
+.no-dishes {
+    border:1px solid #fdae47;
+    border-radius:4px;
+    padding:13px 20px 2px 20px;
+    background:#fff9f2;
+    color:#555;
+    text-align: center;
+}
+
+.no-dishes p {
+    background: url("../img/ico-alert.png") no-repeat;
+    font-size:15px;
+    font-weight:200;
+    text-align: left;
+    color:#f57b20;
+    padding-left:30px;
+    padding-bottom:5px;
+}
+
+.no-dishes p a {
+    color:#f57b20;
+    font-weight:700;
+}
+
+
+
