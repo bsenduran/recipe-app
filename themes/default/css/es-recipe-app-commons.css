@@ -346,7 +346,6 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 }
 .nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus {
 
-
 }
 .nav-listx > li > a {
     display: block;
@@ -354,11 +353,25 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
     font-weight: 300;
     line-height: 20px;
     outline: medium none;
-    padding: 15px 20px;
+    padding: 15px 0px;
     position: relative;
     border-bottom: 1px solid #DADADA;
     color: #828282;
     text-transform: capitalize;
+}
+
+.nav-list > li > a:hover {
+    background-color:transparent !important;
+    /*
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid rgb(228, 228, 228);
+    background-color: rgb(240, 240, 240);
+    margin-left:0;
+    margin-bottom:0;
+    */
 }
 .widget-table {
     font-size: 13px;
@@ -1513,8 +1526,8 @@ circle:hover {
 }
 
 .wr-header {
-    background: url("../img/bg-header.png") repeat-x;
-    height:80px;
+    background:#292e38 url("../img/bg-headerx.png") repeat-x;
+    height:70px;
 }
 
 .wr-header-inner {
@@ -1526,13 +1539,15 @@ circle:hover {
 .wr-header-inner .left-brand {
     float:left;
     width:150px;
+    margin-left:0px;
 }
 
 .wr-header-inner .right-links {
     float:right;
     width:400px;
     text-align: right;
-    padding-top:25px;
+    padding:23px 20px;
+    border:0px solid #ff0000;
 }
 
 .wr-header-inner .left-brand a.brand {
@@ -1662,11 +1677,11 @@ p {
     font-size:14px;
     color:#626262;
     font-weight:700;
-    padding-left:60px;
+    padding-left:45px;
     display:block;
     padding-top:1px;
     padding-bottom:2px;
-    margin-left:20px;
+    margin-left:5px;
     margin-bottom:20px;
     text-align: left;
 }
@@ -1859,9 +1874,9 @@ p {
     display: inline-block;
     margin-right:20px;
     border-radius: 50px;
-    color: #f57b20 !important;
-    font-weight: 700;
-    font-size: 15px;
+    color: #aaa !important;
+    font-weight: 200;
+    font-size: 13px;
     border:0px solid #fff;
 }
 
@@ -1907,13 +1922,22 @@ p {
     text-decoration: none;
 }
 
-.ctrl-tn  a {
+.ctrl-tn a {
     color:#fff;
+    font-size:12px;
+}
+
+.ctrl-tn a:hover {
+    color:#fff !Important
 }
 
 .tn-sep  {
     color:#666;
-    font-size:19px;
+    font-size:1px;
+    border-left:1px solid #555;
+    padding-top:36px;
+    padding-bottom:32px;
+    margin-right:22px;
 }
 
 a.tn-welcome {
@@ -2140,22 +2164,25 @@ a.btn-select-connection:hover {
 ul.nav-list {
     padding-left:0 !important;
     padding-right:0 !important;
-    margin-left:8px;
-    margin-left:8px;
+    margin-left:0px;
 }
 
-ul.nav-list li {
-    padding-left:60px;
+ul.nav-list li a {
+    padding-left:55px;
     text-align: left;
-    width:160px;
+    width:170px;
     display:block;
-    margin-bottom:15px;
-    height:42px;
+    margin-bottom:2px;
+    height:32px;
     font-family:"open sans", sans-serif ;
     font-weight: 700;
-    padding-top:3px;
+    padding-top:13px;
     padding-bottom:4px;
     background-position: 0.3em 0.3em;
+}
+
+.ctrl-step-wiz li {
+    margin-bottom:10px;
 }
 
 ul.nav-list li span {

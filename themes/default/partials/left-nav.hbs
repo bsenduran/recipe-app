@@ -8,9 +8,11 @@
             <li><a href="#"><i class="icon-dashboard"></i>Statistics</a></li>
             <li><a href="#"><i class="icon-gift"></i>Wishlist</a></li>-->
         {{#each leftNav}}
-            <li class="{{#if this.iconClass}} {{this.iconClass}} {{/if}}">
-                <span class="lbl-step">{{this.step}}</span> <br />
-                {{this.name}}</li>
+            <li class="{{this.additionalClasses}}"><a class="{{this.iconClass}}" href='{{url ""}}{{this.url}}'>
+                {{#if this.iconClass}}
+                    <i class="{{this.iconClass}}"></i>
+                {{/if}}
+                {{this.name}}</a></li>
         {{/each}}
     </ul>
 
