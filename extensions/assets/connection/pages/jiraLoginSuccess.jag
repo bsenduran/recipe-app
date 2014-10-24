@@ -4,6 +4,15 @@ var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js'
 <html>
 <head>
 <style>
+.jira-img {
+	width:120px;
+	height:47px;
+	border:0px solid #ff0000;
+	background:#292e38 url("../img/jira-logo.png") repeat-x;
+	display:block;
+	margin-left:210px;
+
+}
 body {
 	background:#f0f0f0;
 	font-family:Arial, Helvetica, sans-serif;
@@ -60,6 +69,7 @@ body {
 	padding:15px 20px !important;
 	width:244px !important;
 }
+
 
 </style>
 </head>
