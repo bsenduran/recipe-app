@@ -1,3 +1,54 @@
+.wr-header {
+    background:#292e38 url("../img/bg-headerx.png") repeat-x;
+    height:70px;
+}
+
+.wr-header-inner {
+    height:80px;
+    width:990px;
+    margin:auto;
+}
+
+.wr-header-inner .left-brand {
+    float:left;
+    width:150px;
+    margin-left:0px;
+}
+
+.wr-header-inner .right-links {
+    float:right;
+    width:400px;
+    text-align: right;
+    padding:23px 20px;
+    border:0px solid #ff0000;
+}
+
+.wr-header-inner .left-brand a.brand {
+    display:block;
+    height:60px;
+    width:100px;
+    background: url("../img/logo.png") no-repeat;
+    margin-top:15px;
+    padding-left:105px;
+}
+
+.brand span {
+    font-size:22px;
+    color:#f0f0f0;
+}
+
+.brand:hover {
+    text-decoration:none;
+}
+
+h3, h4, h2 {
+    margin:0;
+    padding:0;
+    color:#333;
+    font-family: "Open Sans", sans-serif;
+}
+
+
 .wr-main {
     width:990px;
     margin:auto;

@@ -5,6 +5,22 @@ var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js'
 <head>
 </head>
 <body>
+  <div class="wr-header" id="container-header">
+    <div class="wr-header-inner">
+    <div class="left-brand">
+        <a href="{{url "/"}}" class="brand"><span>IPAAS</span></a>
+    </div>
+
+    <div class="right-links">
+        <div class="ctrl-tn">
+            <!-- nothing here -->
+        </div>
+    </div>
+    </div>
+    <br class="c-both" />
+  </div>
+
+
 <h2>Login</h2>
 <form method="post">
 	<table>
