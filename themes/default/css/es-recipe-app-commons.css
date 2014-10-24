@@ -1546,7 +1546,7 @@ circle:hover {
     float:right;
     width:400px;
     text-align: right;
-    padding:23px 20px;
+    padding:0px 20px;
     border:0px solid #ff0000;
 }
 
@@ -1878,6 +1878,7 @@ p {
     font-weight: 200;
     font-size: 13px;
     border:0px solid #fff;
+    padding-top:0px;
 }
 
 .btn-my-cafe:hover {
@@ -1885,6 +1886,12 @@ p {
     text-decoration: none;
 }
 
+.btn-my-cafe i, .ctrl-tn i {
+    display:block;
+    text-align: center;
+    font-size:18px;
+    color: #aaa;
+}
 .asset-button-grp {
 
 }
@@ -1923,20 +1930,27 @@ p {
 }
 
 .ctrl-tn a {
-    color:#fff;
+    color:#aaa;
     font-size:12px;
+    display:inline-block;
+    padding:13px 0;
+}
+
+.ctrl-tn i.icon-white {
+    font-size:18px;
 }
 
 .ctrl-tn a:hover {
-    color:#fff !Important
+    color:#fff !Important;
+    text-decoration:none;
 }
 
 .tn-sep  {
     color:#666;
     font-size:1px;
     border-left:1px solid #555;
-    padding-top:36px;
-    padding-bottom:32px;
+    padding-top:43px;
+    padding-bottom:24px;
     margin-right:22px;
 }
 
