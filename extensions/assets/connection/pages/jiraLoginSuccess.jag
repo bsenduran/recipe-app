@@ -78,7 +78,7 @@ body {
  <form method="post">
 <div class="wr-jira-login">
 	<div class="jira-url">
-		<img src="jira-logo.png" /><br />
+		<div class="jira-img"></div><br />
 		<label>JIRA URL</label><input type="text" name="jiraurl" />
 
 	</div>
