@@ -3,41 +3,90 @@ var regUtilMod = require('/extensions/assets/connection/modules/registryUtil.js'
 %>
 <html>
 <head>
+<style>
+body {
+	background:#f0f0f0;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.wr-jira-login {
+	border:1px solid #e4e4e4;
+	border-radius:6px;
+	background:#fff;
+	width:600px;
+	margin:auto;
+	margin-top:50px;
+}
+
+.jira-url {
+	padding:15px 20px;
+	text-align:center;
+	border-bottom:1px solid #e4e4e4;
+		color:#555;
+}
+
+.jira-url img {
+	margin-bottom:20px;
+}
+
+.jira-url input  {
+	padding:6px 10px;
+	width:500px;
+}
+
+.jira-login {
+	padding:15px 20px;
+	text-align:center
+}
+
+.jira-login label {
+	display:inline-block;
+	font-size:14px;
+	color:#555;
+	margin-bottom:4px;
+}
+
+.jira-login input {
+	padding:6px 10px;
+	margin-bottom:20px;
+		width:220px;
+}
+
+.btn-login {
+	display:inline-block;
+	border-radius:4px;
+	color:#fff;
+	background:#003366;
+	border:0px solid #fff;
+	padding:15px 20px !important;
+	width:244px !important;
+}
+
+</style>
 </head>
 <body>
-  <div class="wr-header" id="container-header">
-    <div class="wr-header-inner">
-    <div class="left-brand">
-        <a href="{{url "/"}}" class="brand"><span>IPAAS</span></a>
-    </div>
 
-    <div class="right-links">
-        <div class="ctrl-tn">
-            <!-- nothing here -->
-        </div>
-    </div>
-    </div>
-    <br class="c-both" />
-  </div>
+ <form method="post">
+<div class="wr-jira-login">
+	<div class="jira-url">
+		<img src="jira-logo.png" /><br />
+		<label>JIRA URL</label><input type="text" name="jiraurl" />
+
+	</div>
+
+	<div class="jira-login">
+		<label>Username</label><br />
+		<input type="text" name="username" /><br />
+
+		<label>Password</label><br />
+		<input type="password" name="password" /><br />
+
+		<input type="Submit" value="Login" class="btn-login" />
+	</div>
+
+</div>
 
 
-<h2>Login</h2>
-<form method="post">
-	<table>
-		<tr>
-			<td align="right">User Name:</td>
-			<td align="left"><input type="text" name="username" /></td>
-		</tr>
-		<tr>
-			<td align="right">Password:</td>
-			<td align="left"><input type="password" name="password" /></td>
-		</tr>
-		<tr>
-        	<td align="right">JIRA Url:</td>
-        	<td align="left"><input type="text" name="jiraurl" /></td>
-        </tr>
-	</table>
-	<br> <input type="submit" value="Login">
+
 </form>
 </body>
 </html>
