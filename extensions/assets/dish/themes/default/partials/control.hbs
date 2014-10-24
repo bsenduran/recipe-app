@@ -6,13 +6,15 @@
 
              <div class="hr-sep-2">&nbsp;</div>
             <div ><a href="/recipe-app/asts/dish/details/{{assets.id}}" type="button" class="btn-configure">Configure</a></div>
-            <div class="btn-group-x">
+            <div class="btn-group-xx">
             {{#if assets.isTaskRunning}}
-                <button class="btn-action btn-alt-actions btn-activated" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate</button>
+                <button class="btn-action btn-activated" id="btn-deactivate" type="button" onclick="confirm_deactivate('{{assets.name}}', '{{assets.id}}');">Deactivate</button>
             {{else}}
-                <button class="btn-action btn-alt-actions btn-deactivated" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate</button>
+                <button class="btn-action btn-deactivated" id="btn-activate" type="button" onclick="confirm_activate('{{assets.name}}', '{{assets.id}}');">Activate</button>
             {{/if}}
-            <button class="btn-action btn-alt-actions btn-delete-cp" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete</button>
+
+            <div class="hr-sep-2">&nbsp;</div>
+            <button class="btn-action btn-alt-actionsx btn-delete-cp" id="btn-activate" type="button" onclick="confirm_delete('{{assets.name}}', '{{assets.id}}');">Delete this Dish</button>
             </div>
 
 
@@ -37,7 +39,7 @@ var confirm_deactivate = function(name, id) {
 };
 
 var confirm_delete = function(name, id) {
-    bootbox.confirm("<p class='modal-msg'>Delete this Dish?</p>" , function (result) {
+    bootbox.confirm("<p class='modal-msg'>Delete this Dish?</p><p style='margin-left:10px; font-size:14px; font-weight:200'>Confirming this will completely wipe out the dish, including the configuration details associated. " , function (result) {
 
         if(result) {
             window.location.href = "/recipe-app/apis/manage_task/delete?type=dish&dishName="+name+"&id="+id;
