@@ -5,7 +5,7 @@
 
 .wr-header-inner {
     height:80px;
-    width:990px;
+    /* width:990px;   */
     margin:auto;
 }
 
@@ -23,6 +23,11 @@
     border:0px solid #ff0000;
 }
 
+.conn-sign-out {
+    margin-right:20px !important;
+}
+
+/*
 .wr-header-inner .left-brand a.brand {
     display:block;
     height:60px;
@@ -35,6 +40,57 @@
 .brand span {
     font-size:22px;
     color:#f0f0f0;
+}
+*/
+
+.wr-header-inner .left-brand a.brand {
+    display:block;
+    height:70px;
+    width:600px;
+    background: url("../img/cloud-header.png") no-repeat;
+    margin-top:0px;
+    padding-left:100px;
+}
+
+.brand span {
+    font-size:22px;
+    color:#f0f0f0;
+    display:none;
+}
+
+.wr-ipaas {
+    width:990px;
+    margin:auto;
+    border-radius: 0px;
+
+    border-bottom:1px solid #f0f0f0;
+    padding:10px 0px;
+    margin-top:15px;
+}
+
+.wr-ipaas .btn-recipe-store {
+    margin-top:0;
+}
+
+.wr-ip-left {
+    float:left;
+}
+
+.wr-ip-right {
+    float:right;
+}
+
+.wr-ipaas .wr-ip-left h1 {
+    font-size:22px;
+    font-weight:500;
+    margin:0;
+    letter-spacing: -1px;
+}
+
+.wr-ipaas .wr-ip-left .brand span {
+    font-size:22px;
+    color:#f0f0f0;
+    display:none;
 }
 
 .brand:hover {
