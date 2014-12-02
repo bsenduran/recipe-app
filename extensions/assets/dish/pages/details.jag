@@ -6,7 +6,7 @@ require('/modules/recipe-app.js').exec(function(ctx) {
     var asset = require('rxt').asset;
     var uriMatcher = new URIMatcher(ctx.request.getRequestURI());
     var options = uriMatcher.match('/{context}/asts/{type}/{pageName}/{+id}')||uriMatcher.match('/{context}/asts/{type}/{pageName}');
-    
+
     if(!options){
         response.sendError(400,'Could not locate an endpoint for your request.Make sure that you provide an id');
     }
@@ -29,16 +29,20 @@ require('/modules/recipe-app.js').exec(function(ctx) {
 
         }
 
+        var connection_am = asset.createUserAssetManager(ctx.session, "connection");
+        connection_am.search();
+        var con_list = connection_am.list();
+        var con_mapping_json ={};
 
-        //connection mapping details
-        var file = "dishes/connection_mapping";
-        var credentials = new MetadataStore("admin", "admin");
-
-        var connections;
-
-        var rawdata = credentials.get(file);
-        connections= parse(rawdata.content);
-
+        for (var con in con_list) {
+            if (con_list.hasOwnProperty(con)) {
+                con_mapping_json[con_list[con].attributes.overview_name] = con_list[con].id;
+            }
+            else {
+                //todo : what to do
+            }
+        }
+        var connections = con_mapping_json;
 
         var ing_con_name = assets.attributes.ingredient_connectorname;
         var ing_con_ids = [];
