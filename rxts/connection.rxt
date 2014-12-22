@@ -11,9 +11,6 @@
             </column>
         </list>
     </ui>
-    <relationships>
-        <association type="isConsumedBy" source="@{assets_entry:value}"/>
-    </relationships>
     <content>
         <table name="Overview">
             <field type="text" required="true">
@@ -25,32 +22,20 @@
             <field type="text" required="true">
                 <name>Version</name>
             </field>
+	<field type="options" required="true">
+		<name>Authentication Type</name>
+		 <values>
+		  <value>oauth2</value>
+		  <value>oauth1</value>	
+		  <value>basic</value>		  	  
+		 </values>
+	</field>
             <field type="text-area">
                 <name>Description</name>
             </field>
-        </table>
-
-        <table name="Images">
-            <field type="text" required="true">
+            <field type="text" url="true" required="true">
                 <name>Thumbnail</name>
             </field>
-            <field type="text" required="true">
-                <name>Banner</name>
-            </field>
         </table>
-
-         <table name="account" columns="2" maxoccurs="unbounded">
-                    <subheading>
-                        <heading>user</heading>
-                        <heading>detail</heading>
-                    </subheading>
-                    <field type="text">
-                        <name label="user">user</name>
-                    </field>
-                    <field type="text-area">
-                        <name label="detail">detail</name>
-                    </field>
-                </table>
-
-    </content>
+ </content>
 </artifactType>
